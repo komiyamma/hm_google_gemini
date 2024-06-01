@@ -8,6 +8,10 @@ using System.Threading;
 using Newtonsoft.Json;
 using static Google.Cloud.AIPlatform.V1.ReadFeatureValuesResponse.Types.EntityView.Types;
 using System.IO;
+using System.IO.Pipes;
+using System.Text;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 
 internal class ChatSession
@@ -147,6 +151,7 @@ internal class ChatSession
 
 public class MultiTurnChatSample
 {
+    static ChatSession chatSession;
     static async Task<string> GenerateContent()
     {
 
@@ -171,7 +176,7 @@ public class MultiTurnChatSample
         }
 
         // コンテキストを追跡するためにチャットセッションを作成する
-        ChatSession chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
+        chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
 
         /*
         string prompt = "こんにちわ。私は日本語で会話します。";
@@ -202,6 +207,7 @@ public class MultiTurnChatSample
 
     static async Task Main()
     {
+        WindowsShutDownNotifier();
         var content = await GenerateContent();
         Console.WriteLine($"Generated content: {content}");
     }
@@ -239,4 +245,108 @@ public class MultiTurnChatSample
             Console.WriteLine();
         }
     }
+
+    bool isHidemaruExist()
+    {
+        return isNativeHidemaruIsExist() || isStoreHidemaruIsExist();
+    }
+
+    bool isNativeHidemaruIsExist()
+    {
+        // ネイティブはHidemaru32Class で
+        IntPtr hWnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "Hidemaru32Class", IntPtr.Zero);
+        if (hWnd == IntPtr.Zero)
+        {
+            // Trace.WriteLine("Hidemaru32Classなし");
+            return false;
+        }
+
+        // 「常駐秀丸」は、「Hidemaru32Class」の下に子ウィンドウは持たないので、この判定が効く
+        IntPtr hChild = FindWindowEx(hWnd, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+        if (hChild == IntPtr.Zero)
+        {
+            // Trace.WriteLine("これは有効な編集エリアを持つ有効な秀丸エディタのウィンドウハンドルではない。常駐秀丸か何かである");
+            return false; // 終わる
+        }
+
+        return true;
+    }
+
+    bool isStoreHidemaruIsExist()
+    {
+        // (ちなみに、ストアアプリ版は、HHidemaru32Class_Appx
+        IntPtr hWnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "Hidemaru32Class", IntPtr.Zero);
+        if (hWnd == IntPtr.Zero)
+        {
+            // Trace.WriteLine("Hidemaru32Classなし");
+            return false;
+        }
+
+        // 常駐秀丸は、「Hidemaru32Class」の下に子ウィンドウは持たないので、この判定が効く
+        IntPtr hChild = FindWindowEx(hWnd, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+        if (hChild == IntPtr.Zero)
+        {
+            // Trace.WriteLine("これは有効な編集エリアを持つ有効な秀丸エディタのウィンドウハンドルではない。常駐秀丸か何かである");
+            return false; // 終わる
+        }
+
+        return true;
+    }
+
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern IntPtr FindWindowEx(IntPtr hWndParent, IntPtr hWndChildAfter, string lpClassName, IntPtr strWindowName);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern IntPtr FindWindowEx(IntPtr hWndParent, IntPtr hWndChildAfter, IntPtr lpClassName, IntPtr strWindowName);
+
+    static async void StartPipe()
+    {
+        // ネームドパイプは中身が壊れやすいので、とにかく1回ごとに破棄。
+        while (true)
+        {
+            using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("HmGoogleGemini", PipeDirection.InOut))
+            {
+                Console.WriteLine("パイプサーバーを起動しました。");
+
+                Console.WriteLine("クライアントからの接続を待機中...");
+
+                await pipeServer.WaitForConnectionAsync();
+                Console.WriteLine("クライアントが接続しました。");
+
+                byte[] buffer = new byte[1024];
+                int bytesRead = await pipeServer.ReadAsync(buffer, 0, buffer.Length);
+
+                if (bytesRead == 0)
+                {
+                    Console.WriteLine("クライアントが切断しました。");
+                }
+
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Console.WriteLine("受信したメッセージ: " + message);
+
+                if (message == "exit")
+                {
+                    Console.WriteLine("受信したコマンドが終了命令のため、通信を終了します。");
+                }
+            }
+        }
+    }
+
+    static void WindowsShutDownNotifier()
+    {
+        SystemEvents.SessionEnding += SystemEvents_SessionEnding;
+
+    }
+
+    private static async void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
+    {
+        if (e.Reason == SessionEndReasons.SystemShutdown)
+        {
+            chatSession.cancel();
+            await Task.Delay(100); // ミリ秒単位で待つ時間を指定
+            Console.WriteLine("Windowsがシャットダウンしています。ここで必要な操作を行ってください。");
+        }
+    }
+
 }
