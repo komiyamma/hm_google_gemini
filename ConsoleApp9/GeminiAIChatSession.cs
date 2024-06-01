@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static Google.Rpc.Context.AttributeContext.Types;
+using static System.Net.Mime.MediaTypeNames;
 
 
 internal class ChatSession
@@ -132,6 +133,7 @@ internal class ChatSession
         }
         catch (Exception e)
         {
+            SaveAddTextToFile("\n\n\n" + e.Message + "\n\n\n");
             Console.WriteLine("問い合わせをキャンセルしました。" + e);
         }
 
