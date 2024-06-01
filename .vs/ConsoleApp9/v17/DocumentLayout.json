@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "G:\\repogitory\\gen_google_gemini_console\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|g:\\repogitory\\gen_google_gemini_console\\consoleapp9\\jsoniocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|solutionrelative:consoleapp9\\jsoniocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|G:\\repogitory\\gen_google_gemini_console\\consoleapp9\\geminiaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|solutionrelative:consoleapp9\\geminiaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|g:\\repogitory\\gen_google_gemini_console\\consoleapp9\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|G:\\repogitory\\gen_google_gemini_console\\consoleapp9\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|solutionrelative:consoleapp9\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|G:\\repogitory\\gen_google_gemini_console\\consoleapp9\\jsoniocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|solutionrelative:consoleapp9\\jsoniocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|ConsoleApp9\\ConsoleApp9.csproj|G:\\repogitory\\gen_google_gemini_console\\consoleapp9\\windowsshutdownnotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,15 +53,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "JsonIOController.cs",
               "DocumentMoniker": "G:\\repogitory\\gen_google_gemini_console\\ConsoleApp9\\JsonIOController.cs",
               "RelativeDocumentMoniker": "ConsoleApp9\\JsonIOController.cs",
               "ToolTip": "G:\\repogitory\\gen_google_gemini_console\\ConsoleApp9\\JsonIOController.cs",
               "RelativeToolTip": "ConsoleApp9\\JsonIOController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAxwCMAAAApAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAIwBkAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T13:02:40.303Z"
+              "WhenOpened": "2024-06-01T13:02:40.303Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -77,13 +78,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GeminiAIController.cs",
               "DocumentMoniker": "G:\\repogitory\\gen_google_gemini_console\\ConsoleApp9\\GeminiAIController.cs",
               "RelativeDocumentMoniker": "ConsoleApp9\\GeminiAIController.cs",
               "ToolTip": "G:\\repogitory\\gen_google_gemini_console\\ConsoleApp9\\GeminiAIController.cs",
               "RelativeToolTip": "ConsoleApp9\\GeminiAIController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAwAsAAAAwAAAA",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAwCAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-01T11:06:09.614Z",
               "EditorCaption": ""
@@ -110,7 +111,8 @@
               "RelativeToolTip": "ConsoleApp9\\WindowsShutDownNotifier.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T10:54:40.219Z"
+              "WhenOpened": "2024-06-01T10:54:40.219Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -149,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GeminiAIChatSession.cs",
               "DocumentMoniker": "G:\\repogitory\\gen_google_gemini_console\\ConsoleApp9\\GeminiAIChatSession.cs",
               "RelativeDocumentMoniker": "ConsoleApp9\\GeminiAIChatSession.cs",

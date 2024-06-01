@@ -29,6 +29,8 @@ internal partial class HmGoogleGemini
         {
         }
 
+        ClearTextFile();
+
         // コンテキストを追跡するためにチャットセッションを作成する
         chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
 

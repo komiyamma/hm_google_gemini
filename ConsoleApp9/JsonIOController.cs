@@ -23,6 +23,26 @@ partial class HmGoogleGemini
         public List<TPart> Parts { get; set; }
     }
 
+    static public void ClearTextFile()
+    {
+        try
+        {
+            string tempfolder = Path.GetTempPath();
+            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
+
+            // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
+            using (StreamWriter writer = new StreamWriter(saveFilePath, false, Encoding.UTF8))
+            {
+                writer.WriteLine("");
+            }
+        }
+        catch (Exception err)
+        {
+
+            Console.WriteLine(err);
+        }
+    }
+
     static public void SaveAddTextToFile(string text)
     {
         try
