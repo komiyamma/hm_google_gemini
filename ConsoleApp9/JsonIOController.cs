@@ -4,8 +4,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -21,6 +23,27 @@ partial class HmGoogleGemini
         public List<TPart> Parts { get; set; }
     }
 
+    static public void SaveAddTextToFile(string text)
+    {
+        try
+        {
+            string tempfolder = Path.GetTempPath();
+            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
+
+            // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
+            using (StreamWriter writer = new StreamWriter(saveFilePath, true, Encoding.UTF8))
+            {
+                Console.WriteLine("追加書き込み");
+                writer.WriteLine(text);
+            }
+        }
+        catch (Exception err)
+        {
+
+            Console.WriteLine(err);
+        }
+    }
+
     static public void SaveContentsToJson(List<Content> _contents)
     {
         try
@@ -31,7 +54,7 @@ partial class HmGoogleGemini
             Console.WriteLine(saveFilePath);
 
             // JSONをファイルに書き込み
-            File.WriteAllText(saveFilePath, json);
+            File.WriteAllText(saveFilePath, json, Encoding.UTF8);
         }
         catch (Exception err)
         {

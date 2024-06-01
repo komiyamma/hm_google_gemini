@@ -9,7 +9,7 @@ internal partial class HmGoogleGemini
     static async Task<string> GenerateContent()
     {
 
-        string _projectId = "new-project";
+        string _projectId = "new-project-20240307";
         string _location = "us-central1";
         string _publisher = "google";
         string _model = "gemini-1.0-pro";

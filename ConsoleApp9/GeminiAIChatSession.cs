@@ -106,11 +106,14 @@ internal class ChatSession
             {
                 if (_cst.IsCancellationRequested)
                 {
-                    Console.WriteLine("問い合わせをキャンセルしました。" + e);
+                    Console.WriteLine("問い合わせをキャンセルしました。");
                     break;
                 }
-                fullText.Append(responseItem.Candidates[0].Content.Parts[0].Text);
-                Console.WriteLine(responseItem.Candidates[0].Content.Parts[0].Text);
+                var text = responseItem.Candidates[0].Content.Parts[0].Text;
+                fullText.Append(text);
+                Console.WriteLine("追加書き込み2");
+                SaveAddTextToFile(text);
+                Console.WriteLine(text);
             }
             var answer = new Content
             {
@@ -118,10 +121,10 @@ internal class ChatSession
             };
             answer.Parts.AddRange(new List<Part>()
             {
-            new() {
-                Text = fullText.ToString()
-            }
-             });
+                new() {
+                    Text = fullText.ToString()
+                }
+            });
             _contents.Add(answer);
 
             return fullText.ToString();
@@ -131,11 +134,16 @@ internal class ChatSession
             Console.WriteLine("問い合わせをキャンセルしました。" + e);
         }
 
-            return "";
+        return "";
     }
 
     private void SaveContentsToJson()
     {
         HmGoogleGemini.SaveContentsToJson(_contents);
+    }
+
+    private void SaveAddTextToFile(string text)
+    {
+        HmGoogleGemini.SaveAddTextToFile(text);
     }
 }
