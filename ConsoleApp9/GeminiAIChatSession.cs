@@ -18,7 +18,7 @@ internal class ChatSession
     private PredictionServiceClient _predictionServiceClient;
 
     static List<Content> _contents;
-
+    static int conversationUpdateCount = 1;
     public ChatSession(string modelPath, string location)
     {
         _modelPath = modelPath;
@@ -32,12 +32,45 @@ internal class ChatSession
         InitContents();
     }
 
+
     private void InitContents()
     {
         // リクエスト毎に送信する内容を初期化する。
         _contents = new List<Content>();
     }
 
+    bool conversationUpdateCancel = false;
+    async Task conversationUpdateCheck()
+    {
+        conversationUpdateCancel = false;
+        int lastConversationUpdateCount = conversationUpdateCount;
+        long iTickCount = 0;
+        while (true)
+        {
+            if (conversationUpdateCancel)
+            {
+                Console.WriteLine("今回の会話タスクが終了したため、conversationUpdateCheckを終了");
+                break;
+            }
+            await Task.Delay(100); // 5秒ごとにチェック
+
+            if (lastConversationUpdateCount == conversationUpdateCount)
+            {
+                iTickCount++;
+            } else
+            {
+                lastConversationUpdateCount = conversationUpdateCount;
+                iTickCount = 0;
+            }
+
+            if (iTickCount > 50)
+            {
+                Console.WriteLine("AIからの応答の進捗がみられないため、キャンセル発行");
+                this.Cancel();
+                break;
+            }
+        }
+    }
     static CancellationTokenSource _cst;
 
     public void Clear()
@@ -53,6 +86,7 @@ internal class ChatSession
     public async Task<string> SendMessageAsync(string prompt)
     {
         Object lockObj = new Object();
+        var task = conversationUpdateCheck();
 
         // Initialize the content with the prompt.
         var content = new Content
@@ -106,9 +140,12 @@ internal class ChatSession
             AsyncResponseStream<GenerateContentResponse> responseStream = response.GetResponseStream();
             await foreach (GenerateContentResponse responseItem in responseStream)
             {
+                conversationUpdateCount++;
+
                 if (_cst.IsCancellationRequested)
                 {
-                    Console.WriteLine("問い合わせをキャンセルしました。");
+                    Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
+                    SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
                     break;
                 }
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
@@ -135,6 +172,10 @@ internal class ChatSession
         {
             SaveAddTextToFile("\n\n\n" + e.Message + "\n\n\n");
             Console.WriteLine("問い合わせをキャンセルしました。" + e);
+        }
+        finally
+        {
+            conversationUpdateCancel = true;
         }
 
         return "";
