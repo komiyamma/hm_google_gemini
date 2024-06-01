@@ -171,7 +171,11 @@ internal class ChatSession
         catch (Exception e)
         {
             SaveAddTextToFile("\n\n\n" + e.Message + "\n\n\n");
+            conversationUpdateCancel = true;
+            this.Cancel();
             Console.WriteLine("問い合わせをキャンセルしました。" + e);
+            Console.WriteLine("アプリを終了します。");
+            Environment.Exit(0);
         }
         finally
         {
