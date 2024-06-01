@@ -42,7 +42,7 @@ internal partial class HmGoogleGemini
         Console.WriteLine($"Response: {response}");
         */
 
-        string prompt = "林檎とバナナについて100文字程度の論文を書いてください。";
+        string prompt = "林檎とバナナについて100文字程度の論文を書いてください。テーブルを利用した比較を入れ込んでください。";
         Console.WriteLine($"\nUser: {prompt}");
 
         string response = await chatSession.SendMessageAsync(prompt);
