@@ -1,1 +1,66 @@
-[{"Role":"USER","Parts":[{"Text":"1+1は？","HasText":true,"InlineData":null,"FileData":null,"FunctionCall":null,"FunctionResponse":null,"VideoMetadata":null,"DataCase":1,"MetadataCase":0}]},{"Role":"model","Parts":[{"Text":"1+1 = 2 です。 \n","HasText":true,"InlineData":null,"FileData":null,"FunctionCall":null,"FunctionResponse":null,"VideoMetadata":null,"DataCase":1,"MetadataCase":0}]}]
+[
+    {
+        "Role": "USER",
+        "Parts": [
+            {
+                "Text": "1+1は？",
+                "HasText": true,
+                "InlineData": null,
+                "FileData": null,
+                "FunctionCall": null,
+                "FunctionResponse": null,
+                "VideoMetadata": null,
+                "DataCase": 1,
+                "MetadataCase": 0
+            }
+        ]
+    },
+    {
+        "Role": "model",
+        "Parts": [
+            {
+                "Text": "1+1=2です。 \n",
+                "HasText": true,
+                "InlineData": null,
+                "FileData": null,
+                "FunctionCall": null,
+                "FunctionResponse": null,
+                "VideoMetadata": null,
+                "DataCase": 1,
+                "MetadataCase": 0
+            }
+        ]
+    },
+    {
+        "Role": "USER",
+        "Parts": [
+            {
+                "Text": "それを2倍すると？",
+                "HasText": true,
+                "InlineData": null,
+                "FileData": null,
+                "FunctionCall": null,
+                "FunctionResponse": null,
+                "VideoMetadata": null,
+                "DataCase": 1,
+                "MetadataCase": 0
+            }
+        ]
+    },
+    {
+        "Role": "model",
+        "Parts": [
+            {
+                "Text": "1+1を2倍すると、4になります。\n \n 計算式は以下の通りです。\n\n (1 + 1) × 2 = 2 × 2 = 4 \n",
+                "HasText": true,
+                "InlineData": null,
+                "FileData": null,
+                "FunctionCall": null,
+                "FunctionResponse": null,
+                "VideoMetadata": null,
+                "DataCase": 1,
+                "MetadataCase": 0
+            }
+        ]
+    }
+]

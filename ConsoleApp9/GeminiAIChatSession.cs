@@ -1,11 +1,14 @@
 ﻿
+using Google.Api.Gax.Grpc;
 using Google.Cloud.AIPlatform.V1;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static Google.Rpc.Context.AttributeContext.Types;
 
 
 internal class ChatSession
@@ -34,7 +37,7 @@ internal class ChatSession
         _contents = new List<Content>();
     }
 
-    CancellationTokenSource _cst;
+    static CancellationTokenSource _cst;
 
     public void Clear()
     {
@@ -72,7 +75,7 @@ internal class ChatSession
                 TopP = 1,
                 TopK = 32,
                 CandidateCount = 1,
-                MaxOutputTokens = (prompt.Length) * 2 + 4096
+                MaxOutputTokens = (prompt.Length) * 2 + 4096,
             }
         };
         generateContentRequest.Contents.AddRange(_contents);
@@ -82,6 +85,7 @@ internal class ChatSession
         Console.WriteLine("開始");
         try
         {
+            /*
             // ストリーミングではなく、全体を一気にリクエストをし、レスポンスを得る。
             GenerateContentResponse response = await _predictionServiceClient.GenerateContentAsync(generateContentRequest, _cst.Token);
             Console.WriteLine("終了");
@@ -89,13 +93,42 @@ internal class ChatSession
             // レスポンスの内容を保存する。
             _contents.Add(response.Candidates[0].Content);
 
-            SaveContentsToJson();
+            this.SaveContentsToJson();
             // テキストを返す
             return response.Candidates[0].Content.Parts[0].Text;
+            */
+
+            var response = _predictionServiceClient.StreamGenerateContent(generateContentRequest);
+
+            StringBuilder fullText = new StringBuilder();
+            AsyncResponseStream<GenerateContentResponse> responseStream = response.GetResponseStream();
+            await foreach (GenerateContentResponse responseItem in responseStream)
+            {
+                if (_cst.IsCancellationRequested)
+                {
+                    Console.WriteLine("問い合わせをキャンセルしました。" + e);
+                    break;
+                }
+                fullText.Append(responseItem.Candidates[0].Content.Parts[0].Text);
+                Console.WriteLine(responseItem.Candidates[0].Content.Parts[0].Text);
+            }
+            var answer = new Content
+            {
+                Role = "model"
+            };
+            answer.Parts.AddRange(new List<Part>()
+            {
+            new() {
+                Text = fullText.ToString()
+            }
+             });
+            _contents.Add(answer);
+
+            return fullText.ToString();
         }
         catch (Exception e)
         {
-            Console.WriteLine("問い合わせをキャンセルしました。");
+            Console.WriteLine("問い合わせをキャンセルしました。" + e);
         }
 
             return "";
@@ -103,6 +136,6 @@ internal class ChatSession
 
     private void SaveContentsToJson()
     {
-        HmGoogleGemini.SaveToJson(_contents);
+        HmGoogleGemini.SaveContentsToJson(_contents);
     }
 }

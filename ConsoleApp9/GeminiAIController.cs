@@ -9,10 +9,10 @@ internal partial class HmGoogleGemini
     static async Task<string> GenerateContent()
     {
 
-        string _projectId = "new-project-";
+        string _projectId = "new-project-20240307";
         string _location = "us-central1";
         string _publisher = "google";
-        string _model = "gemini-1.5-pro";
+        string _model = "gemini-1.0-pro";
 
         try
         {
@@ -40,20 +40,19 @@ internal partial class HmGoogleGemini
         Console.WriteLine($"Response: {response}");
         */
 
-        string prompt = "1+1は？";
+        string prompt = "林檎とバナナについて100文字程度の論文を書いてください。";
         Console.WriteLine($"\nUser: {prompt}");
 
         string response = await chatSession.SendMessageAsync(prompt);
         Console.WriteLine($"Response: {response}");
 
+        /*
         prompt = "それを2倍すると？";
         Console.WriteLine($"\nUser: {prompt}");
 
-        var ret = chatSession.SendMessageAsync(prompt);
-        chatSession.Cancel();
-        response = ret.Result;
+        response = await chatSession.SendMessageAsync(prompt);
         Console.WriteLine($"Response: {response}");
-
+        */
 
         return response;
     }

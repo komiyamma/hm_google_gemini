@@ -21,14 +21,17 @@ partial class HmGoogleGemini
         public List<TPart> Parts { get; set; }
     }
 
-    static public void SaveToJson(List<Content> _contents)
+    static public void SaveContentsToJson(List<Content> _contents)
     {
         try
         {
+            string tempfolder = Path.GetTempPath();
+            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.json");
             string json = JsonConvert.SerializeObject(_contents);
+            Console.WriteLine(saveFilePath);
 
             // JSONをファイルに書き込み
-            File.WriteAllText("data.json", json);
+            File.WriteAllText(saveFilePath, json);
         }
         catch (Exception err)
         {
@@ -40,7 +43,9 @@ partial class HmGoogleGemini
 
     static void ImportData()
     {
-        string json = File.ReadAllText("data.json");
+        string tempfolder = Path.GetTempPath();
+        string loadFilePath = Path.Combine(tempfolder, "HmGoogleGemini.json");
+        string json = File.ReadAllText(loadFilePath);
         var data = JsonConvert.DeserializeObject<List<TData>>(json);
 
         foreach (var item in data)
