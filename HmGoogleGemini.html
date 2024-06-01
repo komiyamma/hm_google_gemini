@@ -1,0 +1,36 @@
+<head>
+    <title>JSONファイルの監視</title>
+</head>
+<body>
+    <pre id="status"></pre>
+
+    <script>
+        var lastModifiedTime = null;
+
+        function checkFile() {
+            fetch('HmGoogleGemini.json')
+            .then(response => response.json())
+            .then(data => {
+                var currentModifiedTime = data.lastModified;
+
+                if (lastModifiedTime !== currentModifiedTime) {
+                    lastModifiedTime = currentModifiedTime;
+                    document.getElementById('status').textContent = JSON.stringify(data);
+
+                    // ファイルが更新された時の処理をここに記述
+                    // 例: 再度ファイルを読み込むなどの処理を行う
+                } else {
+                //    document.getElementById('status').textContent = 'JSONファイルは更新されていません。';
+                }
+            })
+            .catch(error => {
+                console.error('ファイルの読み込み中にエラーが発生しました:', error);
+            });
+        }
+
+        setInterval(checkFile, 500); // 0.5秒ごとに監視
+
+        checkFile(); // ページ読み込み時に初回チェック
+    </script>
+</body>
+</html>
