@@ -110,10 +110,6 @@ internal class ChatSession
                     break;
                 }
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
-                if (text.EndsWith("\n"))
-                {
-                    text = text.TrimEnd('\n');
-                }
                 fullText.Append(text);
                 Console.WriteLine("追加書き込み2");
                 SaveAddTextToFile(text);

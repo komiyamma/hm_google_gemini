@@ -54,7 +54,7 @@ partial class HmGoogleGemini
             using (StreamWriter writer = new StreamWriter(saveFilePath, true, Encoding.UTF8))
             {
                 Console.WriteLine("追加書き込み");
-                writer.WriteLine(text);
+                writer.Write(text);
             }
         }
         catch (Exception err)
