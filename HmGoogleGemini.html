@@ -30,9 +30,9 @@
         function checkQuestionFile() {
             fetch('HmGoogleGemini.question.txt')
                 .then(response => response.text())
-                .then(data => {
+                .then(text => {
                     try {
-                        document.getElementById('user_question').textContent = data;
+                        document.getElementById('user_question').textContent = text;
                     } catch (err) { }
                 })
                 .catch(error => {
@@ -42,10 +42,9 @@
         function checkAnswerFile() {
             fetch('HmGoogleGemini.txt')
                 .then(response => response.text())
-                .then(data => {
+                .then(md_text => {
                     try {
-                        var htmlText = marked.parse(data);
-                        //         document.getElementById('status').textContent = data;
+                        var htmlText = marked.parse(md_text);
                         document.getElementById('model_answer').innerHTML = htmlText;
                     } catch (err) { }
                 })
