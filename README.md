@@ -1,0 +1,2 @@
+# gen_google_gemini_console
+Google - Gemini へのアクセスするサンプルをさわり始める。返答が結構早いのでストリームタイプではなく一括で回答完了まで待つ方がよいか？
