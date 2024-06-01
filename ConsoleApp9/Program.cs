@@ -15,7 +15,7 @@ internal class ChatSession
     private string _modelPath;
     private PredictionServiceClient _predictionServiceClient;
 
-    private List<Content> _contents;
+    static List<Content> _contents;
 
     public ChatSession(string modelPath, string location)
     {
@@ -38,6 +38,15 @@ internal class ChatSession
 
     CancellationTokenSource _cst;
 
+    public void clear()
+    {
+        _contents.Clear();
+    }
+
+    public void cancel()
+    {
+        _cst.Cancel();
+    }
 
     public async Task<string> SendMessageAsync(string prompt)
     {
@@ -54,6 +63,31 @@ internal class ChatSession
             }
         });
         _contents.Add(content);
+        /*
+                var content2 = new Content
+                {
+                    Role = "model"
+                };
+                content.Parts.AddRange(new List<Part>()
+                {
+                    new() {
+                        Text = "4です"
+                    }
+                });
+                _contents.Add(content2);
+
+                var content3 = new Content
+                {
+                    Role = "model"
+                };
+                content.Parts.AddRange(new List<Part>()
+                {
+                    new() {
+                        Text = "それを2倍すると？"
+                    }
+                });
+                _contents.Add(content3);
+        */
 
         // コンテンツ生成のリクエストを作成する。
         var generateContentRequest = new GenerateContentRequest
@@ -73,18 +107,25 @@ internal class ChatSession
         _cst = new CancellationTokenSource();
 
         Console.WriteLine("開始");
-        // ストリーミングではなく、全体を一気にリクエストをし、レスポンスを得る。
-        GenerateContentResponse response = await _predictionServiceClient.GenerateContentAsync(generateContentRequest, _cst.Token);
-        Console.WriteLine("終了");
+        try
+        {
+            // ストリーミングではなく、全体を一気にリクエストをし、レスポンスを得る。
+            GenerateContentResponse response = await _predictionServiceClient.GenerateContentAsync(generateContentRequest, _cst.Token);
+            Console.WriteLine("終了");
 
-        // レスポンスの内容を保存する。
-        _contents.Add(response.Candidates[0].Content);
+            // レスポンスの内容を保存する。
+            _contents.Add(response.Candidates[0].Content);
 
-        SaveToJson();
+            SaveToJson();
+            // テキストを返す
+            return response.Candidates[0].Content.Parts[0].Text;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("問い合わせをキャンセルしました。");
+        }
 
-
-        // テキストを返す
-        return response.Candidates[0].Content.Parts[0].Text;
+            return "";
     }
 
     private void SaveToJson()
@@ -109,7 +150,7 @@ public class MultiTurnChatSample
     static async Task<string> GenerateContent()
     {
 
-        string _projectId = "new-project";
+        string _projectId = "new-project-";
         string _location = "us-central1";
         string _publisher = "google";
         string _model = "gemini-1.5-pro";
@@ -149,11 +190,15 @@ public class MultiTurnChatSample
         prompt = "それを2倍すると？";
         Console.WriteLine($"\nUser: {prompt}");
 
-        response = await chatSession.SendMessageAsync(prompt);
+        var ret = chatSession.SendMessageAsync(prompt);
+        chatSession.cancel();
+        response = ret.Result;
         Console.WriteLine($"Response: {response}");
+
 
         return response;
     }
+
 
     static async Task Main()
     {
