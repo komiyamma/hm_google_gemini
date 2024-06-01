@@ -114,7 +114,6 @@ internal class ChatSession
 
         _cst = new CancellationTokenSource();
 
-        Console.WriteLine("開始");
         try
         {
             /*
@@ -146,7 +145,6 @@ internal class ChatSession
                 }
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
                 fullText.Append(text);
-                Console.WriteLine("追加書き込み2");
                 SaveAddTextToFile(text);
                 Console.WriteLine(text);
             }

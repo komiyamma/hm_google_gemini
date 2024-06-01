@@ -1,17 +1,24 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-
+using System.Text.RegularExpressions;
 
 internal partial class HmGoogleGemini
 {
     // FileSystemWatcherオブジェクトの作成
     static FileSystemWatcher watcher = new FileSystemWatcher();
 
+    static bool isConversationing = false;
+
+    static string tempfolder = "";
+    static string saveFilePath = "";
+
+    static Boolean isFirst = true;
+
     static void StartFileWatchr()
     {
-        string tempfolder = Path.GetTempPath();
-        string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.question.txt");
+        tempfolder = Path.GetTempPath();
+        saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.question.txt");
 
 
         // 監視するディレクトリを設定
@@ -26,56 +33,96 @@ internal partial class HmGoogleGemini
         // 監視を開始
         watcher.EnableRaisingEvents = true;
 
-        bool isConversationing = false;
+        Watcher_helper(saveFilePath);
+
         // 更新があった時の処理。ただし連続して同じファイルに複数回保存するエディタがあるので、0.2秒以内のものは無視する。
-        watcher.Changed += async (sender, e) =>
+        watcher.Changed += Watcher_ChangedHandler;
+    }
+
+    static int lastTickCount = 0;
+    static void Watcher_helper(string filepath)
+    {
+        try
         {
-            if (e.ChangeType != WatcherChangeTypes.Changed) { return; }
 
-            try
+            Console.WriteLine("ファイルが更新されました: " + filepath);
+
+            string question_text = "";
+            using (StreamReader reader = new StreamReader(saveFilePath, Encoding.UTF8))
             {
-                Console.WriteLine("ファイルが更新されました: " + e.FullPath);
-                ClearTextFile();
+                question_text = reader.ReadToEnd();
+            }
 
-                string question_text = "";
-                using (StreamReader reader = new StreamReader(saveFilePath, Encoding.UTF8))
-                {
-                    question_text = reader.ReadToEnd();
-                }
-                string prompt = question_text;
-                Console.WriteLine($"\nUser: {prompt}");
+            // 正規表現を使用して数値を抽出
+            Regex regex = new Regex(@"HmGoogleGemini\.Message\((\d+)\)");
+            Match match = regex.Match(question_text);
 
-                if (question_text == "HmGoogleGemini.Cancel()")
+            if (match.Success)
+            {
+                string strnumber = match.Groups[1].Value;
+                int number = int.Parse(strnumber);
+
+                // 前回の投稿と番号が同じとかならダメ。ファイルが変わっていない
+                if (lastTickCount >= number)
                 {
-                    chatSession.Cancel();
-                    isConversationing = false;
+                    Console.WriteLine("★前回と同じファイルだ");
                     return;
-                }
-
-                if (question_text == "HmGoogleGemini.Clear()")
+                } else
                 {
-                    chatSession.Cancel();
-                    chatSession.Clear();
-                    isConversationing = false;
-                    return;
+                    // 文字列を改行文字で分割し、2行目以降を取得
+                    string[] lines = question_text.Split(new[] { '\n' });
+                    question_text = string.Join("\n", lines, 1, lines.Length - 1);
+
+                    lastTickCount = number;
                 }
-
-                if (isConversationing) { return; }
-                isConversationing = true;
-                var task = chatSession.SendMessageAsync(prompt);
-                string response = task.Result;
-                isConversationing = false;
-                Console.WriteLine($"Response: {response}");
             }
-            catch (Exception)
+            else
             {
+                
             }
-            finally
-            {
-                isConversationing = false;
-            }
-        };
 
+            string prompt = question_text;
+
+
+            Console.WriteLine($"\nUser: {prompt}");
+
+            if (question_text == "HmGoogleGemini.Cancel()")
+            {
+                chatSession.Cancel();
+                isConversationing = false;
+                return;
+            }
+
+            if (question_text == "HmGoogleGemini.Clear()")
+            {
+                chatSession.Cancel();
+                chatSession.Clear();
+                isConversationing = false;
+                return;
+            }
+
+            if (isConversationing) { return; }
+            isConversationing = true;
+            ClearTextFile();
+            var task = chatSession.SendMessageAsync(prompt);
+            string response = task.Result;
+            isConversationing = false;
+        }
+        catch (Exception)
+        {
+        }
+        finally
+        {
+            isConversationing = false;
+        }
+    }
+
+    static void Watcher_ChangedHandler(object sender, FileSystemEventArgs e)
+    {
+
+        if (e.ChangeType != WatcherChangeTypes.Changed) { return; }
+        if (isFirst) { isFirst = false; return; }
+        Watcher_helper(e.FullPath);
     }
 }
 
