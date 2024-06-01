@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 internal partial class HmGoogleGemini
 {
     static ChatSession chatSession;
-    static async Task<string> GenerateContent()
+    static void GenerateContent()
     {
 
         string _projectId = "new-project-20240307";
@@ -42,12 +42,6 @@ internal partial class HmGoogleGemini
         Console.WriteLine($"Response: {response}");
         */
 
-        string prompt = "林檎とバナナについて100文字程度の論文を書いてください。テーブルを利用した比較を入れ込んでください。";
-        Console.WriteLine($"\nUser: {prompt}");
-
-        string response = await chatSession.SendMessageAsync(prompt);
-        Console.WriteLine($"Response: {response}");
-
         /*
         prompt = "それを2倍すると？";
         Console.WriteLine($"\nUser: {prompt}");
@@ -55,8 +49,6 @@ internal partial class HmGoogleGemini
         response = await chatSession.SendMessageAsync(prompt);
         Console.WriteLine($"Response: {response}");
         */
-
-        return response;
     }
 
 }

@@ -53,13 +53,20 @@
                 });
         }
 
-        setInterval(checkAnswerFile, 500); // 0.5秒ごとに監視
-        checkQuestionFile(); // ページ読み込み時に初回チェック
+        setInterval(checkQuestionFile, 500); // 0.5秒ごとに監視
+
+        // ページ読み込み完了に初回チェック
+        document.addEventListener("DOMContentLoaded", function() {
+            checkQuestionFile();
+            setInterval(checkAnswerFile, 500); // 0.5秒ごとに監視
+        });
+        
     </script>
 </head>
 
 <body class="markdown-body">
-    <div id="user_question"></div>
+    <pre id="user_question"></pre>
+    <hr>
     <div id="model_answer"></div>
 </body>
 

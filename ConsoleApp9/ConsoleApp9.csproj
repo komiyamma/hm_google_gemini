@@ -152,8 +152,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QuestionFileWatcher.cs" />
     <Compile Include="GeminiAIController.cs" />
-    <Compile Include="JsonIOController.cs" />
+    <Compile Include="IOTextController.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="PipeLineController.cs" />
     <Compile Include="WindowsShutDownNotifier.cs" />

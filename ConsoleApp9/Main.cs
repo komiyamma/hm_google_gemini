@@ -8,8 +8,9 @@ internal partial class HmGoogleGemini
     static async Task Main()
     {
         WindowsShutDownNotifier();
-        _ = Task.Run(() => StartPipe());
-        var content = await GenerateContent();
-        // Console.WriteLine($"Generated content: {content}");
+        GenerateContent();
+        // _ = Task.Run(() => StartPipe());
+        StartFileWatchr();
+        await Task.Delay(-1); // 無期限で待機する
     }
 }

@@ -51,6 +51,7 @@ internal class ChatSession
 
     public async Task<string> SendMessageAsync(string prompt)
     {
+        Object lockObj = new Object();
 
         // Initialize the content with the prompt.
         var content = new Content
@@ -137,10 +138,7 @@ internal class ChatSession
         return "";
     }
 
-    private void SaveContentsToJson()
-    {
-        HmGoogleGemini.SaveContentsToJson(_contents);
-    }
+
 
     private void SaveAddTextToFile(string text)
     {

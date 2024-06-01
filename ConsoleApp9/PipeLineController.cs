@@ -29,7 +29,14 @@ partial class HmGoogleGemini {
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("受信したメッセージ: " + message);
 
-                if (message == "exit")
+                if (message == "HmGoogleGemini.Clear()")
+                {
+                    chatSession.Cancel();
+                    chatSession.Clear();
+                    ClearTextFile();
+                    Console.WriteLine("テキストファイルをクリアしました。");
+                }
+                else if (message == "HmGoogleGemini.Exit()")
                 {
                     Console.WriteLine("受信したコマンドが終了命令のため、通信を終了します。");
                 }
