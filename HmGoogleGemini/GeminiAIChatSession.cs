@@ -1,15 +1,11 @@
 ﻿
 using Google.Api.Gax.Grpc;
 using Google.Cloud.AIPlatform.V1;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Google.Rpc.Context.AttributeContext.Types;
-using static System.Net.Mime.MediaTypeNames;
 
 
 internal class ChatSession

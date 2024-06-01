@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if HMGOOGLEGEMINI_PIPELINE
+
+using System;
 using System.IO.Pipes;
 using System.Text;
 
@@ -44,3 +46,5 @@ partial class HmGoogleGemini {
         }
     }
 }
+
+#endif
