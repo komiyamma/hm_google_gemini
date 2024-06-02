@@ -39,7 +39,7 @@
             // 再度改行文字を付けて連結
 
 		    // 空行、または改行しかない行を削除する
-		    lines = lines.filter(line => line.trim() !== '');
+		    let lines = lines.filter(line => line.trim() !== '');
 
 		    // 最初の3行だけを取得する
 		    let firstThreeLines = lines.slice(0, 3);
@@ -58,7 +58,7 @@
                     try {
                         // １行目にはコマンドが入っているのでカット。
                         // ４行以上ある場合には、「....」で代用する。
-                        let newText = getFirstThreeLines(text);
+                        newText = getFirstThreeLines(newText);
 
                         document.getElementById('user_question').textContent = newText;
                     } catch (err) { }
