@@ -12,7 +12,7 @@ console.log(port);
     const json_param = {
         // target: "HmGoogleGemini",
         target: "_each",
-            uri: "localhost:"+port+"/HmGoogleGemini.html",
+            uri: "http://localhost:"+port+"/HmGoogleGemini.html",
             show: 1,
             place: "rightside",
             size: 300,
@@ -33,42 +33,7 @@ function outputAlert(msg) {
     dll.dllFuncW.Output(msg + "\r\n");
 }
 
-function isX64Hidemaru() {
-    return platform() & 0x00080000;
-}
-
-function getTempPath() {
-    let dll = null;
-    if (isX64Hidemaru()) {
-        dll = loaddll(currentmacrodir + "\\HmGetTempPath_x64.dll");
-    } else {
-        dll = loaddll(currentmacrodir + "\\HmGetTempPath_x86.dll");
-    }
-
-    return dll.dllFuncStrW.HmGetTempPath();
-}
-
-let tempPathDir = currentmacrodir;
-function fileCopyWithCompareDate(sourceFile, destFile) {
-	var fso = createobject("Scripting.FileSystemObject");
-
-	if (fso.FileExists(sourceFile)) {
-	    var sourceFileObj = fso.GetFile(sourceFile);
-
-	    if (fso.FileExists(destFile)) {
-	        var destFileObj = fso.GetFile(destFile);
-
-	        if (sourceFileObj.DateLastModified !== destFileObj.DateLastModified) {
-	            sourceFileObj.Copy(destFile, true);
-	        }
-	    } else {
-	        sourceFileObj.Copy(destFile, true);
-	    }
-	} else {
-	}
-}
-
-let saveFileName = tempPathDir + "\\HmGoogleGemini.question.txt";
+let saveFileName = currentmacrodir + "\\HmGoogleGemini.question.txt";
 
 let ticknum = tickcount() & 0x7fffffff;
 
@@ -107,29 +72,16 @@ function doSendCommand() {
     }
 }
 
-var server = hidemaru.createHttpServer(function(req, res) {
-    if(req.url=="/abc"){
-      res.writeHead(200);//OK
-      res.end("requested url:"+req.url );
-    } else {
-      res.writeHead(404);//Not found
-      res.end("");
-    }
-  });
-
-server.listen(0);
-message(server.port);
+var port = 55555;
+function openHttpServer(port) {
+    let currentphppath = currentmacrodir + "\\php.exe";
+    let commandline = `"${currentphppath}" -S localhost:${port} -t "${currentmacrodir}"`;
+    runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0);
+}
 
 function doMain() {
-    let srcHtmlPath = currentmacrodir + "\\HmGoogleGemini.html";
-    let dstHtmlPath = tempPathDir + "\\HmGoogleGemini.html"; // \\が無いのは合っている。
-    fileCopyWithCompareDate(srcHtmlPath, dstHtmlPath);
-
-    let srcJSPath = currentmacrodir + "\\HmGoogleGemini.marked.js";
-    let dstJSPath = tempPathDir + "\\HmGoogleGemini.marked.js"; // \\が無いのは合っている。
-    fileCopyWithCompareDate(srcJSPath, dstJSPath);
-
-    openRenderPaneCommand(server.port);
+    openHttpServer(port)
+    openRenderPaneCommand(port);
     if (selecting()) {
         doSendQuestionContent();
     } else {
