@@ -1,2 +1,3 @@
-HmGoogleGemini.Message(285477546)
-２＋２は？
+HmGoogleGemini.Message(286432468)
+ApacheライセンスとMIT ライセンス違いを詳細におしえてください。
+違う部分をテーブル形式で比較してください。
