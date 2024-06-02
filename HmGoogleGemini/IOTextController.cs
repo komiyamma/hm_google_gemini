@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 
 
 partial class HmGoogleGemini
 {
+    static string getTargetDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
     public class TPart
     {
         public string Text { get; set; }
@@ -22,7 +25,7 @@ partial class HmGoogleGemini
     {
         try
         {
-            string tempfolder = Path.GetTempPath();
+            string tempfolder = getTargetDir;
             string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.question.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
@@ -42,7 +45,7 @@ partial class HmGoogleGemini
     {
         try
         {
-            string tempfolder = Path.GetTempPath();
+            string tempfolder = getTargetDir;
             string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
@@ -62,7 +65,7 @@ partial class HmGoogleGemini
     {
         try
         {
-            string tempfolder = Path.GetTempPath();
+            string tempfolder = getTargetDir;
             string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く

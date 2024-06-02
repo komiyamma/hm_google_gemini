@@ -7,12 +7,12 @@ let projectId = "new-project-20240307";
 let location = "us-central1";
 let model = "gemini-1.0-pro";
 debuginfo(2);
-function openRenderPaneCommand(htmlWindowPath) {
-    let urlPath = new URL(htmlWindowPath);
+function openRenderPaneCommand(port) {
+console.log(port);
     const json_param = {
         // target: "HmGoogleGemini",
         target: "_each",
-            uri: urlPath,
+            uri: "localhost:"+port+"/HmGoogleGemini.html",
             show: 1,
             place: "rightside",
             size: 300,
@@ -48,7 +48,7 @@ function getTempPath() {
     return dll.dllFuncStrW.HmGetTempPath();
 }
 
-let tempPathDir = getTempPath();
+let tempPathDir = currentmacrodir;
 function fileCopyWithCompareDate(sourceFile, destFile) {
 	var fso = createobject("Scripting.FileSystemObject");
 
@@ -68,7 +68,7 @@ function fileCopyWithCompareDate(sourceFile, destFile) {
 	}
 }
 
-let saveFileName = tempPathDir + "HmGoogleGemini.question.txt";
+let saveFileName = tempPathDir + "\\HmGoogleGemini.question.txt";
 
 let ticknum = tickcount() & 0x7fffffff;
 
@@ -76,7 +76,6 @@ function doSendQuestionContent() {
     try {
         let text = hidemaru.getSelectedText();
         let commandline = `"${currentexepath}" "${projectId}" "${location}" "${model}"`;
-        message(commandline);
         // runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
         runex(commandline, 0);
 
@@ -108,17 +107,29 @@ function doSendCommand() {
     }
 }
 
+var server = hidemaru.createHttpServer(function(req, res) {
+    if(req.url=="/abc"){
+      res.writeHead(200);//OK
+      res.end("requested url:"+req.url );
+    } else {
+      res.writeHead(404);//Not found
+      res.end("");
+    }
+  });
+
+server.listen(0);
+message(server.port);
 
 function doMain() {
     let srcHtmlPath = currentmacrodir + "\\HmGoogleGemini.html";
-    let dstHtmlPath = tempPathDir + "HmGoogleGemini.html"; // \\が無いのは合っている。
+    let dstHtmlPath = tempPathDir + "\\HmGoogleGemini.html"; // \\が無いのは合っている。
     fileCopyWithCompareDate(srcHtmlPath, dstHtmlPath);
 
     let srcJSPath = currentmacrodir + "\\HmGoogleGemini.marked.js";
-    let dstJSPath = tempPathDir + "HmGoogleGemini.marked.js"; // \\が無いのは合っている。
+    let dstJSPath = tempPathDir + "\\HmGoogleGemini.marked.js"; // \\が無いのは合っている。
     fileCopyWithCompareDate(srcJSPath, dstJSPath);
 
-    openRenderPaneCommand(dstHtmlPath);
+    openRenderPaneCommand(server.port);
     if (selecting()) {
         doSendQuestionContent();
     } else {

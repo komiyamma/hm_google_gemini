@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -17,7 +18,7 @@ internal partial class HmGoogleGemini
 
     static void StartFileWatchr()
     {
-        tempfolder = Path.GetTempPath();
+        tempfolder = getTargetDir;
         saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.question.txt");
 
 
