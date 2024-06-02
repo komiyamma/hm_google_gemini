@@ -35,6 +35,7 @@ internal class ChatSession
         _contents = new List<Content>();
     }
 
+    // AIからの返答がどうも進んでいない、といったことを判定する。５秒進んでいないようだと、キャンセルを発動する。
     bool conversationUpdateCancel = false;
     async Task conversationUpdateCheck()
     {
@@ -53,7 +54,8 @@ internal class ChatSession
             if (lastConversationUpdateCount == conversationUpdateCount)
             {
                 iTickCount++;
-            } else
+            }
+            else
             {
                 lastConversationUpdateCount = conversationUpdateCount;
                 iTickCount = 0;
@@ -68,13 +70,17 @@ internal class ChatSession
             }
         }
     }
+
+    // 質問してAIの応答の途中でキャンセルするためのトークン
     static CancellationTokenSource _cst;
 
+    // 会話履歴全部クリア
     public void Clear()
     {
         _contents.Clear();
     }
 
+    // AIの返答を途中キャンセル
     public void Cancel()
     {
         _cst.Cancel();
@@ -130,12 +136,15 @@ internal class ChatSession
             return response.Candidates[0].Content.Parts[0].Text;
             */
 
+            // ストリーミングでリクエストをし、レスポンスを得る。
             var response = _predictionServiceClient.StreamGenerateContent(generateContentRequest);
 
+            // 1回の返答はこまごま返ってくるので、返答全部を１つにまとまる用途
             StringBuilder fullText = new StringBuilder();
             AsyncResponseStream<GenerateContentResponse> responseStream = response.GetResponseStream();
             await foreach (GenerateContentResponse responseItem in responseStream)
             {
+                // 途中で分詰まりを検知するための進捗カウンタ
                 conversationUpdateCount++;
 
                 if (_cst.IsCancellationRequested)
@@ -149,6 +158,8 @@ internal class ChatSession
                 SaveAddTextToFile(text);
                 // Console.WriteLine(text);
             }
+
+            // こまごまと返ってきた返答をまとめて１つにして「AIの返答」として１つで登録する
             var answer = new Content
             {
                 Role = "model"
@@ -181,7 +192,7 @@ internal class ChatSession
     }
 
 
-
+    // Streamでちょこちょこと返答が返ってくるので、ちょこちょこと返答内容をファイルに追加保存する。
     private void SaveAddTextToFile(string text)
     {
         HmGoogleGemini.SaveAddTextToAnswerFile(text);

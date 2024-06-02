@@ -1,15 +1,16 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Threading.Tasks;
 
 
 partial class HmGoogleGemini
 {
+    // Windowsがシャットダウンするときに呼び出されるイベントハンドラを登録する
     static void WindowsShutDownNotifier()
     {
         SystemEvents.SessionEnding += SystemEvents_SessionEnding;
     }
 
+    // Windowsがシャットダウンするときに呼び出されるイベントハンドラ
     private static async void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
     {
         if (e.Reason == SessionEndReasons.SystemShutdown)

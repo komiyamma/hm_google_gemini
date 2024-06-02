@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -8,25 +7,14 @@ using System.Text;
 
 partial class HmGoogleGemini
 {
-    static string getTargetDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    static string targetDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-    public class TPart
-    {
-        public string Text { get; set; }
-    }
-    public class TData
-    {
-        public string Role { get; set; }
-        public List<TPart> Parts { get; set; }
-    }
-
-
+    // 質問内容をファイルに保存してあるが、ファイル内容をクリアする
     static public void ClearQuestionFile()
     {
         try
         {
-            string tempfolder = getTargetDir;
-            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.question.txt");
+            string saveFilePath = Path.Combine(targetDir, "HmGoogleGemini.question.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
             using (StreamWriter writer = new StreamWriter(saveFilePath, false, Encoding.UTF8))
@@ -41,12 +29,12 @@ partial class HmGoogleGemini
         }
     }
 
+    // AIの回答内容をファイルに保存してあるが、ファイル内容をクリアする
     static public void ClearAnswerFile()
     {
         try
         {
-            string tempfolder = getTargetDir;
-            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
+            string saveFilePath = Path.Combine(targetDir, "HmGoogleGemini.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
             using (StreamWriter writer = new StreamWriter(saveFilePath, false, Encoding.UTF8))
@@ -61,12 +49,12 @@ partial class HmGoogleGemini
         }
     }
 
+    // Streamでちょこちょこと返答が返ってくるので、ちょこちょこと返答内容をファイルに追加保存する。
     static public void SaveAddTextToAnswerFile(string text)
     {
         try
         {
-            string tempfolder = getTargetDir;
-            string saveFilePath = Path.Combine(tempfolder, "HmGoogleGemini.txt");
+            string saveFilePath = Path.Combine(targetDir, "HmGoogleGemini.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
             using (StreamWriter writer = new StreamWriter(saveFilePath, true, Encoding.UTF8))

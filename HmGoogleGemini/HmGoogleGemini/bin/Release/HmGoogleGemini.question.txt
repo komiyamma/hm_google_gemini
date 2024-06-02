@@ -1,2 +1,2 @@
-HmGoogleGemini.Clear(276990156)
-リセット
+HmGoogleGemini.Message(283547687)
+２倍すると？

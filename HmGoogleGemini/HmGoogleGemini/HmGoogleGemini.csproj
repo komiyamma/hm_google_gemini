@@ -159,7 +159,6 @@
     <Compile Include="GeminiAIController.cs" />
     <Compile Include="IOTextController.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="PipeLineController.cs" />
     <Compile Include="WindowsShutDownNotifier.cs" />
     <Compile Include="GeminiAIChatSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,10 +7,9 @@ internal partial class HmGoogleGemini
     static ChatSession chatSession;
     static void GenerateContent()
     {
-
-        string _projectId = "";
-        string _location = "";
-        string _model = "";
+        string _projectId = "";  // "new-project-20240307" とかそういうパターン
+        string _location = "";   // "us-central1" とかそういうパターン
+        string _model = "";      // "gemini-1.0-pro" とかそういうパターン
         string _publisher = "google";
 
         try
@@ -26,7 +25,6 @@ internal partial class HmGoogleGemini
                 _location = commandLineArgs[2];
                 // Console.WriteLine("_model:" + commandLineArgs[3]);
                 _model = commandLineArgs[3];
-                
             }
         }
         catch (Exception e)
