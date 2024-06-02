@@ -32,12 +32,21 @@
     </style>
     <script src="./HmGoogleGemini.marked.js"></script>
     <script>
+        function cutFirstLine(text) {
+            // 改行文字でテキストを分割し、2行目以降を取得
+            let lines = text.split('\n').slice(1);
+            // 再度改行文字を付けて連結
+            let newText = lines.join('\n');
+            return newText;
+        }
         function checkQuestionFile() {
             fetch('HmGoogleGemini.question.txt')
                 .then(response => response.text())
                 .then(text => {
                     try {
-                        document.getElementById('user_question').textContent = text;
+                        // １行目にはコマンドが入っているのでカット。
+                        let newText = cutFirstLine(text);
+                        document.getElementById('user_question').textContent = newText;
                     } catch (err) { }
                 })
                 .catch(error => {
@@ -65,7 +74,6 @@
             checkQuestionFile();
             setInterval(checkAnswerFile, 500); // 0.5秒ごとに監視
         });
-        
     </script>
 </head>
 

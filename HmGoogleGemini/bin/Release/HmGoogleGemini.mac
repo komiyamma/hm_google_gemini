@@ -1,23 +1,43 @@
 ﻿jsmode @"WebView2\HmGoogleGemini";
 js {
-    let projectId = "new-project-20240307";
-    let location = "us-central1";
-    let model = "gemini-1.0-pro";
 
-    let currentmacrodir = currentmacrodirectory();
-    let hidemaruexedir = hidemarudir();
+/// <reference path="../types/hm_jsmode.d.ts" />
 
-    let currentexepath = currentmacrodir + "\\HmGoogleGemini.exe";
+let projectId = "new-project-20240307";
+let location = "us-central1";
+let model = "gemini-1.0-pro";
+debuginfo(2);
+function openRenderPaneCommand(htmlWindowPath) {
+    let urlPath = new URL(htmlWindowPath);
+    const json_param = {
+        // target: "HmGoogleGemini",
+        target: "_each",
+            uri: urlPath,
+            show: 1,
+            place: "rightside",
+            size: 300,
+            initialize: "async",
+        };
+    browserpanecommand(json_param)
+}
 
-    function isX64Hidemaru() {
-        return platform() & 0x00080000;
-    }
 
-    function outputAlert(msg) {
-        let dll = loaddll(hidemaruexedir + "\\HmOutputPane.dll");
-        dll.dllFuncW.Output(msg + "\r\n");
-    }
+let currentmacrodir = currentmacrodirectory();
+let hidemaruexedir = hidemarudir();
 
+let currentexepath = currentmacrodir + "\\HmGoogleGemini.exe";
+
+
+function outputAlert(msg) {
+    let dll = loaddll(hidemaruexedir + "\\HmOutputPane.dll");
+    dll.dllFuncW.Output(msg + "\r\n");
+}
+
+function isX64Hidemaru() {
+    return platform() & 0x00080000;
+}
+
+function getTempPath() {
     let dll = null;
     if (isX64Hidemaru()) {
         dll = loaddll(currentmacrodir + "\\HmGetTempPath_x64.dll");
@@ -25,54 +45,88 @@ js {
         dll = loaddll(currentmacrodir + "\\HmGetTempPath_x86.dll");
     }
 
-    let tempPathDir = dll.dllFuncStrW.HmGetTempPath();
-    let saveFileName = tempPathDir + "HmGoogleGemini.question.txt";
-
-    let ticknum = tickcount() & 0x7fffffff;
-
-    function doSendQuestionContent() {
-        try {
-            let text = hidemaru.getSelectedText();
-            let commandline = `"${currentexepath}" "${projectId}" "${location}" "${model}"`;
-            message(commandline);
-            runex(commandline, 0,0,"",0,"",0,"",0,"",2,1,0,0 );
-
-            let sendcmd = "HmGoogleGemini.Message(" + ticknum + ")\n";
-            hidemaru.setTimeout(
-                () => { hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8"); },
-                200
-            );
-        } catch (err) {
-            outputAlert(err);
-        }
-    }
-
-    function doSendCommand() {
-        let selectMenuID = menu("AI応答のキャンセル", "リセット");
-        if (selectMenuID == 1) {
-            let sendcmd = "HmGoogleGemini.Cancel(" + ticknum + ")\n";
-            let text = "キャンセル";
-            let commandline = `"${currentexepath}"`;
-            runex(commandline, 0);
-            hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8");
-        }
-        else if (selectMenuID == 2) {
-            let sendcmd = "HmGoogleGemini.Clear(" + ticknum + ")\n";
-            let text = "リセット";
-            let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
-            runex(commandline, 0);
-            hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8");
-        }
-    }
-
-    function doMain() {
-        if (selecting()) {
-            doSendQuestionContent();
-        } else {
-            doSendCommand();
-        }
-    }
-
-    doMain();
+    return dll.dllFuncStrW.HmGetTempPath();
 }
+
+let tempPathDir = getTempPath();
+function fileCopyWithCompareDate(sourceFile, destFile) {
+	var fso = createobject("Scripting.FileSystemObject");
+
+	if (fso.FileExists(sourceFile)) {
+	    var sourceFileObj = fso.GetFile(sourceFile);
+
+	    if (fso.FileExists(destFile)) {
+	        var destFileObj = fso.GetFile(destFile);
+
+	        if (sourceFileObj.DateLastModified !== destFileObj.DateLastModified) {
+	            sourceFileObj.Copy(destFile, true);
+	        }
+	    } else {
+	        sourceFileObj.Copy(destFile, true);
+	    }
+	} else {
+	}
+}
+
+let saveFileName = tempPathDir + "HmGoogleGemini.question.txt";
+
+let ticknum = tickcount() & 0x7fffffff;
+
+function doSendQuestionContent() {
+    try {
+        let text = hidemaru.getSelectedText();
+        let commandline = `"${currentexepath}" "${projectId}" "${location}" "${model}"`;
+        message(commandline);
+        // runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+        runex(commandline, 0);
+
+        let sendcmd = "HmGoogleGemini.Message(" + ticknum + ")\n";
+        hidemaru.setTimeout(
+            () => { hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8"); },
+            200
+        );
+    } catch (err) {
+        outputAlert(err);
+    }
+}
+
+function doSendCommand() {
+    let selectMenuID = menu("AI応答のキャンセル", "リセット");
+    if (selectMenuID == 1) {
+        let sendcmd = "HmGoogleGemini.Cancel(" + ticknum + ")\n";
+        let text = "キャンセル";
+        let commandline = `"${currentexepath}"`;
+        runex(commandline, 0);
+        hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8");
+    }
+    else if (selectMenuID == 2) {
+        let sendcmd = "HmGoogleGemini.Clear(" + ticknum + ")\n";
+        let text = "リセット";
+        let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
+        runex(commandline, 0);
+        hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8");
+    }
+}
+
+
+function doMain() {
+    let srcHtmlPath = currentmacrodir + "\\HmGoogleGemini.html";
+    let dstHtmlPath = tempPathDir + "HmGoogleGemini.html"; // \\が無いのは合っている。
+    fileCopyWithCompareDate(srcHtmlPath, dstHtmlPath);
+
+    let srcJSPath = currentmacrodir + "\\HmGoogleGemini.marked.js";
+    let dstJSPath = tempPathDir + "HmGoogleGemini.marked.js"; // \\が無いのは合っている。
+    fileCopyWithCompareDate(srcJSPath, dstJSPath);
+
+    openRenderPaneCommand(dstHtmlPath);
+    if (selecting()) {
+        doSendQuestionContent();
+    } else {
+        doSendCommand();
+    }
+}
+
+doMain();
+
+} // js
 
