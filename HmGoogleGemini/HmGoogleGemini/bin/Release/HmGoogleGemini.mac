@@ -1,8 +1,9 @@
-﻿/*--------------------------------------------------------------
- * HmGoogleGemini 1.0.0.1
+﻿/*
+ * HmGoogleGemini v 1.0.0.1
+ *
  * Copyright (c) 2024 Akitsugu Komiyama
- * under the Apache License Version 2.0
- *--------------------------------------------------------------
+ * under the MIT License
+ */
 
 
 hidemaruversion "9.25.99";
