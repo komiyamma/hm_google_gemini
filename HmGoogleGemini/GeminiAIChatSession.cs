@@ -45,7 +45,7 @@ internal class ChatSession
         {
             if (conversationUpdateCancel)
             {
-                Console.WriteLine("今回の会話タスクが終了したため、conversationUpdateCheckを終了");
+                // Console.WriteLine("今回の会話タスクが終了したため、conversationUpdateCheckを終了");
                 break;
             }
             await Task.Delay(100); // 5秒ごとにチェック
@@ -61,6 +61,7 @@ internal class ChatSession
 
             if (iTickCount > 50)
             {
+                iTickCount = 0;
                 Console.WriteLine("AIからの応答の進捗がみられないため、キャンセル発行");
                 this.Cancel();
                 break;
@@ -107,7 +108,7 @@ internal class ChatSession
                 TopP = 1,
                 TopK = 32,
                 CandidateCount = 1,
-                MaxOutputTokens = (prompt.Length) * 2 + 4096,
+                MaxOutputTokens = 4096,
             }
         };
         generateContentRequest.Contents.AddRange(_contents);
@@ -183,6 +184,6 @@ internal class ChatSession
 
     private void SaveAddTextToFile(string text)
     {
-        HmGoogleGemini.SaveAddTextToFile(text);
+        HmGoogleGemini.SaveAddTextToAnswerFile(text);
     }
 }

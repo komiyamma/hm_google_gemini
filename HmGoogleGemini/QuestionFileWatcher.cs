@@ -54,12 +54,14 @@ internal partial class HmGoogleGemini
             }
 
             // 正規表現を使用して数値を抽出
-            Regex regex = new Regex(@"HmGoogleGemini\.Message\((\d+)\)");
+            Regex regex = new Regex(@"HmGoogleGemini\.(Message|Clear|Cancel)\((\d+)\)");
             Match match = regex.Match(question_text);
 
+            string command = "";
             if (match.Success)
             {
-                string strnumber = match.Groups[1].Value;
+                command = match.Groups[1].Value;
+                string strnumber = match.Groups[2].Value;
                 int number = int.Parse(strnumber);
 
                 // 前回の投稿と番号が同じとかならダメ。ファイルが変わっていない
@@ -81,29 +83,29 @@ internal partial class HmGoogleGemini
                 
             }
 
-            string prompt = question_text;
 
-
-            Console.WriteLine($"\nUser: {prompt}");
-
-            if (question_text == "HmGoogleGemini.Cancel()")
+            if (command == "Cancel")
             {
                 chatSession.Cancel();
                 isConversationing = false;
                 return;
             }
 
-            if (question_text == "HmGoogleGemini.Clear()")
+            else if (command == "Clear")
             {
                 chatSession.Cancel();
                 chatSession.Clear();
                 isConversationing = false;
+                ClearAnswerFile();
+                Environment.Exit(0);
                 return;
             }
 
             if (isConversationing) { return; }
             isConversationing = true;
-            ClearTextFile();
+            ClearAnswerFile();
+            string prompt = question_text;
+            Console.WriteLine($"\nUser: {prompt}");
             var task = chatSession.SendMessageAsync(prompt);
             string response = task.Result;
             isConversationing = false;

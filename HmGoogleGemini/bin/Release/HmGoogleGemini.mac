@@ -1,0 +1,78 @@
+﻿jsmode @"WebView2\HmGoogleGemini";
+js {
+    let projectId = "new-project-20240307";
+    let location = "us-central1";
+    let model = "gemini-1.0-pro";
+
+    let currentmacrodir = currentmacrodirectory();
+    let hidemaruexedir = hidemarudir();
+
+    let currentexepath = currentmacrodir + "\\HmGoogleGemini.exe";
+
+    function isX64Hidemaru() {
+        return platform() & 0x00080000;
+    }
+
+    function outputAlert(msg) {
+        let dll = loaddll(hidemaruexedir + "\\HmOutputPane.dll");
+        dll.dllFuncW.Output(msg + "\r\n");
+    }
+
+    let dll = null;
+    if (isX64Hidemaru()) {
+        dll = loaddll(currentmacrodir + "\\HmGetTempPath_x64.dll");
+    } else {
+        dll = loaddll(currentmacrodir + "\\HmGetTempPath_x86.dll");
+    }
+
+    let tempPathDir = dll.dllFuncStrW.HmGetTempPath();
+    let saveFileName = tempPathDir + "HmGoogleGemini.question.txt";
+
+    let ticknum = tickcount() & 0x7fffffff;
+
+    function doSendQuestionContent() {
+        try {
+            let text = hidemaru.getSelectedText();
+            let commandline = `"${currentexepath}" "${projectId}" "${location}" "${model}"`;
+            message(commandline);
+            runex(commandline, 0,0,"",0,"",0,"",0,"",2,1,0,0 );
+
+            let sendcmd = "HmGoogleGemini.Message(" + ticknum + ")\n";
+            hidemaru.setTimeout(
+                () => { hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8"); },
+                200
+            );
+        } catch (err) {
+            outputAlert(err);
+        }
+    }
+
+    function doSendCommand() {
+        let selectMenuID = menu("AI応答のキャンセル", "リセット");
+        if (selectMenuID == 1) {
+            let sendcmd = "HmGoogleGemini.Cancel(" + ticknum + ")\n";
+            let text = "キャンセル";
+            let commandline = `"${currentexepath}"`;
+            runex(commandline, 0);
+            hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8");
+        }
+        else if (selectMenuID == 2) {
+            let sendcmd = "HmGoogleGemini.Clear(" + ticknum + ")\n";
+            let text = "リセット";
+            let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
+            runex(commandline, 0);
+            hidemaru.saveTextFile(saveFileName, sendcmd   + text, "utf8");
+        }
+    }
+
+    function doMain() {
+        if (selecting()) {
+            doSendQuestionContent();
+        } else {
+            doSendCommand();
+        }
+    }
+
+    doMain();
+}
+

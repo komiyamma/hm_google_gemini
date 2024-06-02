@@ -22,13 +22,21 @@ internal partial class HmGoogleGemini
             {
                 process.Kill();
             }
-            return;
         }
+
     }
 
-    static async Task Main()
+    static async Task Main(String[] args)
     {
         ifProcessHasExistKillIt();
+        if (args.Length >= 1)
+        {
+            if (args[0].Contains("HmGoogleGemini.Clear()"))
+            {
+                return;
+            }
+        }
+
         WindowsShutDownNotifier();
         GenerateContent();
         // _ = Task.Run(() => StartPipe());

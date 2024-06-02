@@ -8,10 +8,10 @@ internal partial class HmGoogleGemini
     static void GenerateContent()
     {
 
-        string _projectId = "new-project-20240307";
-        string _location = "us-central1";
+        string _projectId = "";
+        string _location = "";
+        string _model = "";
         string _publisher = "google";
-        string _model = "gemini-1.0-pro";
 
         try
         {
@@ -19,16 +19,21 @@ internal partial class HmGoogleGemini
             string[] commandLineArgs = Environment.GetCommandLineArgs();
             if (commandLineArgs.Length >= 4)
             {
+                Console.WriteLine("_projectId:" + commandLineArgs[1]);
                 _projectId = commandLineArgs[1];
+                Console.WriteLine("_location:" + commandLineArgs[2]);
+
                 _location = commandLineArgs[2];
+                Console.WriteLine("_model:" + commandLineArgs[3]);
                 _model = commandLineArgs[3];
+                
             }
         }
         catch (Exception e)
         {
         }
 
-        ClearTextFile();
+        ClearAnswerFile();
 
         // コンテキストを追跡するためにチャットセッションを作成する
         chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
