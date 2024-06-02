@@ -1,11 +1,15 @@
-﻿hidemaruversion "9.25.99";
+﻿/*--------------------------------------------------------------
+ * HmGoogleGemini 1.0.0.1
+ * Copyright (c) 2024 Akitsugu Komiyama
+ * under the Apache License Version 2.0
+ *--------------------------------------------------------------
+
+
+hidemaruversion "9.25.99";
 
 
 jsmode @"WebView2\HmGoogleGemini";
 js {
-
-/// <reference path="../types/hm_jsmode.d.ts" />
-
 
 // ------------- 会話エンジンの設定項目 -------------
 
@@ -19,6 +23,8 @@ const renderpane_custom_param = {
 };
 
 // --------------------------------------------------
+
+
 
 // レンダリングペインを指定属性＆ポートでオープン
 function openRenderPaneCommand(port) {
