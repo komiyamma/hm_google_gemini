@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HmGoogleGeminiHttpServer")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright © 2024 Akitsugu komiyama")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -46,7 +46,7 @@ internal partial class HmGoogleGemini
         try
         {
 
-            Console.WriteLine("ファイルが更新されました: " + filepath);
+            // Console.WriteLine("ファイルが更新されました: " + filepath);
 
             string question_text = "";
             using (StreamReader reader = new StreamReader(saveFilePath, Encoding.UTF8))
@@ -68,7 +68,7 @@ internal partial class HmGoogleGemini
                 // 前回の投稿と番号が同じとかならダメ。ファイルが変わっていない
                 if (lastTickCount >= number)
                 {
-                    Console.WriteLine("★前回と同じファイルだ");
+                    // Console.WriteLine("★前回と同じファイルだ");
                     return;
                 } else
                 {
@@ -106,7 +106,7 @@ internal partial class HmGoogleGemini
             isConversationing = true;
             ClearAnswerFile();
             string prompt = question_text;
-            Console.WriteLine($"\nUser: {prompt}");
+            // Console.WriteLine($"\nUser: {prompt}");
             var task = chatSession.SendMessageAsync(prompt);
             string response = task.Result;
             isConversationing = false;

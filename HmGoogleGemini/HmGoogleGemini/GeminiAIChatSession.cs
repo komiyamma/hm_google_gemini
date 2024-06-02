@@ -62,7 +62,7 @@ internal class ChatSession
             if (iTickCount > 50)
             {
                 iTickCount = 0;
-                Console.WriteLine("AIからの応答の進捗がみられないため、キャンセル発行");
+                // Console.WriteLine("AIからの応答の進捗がみられないため、キャンセル発行");
                 this.Cancel();
                 break;
             }
@@ -120,7 +120,7 @@ internal class ChatSession
             /*
             // ストリーミングではなく、全体を一気にリクエストをし、レスポンスを得る。
             GenerateContentResponse response = await _predictionServiceClient.GenerateContentAsync(generateContentRequest, _cst.Token);
-            Console.WriteLine("終了");
+            // Console.WriteLine("終了");
 
             // レスポンスの内容を保存する。
             _contents.Add(response.Candidates[0].Content);
@@ -140,14 +140,14 @@ internal class ChatSession
 
                 if (_cst.IsCancellationRequested)
                 {
-                    Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
+                    // Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
                     SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
                     break;
                 }
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
                 fullText.Append(text);
                 SaveAddTextToFile(text);
-                Console.WriteLine(text);
+                // Console.WriteLine(text);
             }
             var answer = new Content
             {
@@ -168,8 +168,8 @@ internal class ChatSession
             SaveAddTextToFile("\n\n\n" + e.Message + "\n\n\n");
             conversationUpdateCancel = true;
             this.Cancel();
-            Console.WriteLine("問い合わせをキャンセルしました。" + e);
-            Console.WriteLine("アプリを終了します。");
+            // Console.WriteLine("問い合わせをキャンセルしました。" + e);
+            // Console.WriteLine("アプリを終了します。");
             Environment.Exit(0);
         }
         finally

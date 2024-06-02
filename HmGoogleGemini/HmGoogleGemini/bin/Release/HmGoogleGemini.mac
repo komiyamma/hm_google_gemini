@@ -1,8 +1,5 @@
-﻿/*
-#serverProcessCOM = createobject( currentmacrodirectory + "\\HmGoogleGeminiHttpServer.dll", "HmGoogleGeminiHttpServer.HmGoogleGeminiHttpServer");
-#n = member(#serverProcessCOM, "Launch", 52000);
-message(str(#n));
-*/
+﻿hidemaruversion "9.25.99";
+
 
 jsmode @"WebView2\HmGoogleGemini";
 js {
@@ -12,19 +9,17 @@ js {
 let projectId = "new-project-20240307";
 let location = "us-central1";
 let model = "gemini-1.0-pro";
-debuginfo(2);
+
 function openRenderPaneCommand(port) {
-console.log(port);
     const json_param = {
-        // target: "HmGoogleGemini",
-        target: "_each",
+        target: "HmGoogleGemini",
             uri: "http://localhost:"+port+"/HmGoogleGemini.html",
             show: 1,
-            place: "rightside",
-            size: 300,
+            place: "leftsize",
+            size: 400,
             initialize: "async",
         };
-    browserpanecommand(json_param)
+    renderpanecommand(json_param)
 }
 
 
@@ -47,8 +42,8 @@ function doSendQuestionContent() {
     try {
         let text = hidemaru.getSelectedText();
         let commandline = `"${currentexepath}" "${projectId}" "${location}" "${model}"`;
-        // runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
-        runex(commandline, 0);
+        runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+//        runex(commandline, 0); // 目視用
 
         let sendcmd = "HmGoogleGemini.Message(" + ticknum + ")\n";
         hidemaru.setTimeout(
@@ -66,28 +61,20 @@ function doSendCommand() {
         let sendcmd = "HmGoogleGemini.Cancel(" + ticknum + ")\n";
         let text = "キャンセル";
         let commandline = `"${currentexepath}"`;
-        runex(commandline, 0);
+        runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+//        runex(commandline, 0); // 目視用
         hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8");
     }
     else if (selectMenuID == 2) {
         let sendcmd = "HmGoogleGemini.Clear(" + ticknum + ")\n";
         let text = "リセット";
         let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
-        runex(commandline, 0);
+        runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+//        runex(commandline, 0); // 目視用
         hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8");
     }
 }
 
-/*
-function getAvailableServerPort() {
-    let currentportpath = currentmacrodir + "\\HmGoogleGeminiAvailablePort.exe";
-    let commandline = `"${currentportpath}"`;
-    let processInfo = hidemaru.runProcess(commandline, currentmacrodir, "stdio", "sjis");
-    let stdOut = processInfo.stdOut;
-    let port = stdOut.readAll(1000); // 1000ミリ秒(1秒)まで待つ。そんなかかるはずはないが。
-    return port;
-}
-*/
 
 var serverProcessCOM;
 function openHttpServer() {

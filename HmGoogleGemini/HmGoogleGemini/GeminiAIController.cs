@@ -19,12 +19,12 @@ internal partial class HmGoogleGemini
             string[] commandLineArgs = Environment.GetCommandLineArgs();
             if (commandLineArgs.Length >= 4)
             {
-                Console.WriteLine("_projectId:" + commandLineArgs[1]);
+                // Console.WriteLine("_projectId:" + commandLineArgs[1]);
                 _projectId = commandLineArgs[1];
-                Console.WriteLine("_location:" + commandLineArgs[2]);
+                // Console.WriteLine("_location:" + commandLineArgs[2]);
 
                 _location = commandLineArgs[2];
-                Console.WriteLine("_model:" + commandLineArgs[3]);
+                // Console.WriteLine("_model:" + commandLineArgs[3]);
                 _model = commandLineArgs[3];
                 
             }

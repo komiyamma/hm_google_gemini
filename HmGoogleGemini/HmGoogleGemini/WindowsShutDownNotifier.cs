@@ -17,7 +17,7 @@ partial class HmGoogleGemini
             chatSession.Cancel();
             ClearAnswerFile();
             await Task.Delay(100); // ミリ秒単位で待つ時間を指定
-            Console.WriteLine("Windowsがシャットダウンしています。ここで必要な操作を行ってください。");
+            // Console.WriteLine("Windowsがシャットダウンしています。ここで必要な操作を行ってください。");
         }
     }
 
