@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\hmgooglegemini\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\hmgooglegemini\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|solutionrelative:hmgooglegemini\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|g:\\repogitory\\hm_google_gemini\\hmgooglegemini\\hmgooglegemini\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|solutionrelative:hmgooglegemini\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|g:\\repogitory\\hm_google_gemini\\hmgooglegemini\\hmgooglegemini\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\hmgooglegemini\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|solutionrelative:hmgooglegemini\\geminiaichatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\hmgooglegemini\\geminiaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|solutionrelative:hmgooglegemini\\geminiaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\hmgooglegemini\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}|HmGoogleGemini\\HmGoogleGemini.csproj|solutionrelative:hmgooglegemini\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|HmGoogleGemini||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
@@ -41,7 +41,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -49,25 +49,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "packages.config",
               "DocumentMoniker": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\packages.config",
               "RelativeDocumentMoniker": "HmGoogleGemini\\packages.config",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\packages.config",
               "RelativeToolTip": "HmGoogleGemini\\packages.config",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAAB8AAABMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-06-03T15:29:45.114Z"
+              "WhenOpened": "2024-06-03T15:29:45.114Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Main.cs",
               "DocumentMoniker": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\Main.cs",
               "RelativeDocumentMoniker": "HmGoogleGemini\\Main.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\Main.cs",
               "RelativeToolTip": "HmGoogleGemini\\Main.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAwCcAAAANAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T10:03:19.867Z",
               "EditorCaption": ""
@@ -82,7 +83,8 @@
               "RelativeToolTip": "HmGoogleGemini\\WindowsShutDownNotifier.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T08:24:04.49Z"
+              "WhenOpened": "2024-06-02T08:24:04.49Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -94,7 +96,8 @@
               "RelativeToolTip": "HmGoogleGemini\\QuestionFileWatcher.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAqwC4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T08:23:44.212Z"
+              "WhenOpened": "2024-06-02T08:23:44.212Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -106,29 +109,31 @@
               "RelativeToolTip": "HmGoogleGemini\\IOTextController.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAqwC8AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T08:23:31.026Z"
+              "WhenOpened": "2024-06-02T08:23:31.026Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GeminiAIController.cs",
               "DocumentMoniker": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\GeminiAIController.cs",
               "RelativeDocumentMoniker": "HmGoogleGemini\\GeminiAIController.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\GeminiAIController.cs",
               "RelativeToolTip": "HmGoogleGemini\\GeminiAIController.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAAADMAAAAVAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAABFwDMAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T08:23:13.16Z"
+              "WhenOpened": "2024-06-02T08:23:13.16Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GeminiAIChatSession.cs",
               "DocumentMoniker": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\GeminiAIChatSession.cs",
               "RelativeDocumentMoniker": "HmGoogleGemini\\GeminiAIChatSession.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\GeminiAIChatSession.cs",
               "RelativeToolTip": "HmGoogleGemini\\GeminiAIChatSession.cs",
-              "ViewState": "AQIAAKMAAAAAAAAAAAAAALQAAAA9AAAA",
+              "ViewState": "AQIAAKAAAAAAAAAAAABFwLQAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T08:22:33.581Z",
               "EditorCaption": ""
