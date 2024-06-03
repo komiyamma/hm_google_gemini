@@ -1,2 +1,2 @@
-HmGoogleGemini.Clear(362279968)
-リセット
+HmGoogleGemini.Message(365452546)
+C#でプロセスが何かインプットを受け取れるように待機するには？

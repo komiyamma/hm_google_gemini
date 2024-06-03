@@ -1,1 +1,103 @@
 ﻿
+## C#でプロセスがインプットを受け取る方法
+
+プロセスがインプットを受け取る待機をするには、主に以下の方法があります。
+
+**1. コンソール入力**
+
+コンソール入力は、最もシンプルな方法です。`Console.ReadLine()` 関数を使用することで、ユーザーがコンソールに入力した文字列を取得できます。
+
+```csharp
+// コンソールから入力を受け取る
+string input = Console.ReadLine();
+
+// 入力された文字列を出力
+Console.WriteLine("入力された文字列: " + input);
+```
+
+**2. ファイル監視**
+
+ファイル監視は、特定のファイルへの変更を監視し、変更があった場合に処理を行う方法です。`FileSystemWatcher` クラスを使用することで、ファイルへの変更を検知できます。
+
+```csharp
+// ファイル監視オブジェクトを作成
+FileSystemWatcher watcher = new FileSystemWatcher("C:\\input_file.txt");
+
+// 変更イベントが発生した時の処理
+watcher.Changed += (sender, e) =>
+{
+    // ファイルを読み込み
+    string input = File.ReadAllText("C:\\input_file.txt");
+
+    // 入力された文字列を出力
+    Console.WriteLine("入力された文字列: " + input);
+};
+
+// ファイル監視を開始
+watcher.EnableRaisingEvents = true;
+```
+
+**3. ソケット通信**
+
+ソケット通信は、ネットワーク経由で他のプロセスと通信する方法です。`Socket` クラスを使用することで、ネットワーク上の他のプロセスとデータの送受信を行うことができます。
+
+```csharp
+// ソケットを作成
+Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+// サーバーに接続
+socket.Connect("127.0.0.1", 8080);
+
+// サーバーからデータを受信
+byte[] buffer = new byte[1024];
+int bytesReceived = socket.Receive(buffer, 0, buffer.Length, SocketFlags.None);
+
+// 受信したデータを文字列に変換
+string input = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
+
+// 入力された文字列を出力
+Console.WriteLine("入力された文字列: " + input);
+
+// ソケットを閉じる
+socket.Close();
+```
+
+**4. パイプライン処理**
+
+パイプライン処理は、複数のプロセスを連結し、前処理の結果を後処理に渡す方法です。`Process` クラスを使用することで、他のプロセスとのパイプライン処理を行うことができます。
+
+```csharp
+// 前処理プロセスを作成
+Process process1 = new Process();
+process1.StartInfo.FileName = "process1.exe";
+process1.StartInfo.UseShellExecute = false;
+process1.StartInfo.RedirectStandardOutput = true;
+
+// 後処理プロセスを作成
+Process process2 = new Process();
+process2.StartInfo.FileName = "process2.exe";
+process2.StartInfo.UseShellExecute = false;
+
+// 前処理プロセスと後処理プロセスをパイプで接続
+process1.StartInfo.StandardOutput.Piped = true;
+process2.StartInfo.StandardInput = process1.StandardOutput;
+
+// 前処理プロセスを開始
+process1.Start();
+
+// 後処理プロセスを開始
+process2.Start();
+
+// 前処理プロセスの出力を読み込み
+string input = process1.StandardOutput.ReadToEnd();
+
+// 入力された文字列を出力
+Console.WriteLine("入力された文字列: " + input);
+
+// 処理を完了
+process1.WaitForExit();
+process2.WaitForExit();
+```
+
+どの方法を選択するかは、インプットの形態や処理内容によって異なります。
+
