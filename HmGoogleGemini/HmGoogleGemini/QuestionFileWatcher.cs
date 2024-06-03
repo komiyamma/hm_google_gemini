@@ -103,6 +103,7 @@ internal partial class HmGoogleGemini
             if (command == "Cancel")
             {
                 chatSession.Cancel();
+                ChatSession.forceCancel = true;
                 isConversationing = false;
                 return;
             }

@@ -119,7 +119,9 @@ var answerFileName = currentmacrodir + "\\HmGoogleGemini.txt";
 // 質問内容の1行目に「時刻」を入れることで、質問時刻がわかるようにしている。
 // これはシステムが「ファイルの更新」を非常に頻繁に誤爆して多重検知するために必要。
 // 多重検知した際に、「その内容はもう受付済み」という判断をするために「時刻」を質問内容に刻むようにしている。
-var ticknum = tickcount() & 0x7fffffff;
+function getTickCount() {
+    return tickcount() & 0x7fffffff;
+}
 
 // 選択テキストを質問内容としてファイルに保存し、ＡＩを指定のパラメータやモデルで起動
 function doSendQuestionContent() {
@@ -128,7 +130,7 @@ function doSendQuestionContent() {
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     //      runex(commandline, 0); // デバッグ用
 
-    let sendcmd = "HmGoogleGemini.Message(" + ticknum + ")\n";
+    let sendcmd = "HmGoogleGemini.Message(" + getTickCount() + ")\n";
     hidemaru.setTimeout(
         () => { hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8"); },
         200
@@ -145,7 +147,7 @@ function onHtmlButtonClick(text) {
 }
 
 function stopAIAnswer() {
-    let sendcmd = "HmGoogleGemini.Cancel(" + ticknum + ")\n";
+    let sendcmd = "HmGoogleGemini.Cancel(" + getTickCount() + ")\n";
     let text = "応答を停止";
     let commandline = `"${currentexepath}"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
@@ -153,7 +155,7 @@ function stopAIAnswer() {
 }
 
 function resetAI() {
-    let sendcmd = "HmGoogleGemini.Clear(" + ticknum + ")\n";
+    let sendcmd = "HmGoogleGemini.Clear(" + getTickCount() + ")\n";
     let text = "リセット";
     let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);

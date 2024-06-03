@@ -71,6 +71,8 @@ internal class ChatSession
         }
     }
 
+    public static bool forceCancel = false;
+
     // 質問してAIの応答の途中でキャンセルするためのトークン
     static CancellationTokenSource _cst;
 
@@ -119,6 +121,7 @@ internal class ChatSession
         generateContentRequest.Contents.AddRange(_contents);
 
         _cst = new CancellationTokenSource();
+        ChatSession.forceCancel = false;
 
         try
         {
@@ -148,6 +151,13 @@ internal class ChatSession
 
                 if (_cst.IsCancellationRequested)
                 {
+                    // Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
+                    SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
+                    break;
+                }
+                if (forceCancel)
+                {
+                    forceCancel = false;
                     // Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
                     SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
                     break;
