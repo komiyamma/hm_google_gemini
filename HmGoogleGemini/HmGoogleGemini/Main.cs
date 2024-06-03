@@ -33,7 +33,12 @@ internal partial class HmGoogleGemini
         // HmGoogleGemini.Clear という文字列を渡してある
         if (args.Length >= 1)
         {
-            if (args[0].Contains("HmGoogleGemini.Clear()"))
+            var command = args[0];
+            if (command.Contains("HmGoogleGemini.Clear()"))
+            {
+                return;
+            }
+            if (command.Contains("HmGoogleGemini.Cancel()"))
             {
                 return;
             }
