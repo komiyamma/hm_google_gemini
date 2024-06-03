@@ -1,2 +1,2 @@
-HmGoogleGemini.Cancel(384796437)
-応答を停止
+HmGoogleGemini.Clear(387597812)
+リセット

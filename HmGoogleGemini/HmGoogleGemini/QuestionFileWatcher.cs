@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,7 +11,7 @@ internal partial class HmGoogleGemini
 
     static bool isConversationing = false;
 
-    static string saveFilePath = "";
+    public static string saveFilePath = "";
 
     // 今回のこのプロセス起動で、はじめて質問ファイルをチェックするかどうか
     static Boolean isQuestionFileFirstCheck = true;
@@ -40,11 +41,11 @@ internal partial class HmGoogleGemini
 
     static void QuestionFileWatcher_Changed(object sender, FileSystemEventArgs e)
     {
-
         if (e.ChangeType != WatcherChangeTypes.Changed) { return; }
         if (isQuestionFileFirstCheck) { isQuestionFileFirstCheck = false; return; }
         CheckQuestionFile(e.FullPath);
     }
+
 
     static int lastTickCount = 0;
     static void CheckQuestionFile(string filepath)
@@ -73,8 +74,8 @@ internal partial class HmGoogleGemini
                 // コマンド
                 command = match.Groups[1].Value;
 
-                // 質問がされた時刻に相当するTickCount
-                string strnumber = match.Groups[2].Value;
+                    // 質問がされた時刻に相当するTickCount
+                    string strnumber = match.Groups[2].Value;
                 int number = int.Parse(strnumber);
 
                 // 前回の投稿と番号が同じとかなら同一のものを指している。複数回 QuestionFileWatcher_Changed が反応してしまっているが、これを処理する必要はない。
@@ -103,7 +104,6 @@ internal partial class HmGoogleGemini
             if (command == "Cancel")
             {
                 chatSession.Cancel();
-                ChatSession.forceCancel = true;
                 isConversationing = false;
                 return;
             }

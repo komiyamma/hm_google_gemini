@@ -3,7 +3,9 @@ using Google.Api.Gax.Grpc;
 using Google.Cloud.AIPlatform.V1;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -71,7 +73,6 @@ internal class ChatSession
         }
     }
 
-    public static bool forceCancel = false;
 
     // 質問してAIの応答の途中でキャンセルするためのトークン
     static CancellationTokenSource _cst;
@@ -86,6 +87,26 @@ internal class ChatSession
     public void Cancel()
     {
         _cst.Cancel();
+    }
+
+    private void CancelCheck()
+    {
+        string question_text = "";
+        using (StreamReader reader = new StreamReader(HmGoogleGemini.saveFilePath, Encoding.UTF8))
+        {
+            question_text = reader.ReadToEnd();
+        }
+
+        // 1行目にコマンドと質問がされた時刻に相当するTickCount相当の値が入っている
+        // これによって値が進んでいることがわかる。
+        // 正規表現を使用して数値を抽出
+        Regex regex = new Regex(@"HmGoogleGemini\.Cancel");
+        Match match = regex.Match(question_text);
+        if (match.Success)
+        {
+            this.Cancel();
+            conversationUpdateCancel = true;
+        }
     }
 
     public async Task<string> SendMessageAsync(string prompt)
@@ -121,7 +142,6 @@ internal class ChatSession
         generateContentRequest.Contents.AddRange(_contents);
 
         _cst = new CancellationTokenSource();
-        ChatSession.forceCancel = false;
 
         try
         {
@@ -141,6 +161,7 @@ internal class ChatSession
             // ストリーミングでリクエストをし、レスポンスを得る。
             var response = _predictionServiceClient.StreamGenerateContent(generateContentRequest);
 
+
             // 1回の返答はこまごま返ってくるので、返答全部を１つにまとまる用途
             StringBuilder fullText = new StringBuilder();
             AsyncResponseStream<GenerateContentResponse> responseStream = response.GetResponseStream();
@@ -149,19 +170,18 @@ internal class ChatSession
                 // 途中で分詰まりを検知するための進捗カウンタ
                 conversationUpdateCount++;
 
+                // 毎回じゃ重いので、適当に間引く
+                if (conversationUpdateCount % 5 == 0)
+                {
+                    CancelCheck();
+                }
+
                 if (_cst.IsCancellationRequested)
                 {
-                    // Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
-                    SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
+                    SaveAddTextToFile("\n\n\nAIの応答をキャンセルしました。\n\n\n");
                     break;
                 }
-                if (forceCancel)
-                {
-                    forceCancel = false;
-                    // Console.WriteLine("AI応答が止まったため、問い合わせをキャンセルしました。");
-                    SaveAddTextToFile("\n\n\nAI応答が止まったため、問い合わせをキャンセルしました。\n\n\n");
-                    break;
-                }
+
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
                 fullText.Append(text);
                 SaveAddTextToFile(text);
