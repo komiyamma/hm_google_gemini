@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8DC5A9EE-32C0-4044-ADAB-77E28DE69669}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <LangVersion>latest</LangVersion>
     <RootNamespace>HmGoogleGemini</RootNamespace>
     <AssemblyName>HmGoogleGemini</AssemblyName>
