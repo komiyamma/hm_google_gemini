@@ -1,2 +1,2 @@
-HmGoogleGemini.Cancel(388424796)
-応答を停止
+HmGoogleGemini.Message(391425406)
+そうであってほしかったｗ
