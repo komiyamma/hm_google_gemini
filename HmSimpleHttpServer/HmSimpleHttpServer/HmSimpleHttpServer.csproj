@@ -8,8 +8,9 @@
     <ProjectGuid>{3F620203-D4A5-43D9-9D83-D94983D014A2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HmGoogleGeminiHttpServer</RootNamespace>
-    <AssemblyName>HmGoogleGeminiHttpServer</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>HmSimpleHttpServer</RootNamespace>
+    <AssemblyName>HmSimpleHttpServer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -26,7 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>

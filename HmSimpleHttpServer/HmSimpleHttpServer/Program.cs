@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Akitsugu Komiyama
+ * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
  */
 
@@ -9,26 +9,59 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 
-internal class HmGoogleGeminiHttpServer
+internal class HmSimpleHttpServer
 {
-    static void Main()
-    {
-        HmGoogleGeminiHttpServer server = new HmGoogleGeminiHttpServer();
-        int port = server.Launch();
-        Console.WriteLine(port);
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern bool IsWindow(nint hWnd);
 
-        // ここで止めておく。
-        Console.In.ReadLine();
+    // 秀丸の該当プロセスのウィンドウハンドルの値がもらいやすいので、これが存在しなくなっていたら、このプロセスも終了するようにする。
+    static async Task Main(String[] args)
+    {
+
+        nint hmWndHandle = 0;
+        try
+        {
+            if (args.Length > 0)
+            {
+                hmWndHandle = (nint)long.Parse(args[0]);
+            }
+        }
+        catch (Exception) { }
+
+        HmSimpleHttpServer server = new HmSimpleHttpServer();
+        int port = server.Launch();
+        Console.WriteLine("PORT:" + port);
+
+        while (true)
+        {
+            await Task.Delay(2000); // 2秒待つ
+            if (!IsWindow(hmWndHandle))
+            {
+                break;
+            }
+            if (phpProcess == null)
+            {
+                break;
+            }
+            if (phpProcess.HasExited)
+            {
+                break;
+            }
+        }
+
         server.Destroy();
+        Console.WriteLine("秀丸ウィンドウハンドル:" + hmWndHandle + "から呼ばれたHmSimpleHttpServerはクローズします。");
         // 何か外部からインプットがあれば終了し、このserverインスタンスが終われば、対応したphpサーバープロセスもkillされる。
     }
 
     static Process phpProcess;
 
     // PHPデーモンのスタート
-    HmGoogleGeminiHttpServer()
+    HmSimpleHttpServer()
     {
         try
         {
@@ -39,7 +72,7 @@ internal class HmGoogleGeminiHttpServer
             Console.WriteLine(e.ToString() + "\r\n");
         }
     }
-    ~HmGoogleGeminiHttpServer()
+    ~HmSimpleHttpServer()
     {
         Destroy();
     }

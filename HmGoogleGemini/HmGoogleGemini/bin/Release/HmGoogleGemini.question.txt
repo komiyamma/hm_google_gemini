@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(365452546)
-C#でプロセスが何かインプットを受け取れるように待機するには？
+HmGoogleGemini.Message(374099109)
+ECMAScript 202

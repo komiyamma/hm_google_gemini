@@ -1,0 +1,41 @@
+﻿jsmode "WebView2";
+
+js {
+debuginfo(2);
+
+function checkAndExtractPort(outText) {
+  // 正規表現パターンを作成
+  const pattern = /PORT:\s*(\d+)/;
+
+  // テキストとパターンを照合
+  const match = outText.match(pattern);
+
+  // マッチが見つかった場合
+  if (match) {
+    // ポート番号を抽出
+    const port = match[1];
+
+    // ポート番号を返却
+    return port;
+  } else {
+    // 法則に合わない場合、nullを返却
+    return null;
+  }
+}
+let currentmacrodir = currentmacrodirectory();
+let currentWindowHandle = hidemaru.getCurrentWindowHandle();
+  var processInfo = hidemaru.runProcess('"' + currentmacrodir + "\\HmSimpleHttpServer" + '"' + " " +currentWindowHandle , currentmacrodir, "stdioAlive", "sjis" );
+  var stdOut = processInfo.stdOut;
+  stdOut.onReadLine( readLineAsync ); //固まりません
+  function readLineAsync(outText) {
+      //ここはマクロ実行中ではない
+      let port = checkAndExtractPort(outText);
+      if (port) {
+          console.log(port);
+      }
+      else {
+          console.log("NO PORT");
+      }
+  }
+
+}
