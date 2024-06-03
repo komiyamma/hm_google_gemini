@@ -88,7 +88,6 @@ internal class ChatSession
 
     public async Task<string> SendMessageAsync(string prompt)
     {
-        Object lockObj = new Object();
         var task = conversationUpdateCheck();
 
         // Initialize the content with the prompt.
@@ -159,6 +158,11 @@ internal class ChatSession
                 // Console.WriteLine(text);
             }
 
+            var alltext = fullText.ToString();
+            // 最後に念のために、全体のテキストとして1回上書き保存しておく。
+            // 細かく保存していた際に、ファイルIOで欠損がある可能性がわずかにあるため。
+            // SaveAllTextToFile(alltext);
+
             // こまごまと返ってきた返答をまとめて１つにして「AIの返答」として１つで登録する
             var answer = new Content
             {
@@ -167,12 +171,11 @@ internal class ChatSession
             answer.Parts.AddRange(new List<Part>()
             {
                 new() {
-                    Text = fullText.ToString()
+                    Text = alltext
                 }
             });
             _contents.Add(answer);
-
-            return fullText.ToString();
+            return alltext;
         }
         catch (Exception e)
         {
@@ -197,4 +200,10 @@ internal class ChatSession
     {
         HmGoogleGemini.SaveAddTextToAnswerFile(text);
     }
+
+    private void SaveAllTextToFile(string text)
+    {
+        HmGoogleGemini.SaveAllTextToAnswerFile(text);
+    }
+
 }
