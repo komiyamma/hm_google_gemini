@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(374099109)
-ECMAScript 202
+HmGoogleGemini.Message(375058203)
+1+1は？
