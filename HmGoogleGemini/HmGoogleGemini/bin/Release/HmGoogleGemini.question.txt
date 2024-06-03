@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(358191828)
-プロパティ
+HmGoogleGemini.Clear(362279968)
+リセット

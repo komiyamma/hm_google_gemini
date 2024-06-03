@@ -114,6 +114,7 @@ namespace HmGoogleGeminiHttpServer
 
         public void OnReleaseObject(int reason = 0)
         {
+            System.Diagnostics.Trace.WriteLine("OnReleaseObject");
             Destroy();
         }
 

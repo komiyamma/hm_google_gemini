@@ -26,7 +26,6 @@ const renderpane_custom_param = {
 // --------------------------------------------------
 
 
-
 // レンダリングペインを指定属性＆ポートでオープン
 function openRenderPaneCommand(port) {
     const renderpane_json_param = {
@@ -92,6 +91,7 @@ function resetAI() {
     let commandline = `"${currentexepath}" "HmGoogleGemini.Clear()"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     hidemaru.saveTextFile(saveFileName, sendcmd + text, "utf8");
+    serverProcessCOM.OnReleaseObject(-1); // サーバーも強制終了しておく。
 }
 
 function pasteAIAnswer() {
