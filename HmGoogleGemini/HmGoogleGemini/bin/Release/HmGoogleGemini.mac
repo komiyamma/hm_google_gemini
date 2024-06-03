@@ -110,7 +110,11 @@ var serverProcessCOM;
 // HTML/JS用のHttpサーバーを起動。(PHPだと他の環境要らずでたった２個ほどのファイルでシンプルサーバーが動作するので一緒に内包してある)
 function openHttpServer() {
     serverProcessCOM = createobject( currentmacrodir + "\\HmGoogleGeminiHttpServer.dll", "HmGoogleGeminiHttpServer.HmGoogleGeminiHttpServer");
+    if (!serverProcessCOM) throw "HmOpenAiGptHttpServer.dllを読み取れませんでした。"
     let port = serverProcessCOM.Launch();
+    if (port == 0 ) {
+        throw "HTTPサーバーのためのポートが確保できませんでした";
+    }
     return port;
 }
 
@@ -128,9 +132,6 @@ function doMain() {
     try {
         // HTTPサーバーを起動。起動した際に確保したポートをゲット
         let avilablePort = openHttpServer()
-        if (avilablePort == 0) {
-            throw "HTTPサーバーのためのポートが確保できませんでした";
-        }
 
         // レインだリングペインをそのポートでlocalhostで開く
         openRenderPaneCommand(avilablePort);

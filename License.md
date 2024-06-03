@@ -1,9 +1,6 @@
-This product includes PHP software, freely available from <http://www.php.net/software/>
-
-
 - HmGoogleGemini
 
-  Copyright (c) 2023 Akitsugu Komiyama
+  Copyright (c) 2024 Akitsugu Komiyama
 
 
 The MIT License (MIT)
@@ -29,6 +26,7 @@ SOFTWARE.
 
 
 - PHP
+This product includes PHP software, freely available from <http://www.php.net/software/>
 --------------------------------------------------------------------
                      The PHP License, version 3.01
    Copyright (c) 1999 - 2022 The PHP Group. All rights reserved.
