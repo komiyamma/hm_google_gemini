@@ -13,6 +13,14 @@
             width: 96%;
         }
 
+        #btn_stop {
+            margin-left: auto;
+        }
+
+        #model_answer {
+            width: 96%;
+        }
+
         table {
             border-collapse: collapse;
         }
@@ -31,7 +39,19 @@
         */
     </style>
     <script src="./HmGoogleGemini.marked.js"></script>
+</head>
+
+<body class="markdown-body">
+    <pre id="user_question"></pre>
+    <hr>
+    <div align="right"><button id="btn_stop">停止</button></div>
+    <div id="model_answer"></div>
+
     <script>
+
+    // ボタンを取得
+    const btn_stop = document.getElementById("btn_stop");
+
         function getFirstThreeLines(text) {
 
             // 改行文字でテキストを分割し、2行目以降を取得
@@ -51,6 +71,8 @@
 
 		    return firstThreeLines.join('\n');
         }
+
+        let prevQuestionText = "|- - HmGoogleGemini - -|";
         function checkQuestionFile() {
             fetch('HmGoogleGemini.question.txt')
                 .then(response => response.text())
@@ -59,28 +81,34 @@
                         // １行目にはコマンドが入っているのでカット。
                         // ４行以上ある場合には、「....」で代用する。
                         let newText = getFirstThreeLines(text);
-
-                        document.getElementById('user_question').textContent = newText;
+                        if (prevQuestionText != newText) {
+                            prevQuestionText = newText;
+                            document.getElementById('user_question').textContent = newText;
+                        }
                     } catch (err) { }
                 })
                 .catch(error => {
                     // window.alert('ファイルの読み込み中にエラーが発生しました:', error);
                 });
         }
+
+        let prevAnswerText = "|- - HmGoogleGemini - -|";
         function checkAnswerFile() {
             fetch('HmGoogleGemini.txt')
                 .then(response => response.text())
                 .then(md_text => {
                     try {
-                        var htmlText = marked.parse(md_text);
-                        document.getElementById('model_answer').innerHTML = htmlText;
+                        if (prevAnswerText != md_text) {
+                            prevAnswerText = md_text
+                            let htmlText = marked.parse(md_text);
+                            document.getElementById('model_answer').innerHTML = htmlText;
+                        }
                     } catch (err) { }
                 })
                 .catch(error => {
                     // window.alert('ファイルの読み込み中にエラーが発生しました:', error);
                 });
         }
-
 
         // ページ読み込み完了に初回チェック
         document.addEventListener("DOMContentLoaded", function() {
@@ -89,12 +117,6 @@
             setInterval(checkAnswerFile, 500); // 0.5秒ごとに監視
         });
     </script>
-</head>
-
-<body class="markdown-body">
-    <pre id="user_question"></pre>
-    <hr>
-    <div id="model_answer"></div>
 </body>
 
 </html>
