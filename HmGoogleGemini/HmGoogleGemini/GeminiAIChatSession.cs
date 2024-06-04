@@ -92,7 +92,7 @@ internal class ChatSession
     private void CancelCheck()
     {
         string question_text = "";
-        using (StreamReader reader = new StreamReader(HmGoogleGemini.saveFilePath, Encoding.UTF8))
+        using (StreamReader reader = new StreamReader(HmGoogleGemini.questionFilePath, Encoding.UTF8))
         {
             question_text = reader.ReadToEnd();
         }

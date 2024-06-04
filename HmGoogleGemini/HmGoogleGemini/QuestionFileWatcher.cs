@@ -11,14 +11,14 @@ internal partial class HmGoogleGemini
 
     static bool isConversationing = false;
 
-    public static string saveFilePath = "";
+    public static string questionFilePath = "";
 
     // 今回のこのプロセス起動で、はじめて質問ファイルをチェックするかどうか
     static Boolean isQuestionFileFirstCheck = true;
 
     static void StartFileWatchr()
     {
-        saveFilePath = Path.Combine(targetDir, "HmGoogleGemini.question.txt");
+        questionFilePath = Path.Combine(targetDir, "HmGoogleGemini.question.txt");
 
         // 監視するディレクトリを設定
         questionFileWatcher.Path = targetDir;
@@ -27,13 +27,13 @@ internal partial class HmGoogleGemini
         questionFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
 
         // 監視するファイルを指定
-        questionFileWatcher.Filter = Path.GetFileName(saveFilePath);
+        questionFileWatcher.Filter = Path.GetFileName(questionFilePath);
 
         // 監視を開始
         questionFileWatcher.EnableRaisingEvents = true;
 
         // 1回実行
-        CheckQuestionFile(saveFilePath);
+        CheckQuestionFile(questionFilePath);
 
         // 更新があった時の処理。ただし連続して同じファイルに複数回保存するエディタがあるので、0.2秒以内のものは無視する。
         questionFileWatcher.Changed += QuestionFileWatcher_Changed;
@@ -56,7 +56,7 @@ internal partial class HmGoogleGemini
 
             // ファイルが変更されたので、ファイルの内容を読み込む
             string question_text = "";
-            using (StreamReader reader = new StreamReader(saveFilePath, Encoding.UTF8))
+            using (StreamReader reader = new StreamReader(questionFilePath, Encoding.UTF8))
             {
                 question_text = reader.ReadToEnd();
             }

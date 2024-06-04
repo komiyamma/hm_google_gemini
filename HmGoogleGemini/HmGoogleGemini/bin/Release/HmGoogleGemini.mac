@@ -189,6 +189,16 @@ function openRenderPaneCommand(port) {
 }
 
 
+// レンダリングペインを閉じる（非表示）
+function closeRenderPaneCommand() {
+
+    const renderpane_json_param = {
+        target: renderPaneTargetName,
+        show: 0,
+    };
+    renderpanecommand(renderpane_json_param);
+}
+
 
 const aiExePath = currentMacroDirectory + "\\HmGoogleGemini.exe";
 
@@ -231,7 +241,9 @@ function syncOnCompleteAnswerText() {
     onCompleteAnswerText(_completeAnswerText);
 }
 
+debuginfo(2);
 function onHtmlEventHandler(command_name) {
+console.log(command_name)
     switch (command_name) {
         case "reset":
             hidemaru.postExecMacroMemory("js { resetAI(); }");
@@ -258,6 +270,8 @@ function onHtmlEventHandler(command_name) {
 }
 
 function stopAIAnswer() {
+debuginfo(2);
+console.log("stopAIAnswer")
     let sendcmd = "HmGoogleGemini.Cancel(" + getTickCount() + ")\n";
     let text = "応答を停止";
     let commandline = `"${aiExePath}" "HmGoogleGemini.Cancel()"`;
@@ -316,8 +330,12 @@ function getSelectedMenuCommand() {
 // テキストを選択せずに、このマクロを実行した時は、コマンド選択
 function doSendCommand() {
     let selectedCommand = getSelectedMenuCommand();
-    
     switch (selectedCommand) {
+        // メニューをキャンセルなら""
+        case "":
+            // 間違ったかなにかだろう。元へと戻すという意味でレンダリングペインも一緒に閉じておく
+            closeRenderPaneCommand();
+            break;
         case "stop":
             stopAIAnswer();
             break;
@@ -328,7 +346,7 @@ function doSendCommand() {
             pasteAIAnswer();
             break;
         default:
-            // キャンセル、もしくは、未知のコマンドの場合の処理
+            // 未知のコマンドの場合の処理
             break;
     }
 }
