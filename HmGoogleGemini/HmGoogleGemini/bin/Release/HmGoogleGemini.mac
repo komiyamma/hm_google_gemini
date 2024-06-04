@@ -28,7 +28,7 @@ const is_one_ai_renderpane = 1;  // AI関連のレンダリング枠は(他の�
 // --------------------------------------------------
 
 
-var currentmacrodir = currentmacrodirectory();
+const currentmacrodir = currentmacrodirectory();
 
 // 宣言のみ。この空間マクロで時間を超えて共有するので初期化してはならない。
 var avilablePort;
@@ -104,7 +104,8 @@ function oneAIWindowFrameCheck() {
 
 // 質問内容があるかどうか
 function hasQuestionText() {
-    return selecting();
+    // getSelectedTextは "" や undefined になりえるので、このような判定
+    return Boolean( hidemaru.getSelectedText() );
 }
 
 // 質問内容のテキスト
@@ -169,7 +170,7 @@ function openRenderPaneCommand(port) {
 
 
 
-var aiexepath = currentmacrodir + "\\HmGoogleGemini.exe";
+const aiexepath = currentmacrodir + "\\HmGoogleGemini.exe";
 
 // エラー用途
 function outputAlert(msg) {
@@ -179,8 +180,8 @@ function outputAlert(msg) {
 }
 
 // ユーザーの「質問内容」が入るテキストファイル
-var questionFileName = currentmacrodir + "\\HmGoogleGemini.question.txt";
-var answerFileName = currentmacrodir + "\\HmGoogleGemini.txt";
+const questionFileName = currentmacrodir + "\\HmGoogleGemini.question.txt";
+const answerFileName = currentmacrodir + "\\HmGoogleGemini.txt";
 
 // 質問内容の1行目に「時刻」を入れることで、質問時刻がわかるようにしている。
 // これはシステムが「ファイルの更新」を非常に頻繁に誤爆して多重検知するために必要。
