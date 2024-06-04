@@ -15,20 +15,20 @@ js {
 // ------------- 会話エンジンの設定項目 -------------
 
 const projectId = "new-project-20240307";
-const location = "us-central1";
-const model = "gemini-1.0-pro";
+const locationName = "us-central1";
+const modelName = "gemini-1.0-pro";
 
-const renderpane_custom_param = {
+const renderPaneCustomParam = {
     place: "rightside",   // leftside | rightside | upside | downside
     size: 400,            // 左や右の配置の時は、横幅のこと。上や下の配置の時は縦幅のこと。
 };
 
-const is_one_ai_renderpane = 1;  // AI関連のレンダリング枠は(他の種類のAIも含め)１つだけにする。(複数起動しそうになると、前のものが閉じる）
+const isOneAIRenderPane = 1;  // AI関連のレンダリング枠は(他の種類のAIも含め)１つだけにする。(複数起動しそうになると、前のものが閉じる）
 
 // --------------------------------------------------
 
 
-const currentmacrodir = currentmacrodirectory();
+const currentMacroDirectory = currentmacrodirectory();
 
 // 宣言のみ。この空間マクロで時間を超えて共有するので初期化してはならない。
 var avilablePort;
@@ -53,7 +53,7 @@ function openHttpServer() {
 
         // このウィンドウハンドルがなくなったら、2秒後に「該当の簡易サーバー」は自動終了する
         // 簡易サーバーがどんどん増えるといったことはなくなる。
-        let processInfo = hidemaru.runProcess('"' + currentmacrodir + "\\HmSimpleHttpServer.exe" + '"' + " " + currentWindowHandle, currentmacrodir, "stdioAlive", "sjis");
+        let processInfo = hidemaru.runProcess('"' + currentMacroDirectory + "\\HmSimpleHttpServer.exe" + '"' + " " + currentWindowHandle, currentMacroDirectory, "stdioAlive", "sjis");
 
         // 簡易サーバープログラムの出力を非同期で読み取る。
         // 簡易サーバープログラムはサーバーを起動するとともに、確保したポート番号を標準出力に出す。
@@ -82,7 +82,7 @@ const renderPaneTargetName = "HmGoogleGemini";
 
 // AIウィンドウを１つだけに絞る処理
 function oneAIWindowFrameCheck() {
-    if (is_one_ai_renderpane) {
+    if (isOneAIRenderPane) {
         let lastAiRenderPaneTargetName = getstaticvariable( "HmOneAIRenderPane", 2 );
         // 自分だよ、何もしない。
         if (lastAiRenderPaneTargetName == renderPaneTargetName ) {
@@ -169,19 +169,19 @@ function openRenderPaneCommand(port) {
     };
 
     // ユーザー指定のもので上書き。
-    const renderpane_mix_param = { ...renderpane_json_param, ...renderpane_custom_param };
+    const renderpane_mix_param = { ...renderpane_json_param, ...renderPaneCustomParam };
 
     renderpanecommand(renderpane_mix_param);
 
     // １つのウィンドウに絞るフラグがONなら、登録しておく
-    if (is_one_ai_renderpane) {
+    if (isOneAIRenderPane) {
         setstaticvariable( "HmOneAIRenderPane", renderPaneTargetName, 2 );
     }
 }
 
 
 
-const aiexepath = currentmacrodir + "\\HmGoogleGemini.exe";
+const aiExePath = currentMacroDirectory + "\\HmGoogleGemini.exe";
 
 // エラー用途
 function outputAlert(msg) {
@@ -191,8 +191,8 @@ function outputAlert(msg) {
 }
 
 // ユーザーの「質問内容」が入るテキストファイル
-const questionFileName = currentmacrodir + "\\HmGoogleGemini.question.txt";
-const answerFileName = currentmacrodir + "\\HmGoogleGemini.txt";
+const questionFileName = currentMacroDirectory + "\\HmGoogleGemini.question.txt";
+const answerFileName = currentMacroDirectory + "\\HmGoogleGemini.txt";
 
 // 質問内容の1行目に「時刻」を入れることで、質問時刻がわかるようにしている。
 // これはシステムが「ファイルの更新」を非常に頻繁に誤爆して多重検知するために必要。
@@ -204,7 +204,7 @@ function getTickCount() {
 // 選択テキストを質問内容としてファイルに保存し、ＡＩを指定のパラメータやモデルで起動
 function doSendQuestionContent() {
     let text = getQuestionText();
-    let commandline = `"${aiexepath}" "${projectId}" "${location}" "${model}"`;
+    let commandline = `"${aiExePath}" "${projectId}" "${locationName}" "${modelName}"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     //      runex(commandline, 0); // デバッグ用
 
@@ -238,7 +238,7 @@ function onHtmlEventHandler(text) {
             // このファイルはC#が出力しているので、\nのまま。hidemaru.loadTextFile でも\r\n にはならない。
             const normalizeNewLineText = answer_text.replaceAll("\r\n", "\n").replaceAll("\n", "\r\n");
 
-            _completeAnswerText = normalizeNewLineText.;
+            _completeAnswerText = normalizeNewLineText;
             // ユーザーが非同期だと理解が大変なので同期にしておく
             hidemaru.postExecMacroMemory( "js { syncOnCompleteAnswerText(); }" );
         }
@@ -248,7 +248,7 @@ function onHtmlEventHandler(text) {
 function stopAIAnswer() {
     let sendcmd = "HmGoogleGemini.Cancel(" + getTickCount() + ")\n";
     let text = "応答を停止";
-    let commandline = `"${aiexepath}" "HmGoogleGemini.Cancel()"`;
+    let commandline = `"${aiExePath}" "HmGoogleGemini.Cancel()"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
 }
@@ -256,7 +256,7 @@ function stopAIAnswer() {
 function resetAI() {
     let sendcmd = "HmGoogleGemini.Clear(" + getTickCount() + ")\n";
     let text = "リセット";
-    let commandline = `"${aiexepath}" "HmGoogleGemini.Clear()"`;
+    let commandline = `"${aiExePath}" "HmGoogleGemini.Clear()"`;
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
     hidemaru.saveTextFile(answerFileName, "", "utf8");
