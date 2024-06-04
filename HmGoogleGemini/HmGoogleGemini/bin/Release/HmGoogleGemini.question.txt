@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(55075625)
-setTimeout
+HmGoogleGemini.Message(55829906)
+1+1は？
