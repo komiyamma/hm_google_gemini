@@ -75,7 +75,7 @@ partial class HmGoogleGemini
     {
         try
         {
-            string saveFilePath = Path.Combine(targetDir, "HmOpenAiGpt.txt");
+            string saveFilePath = Path.Combine(targetDir, "HmGoogleGemini.txt");
 
             // ファイルが存在しない場合は新規にファイルを作成し、ファイルが存在する場合は追記モードで開く
             using (StreamWriter writer = new StreamWriter(saveFilePath, false, Encoding.UTF8))

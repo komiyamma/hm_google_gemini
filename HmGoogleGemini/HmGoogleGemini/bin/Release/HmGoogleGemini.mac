@@ -177,6 +177,8 @@ function onHtmlButtonClick(text) {
     else if (text == "stop") {
         hidemaru.postExecMacroMemory( "js { stopAIAnswer(); }");
     }
+    else if (text == "answer_complete") {
+    }
 }
 
 function stopAIAnswer() {
