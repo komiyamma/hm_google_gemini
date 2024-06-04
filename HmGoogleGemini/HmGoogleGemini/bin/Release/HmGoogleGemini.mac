@@ -139,7 +139,7 @@ function noNeedRenderPaneReOpen() {
             target: renderPaneTargetName,
             get: "show",
         };
-    
+
         // 文字列の"0" or "1"なので注意が必要
         let isShowNow = renderpanecommand( renderpane_json_param );
         if (isShowNow == "1" ) {
@@ -298,7 +298,7 @@ function getSelectedMenuCommand() {
     let selectMenuID = menuarray(menuTextList); // 選択しなければ0: 選択は最初の項目が1
 
     // キャンセルした
-    if (selectMenuID == 0) {  
+    if (selectMenuID == 0) {
         return "";
     }
 
