@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(59205812)
-1+1は？
+HmGoogleGemini.Clear(65831640)
+リセット
