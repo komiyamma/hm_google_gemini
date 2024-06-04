@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(53182718)
-1+1は？
+HmGoogleGemini.Message(53826671)
+1+1は？1 + 1 は 2 です。
