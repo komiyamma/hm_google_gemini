@@ -109,7 +109,7 @@ internal class ChatSession
         }
     }
 
-    public async Task<string> SendMessageAsync(string prompt)
+    public async Task<string> SendMessageAsync(string prompt, int questionNumber)
     {
         var task = conversationUpdateCheck();
 
@@ -191,7 +191,8 @@ internal class ChatSession
             var alltext = fullText.ToString();
             // 最後に念のために、全体のテキストとして1回上書き保存しておく。
             // 細かく保存していた際に、ファイルIOで欠損がある可能性がわずかにあるため。
-            // SaveAllTextToFile(alltext);
+            SaveAllTextToFile(alltext);
+            SaveCompleteFile(questionNumber);
 
             // こまごまと返ってきた返答をまとめて１つにして「AIの返答」として１つで登録する
             var answer = new Content
@@ -234,6 +235,11 @@ internal class ChatSession
     private void SaveAllTextToFile(string text)
     {
         HmGoogleGemini.SaveAllTextToAnswerFile(text);
+    }
+
+    private void SaveCompleteFile(int number)
+    {
+        HmGoogleGemini.SaveCompleteFile(number);
     }
 
 }

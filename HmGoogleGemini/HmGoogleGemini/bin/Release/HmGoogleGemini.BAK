@@ -4,6 +4,13 @@
 <head>
     <title>HmGoogleGemini</title>
     <style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #223;
+                color: #ddd;
+            }
+        }
+
         #user_question {
             width: 96%;
             white-space: pre-wrap;
@@ -71,11 +78,25 @@
             window.chrome.webview.postMessage({ funcid: idHtmlButtonClick, message: "reset" });
         });
 
+        let lastQuestionNumber = 0;
+
         function getFirstThreeLines(text) {
 
             // 改行文字でテキストを分割し、2行目以降を取得
-            let lines = text.split('\n').slice(1);
-            // 再度改行文字を付けて連結
+            let lines = text.split('\n');
+
+            // 最初の行を取得しつつ、2行目以降を確保
+            let firstLine = lines.shift();
+
+			let numberPattern = /\((\d+)\)/; // カッコで囲まれた数字を抽出するための正規表現パターン
+
+			let extractedNumber = firstLine.match(numberPattern);
+
+			if (extractedNumber) {
+			    lastQuestionNumber = extractedNumber[1]; // カッコ内の数字だけを取得
+			} else {
+			    lastQuestionNumber = 0;
+			}
 
             // 空行、または改行しかない行を削除する
             lines = lines.filter(line => line.trim() !== '');
