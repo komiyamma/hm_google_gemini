@@ -1,2 +1,2 @@
-HmGoogleGemini.Clear(65831640)
+HmGoogleGemini.Clear(66727250)
 リセット
