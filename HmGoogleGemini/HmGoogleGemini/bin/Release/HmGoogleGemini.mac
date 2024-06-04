@@ -14,22 +14,20 @@ js {
 
 // ------------- 会話エンジンの設定項目 -------------
 
-// Google Cloud Console 上の「プロジェクトID」(プロジェクト名ではなくプロジェクトID。プロジェクトIDには空白は入らない)
-// https://console.cloud.google.com/
-const projectId = "new-project-20240307";
+const projectId = "new-project-20240307";  // Google Cloud Console 上の「プロジェクトID」(プロジェクト名ではなくプロジェクトID。プロジェクトIDには空白は入らない)
+                                           // https://console.cloud.google.com/
 
-// 該当のプロジェクトのlocation
-const locationName = "us-central1";
+const locationName = "us-central1";        // 該当のプロジェクトのlocation
 
-// 該当のプロジェクトで使用する gemini-pro系。(gemini-1.0-pro や gemini-1.5-pro)
-const modelName = "gemini-1.0-pro";
+
+const modelName = "gemini-1.0-pro";        // 該当のプロジェクトで使用する gemini-pro系。(gemini-1.0-pro や gemini-1.5-pro)
 
 const renderPaneCustomParam = {
-    place: "rightside",   // leftside | rightside | upside | downside
-    size: 400,            // 左や右の配置の時は、横幅のこと。上や下の配置の時は縦幅のこと。
+    place: "rightside",                    // leftside | rightside | upside | downside
+    size: 400,                             // 左や右の配置の時は、横幅のこと。上や下の配置の時は縦幅のこと。
 };
 
-const isOneAIRenderPane = 1;  // AI関連のレンダリング枠は(他の種類のAIも含め)１つだけにする。(複数起動しそうになると、前のものが閉じる）
+const isOneAtTimeAIRenderPane = 1;         // AI関連のレンダリング枠は(他の種類のAIも含め)１つだけにする。(複数起動しそうになると、前のものが閉じる）
 
 // --------------------------------------------------
 
@@ -88,11 +86,11 @@ const renderPaneTargetName = "HmGoogleGemini";
 
 // AIウィンドウを１つだけに絞る処理
 function oneAIWindowFrameCheck() {
-    if (!isOneAIRenderPane) {
+    if (!isOneAtTimeAIRenderPane) {
         return;
     }
 
-    let lastAiRenderPaneTargetName = getstaticvariable( "HmOneAIRenderPane", 2 );
+    let lastAiRenderPaneTargetName = getstaticvariable( "OneAtTimeAIRenderPane", 2 );
     // 自分だよ、何もしない。
     if (lastAiRenderPaneTargetName == renderPaneTargetName ) {
         return;
@@ -183,8 +181,8 @@ function openRenderPaneCommand(port) {
     renderpanecommand(renderpane_mix_param);
 
     // １つのウィンドウに絞るフラグがONなら、登録しておく
-    if (isOneAIRenderPane) {
-        setstaticvariable( "HmOneAIRenderPane", renderPaneTargetName, 2 );
+    if (isOneAtTimeAIRenderPane) {
+        setstaticvariable( "OneAtTimeAIRenderPane", renderPaneTargetName, 2 );
     }
 }
 
@@ -241,9 +239,7 @@ function syncOnCompleteAnswerText() {
     onCompleteAnswerText(_completeAnswerText);
 }
 
-debuginfo(2);
 function onHtmlEventHandler(command_name) {
-console.log(command_name)
     switch (command_name) {
         case "reset":
             hidemaru.postExecMacroMemory("js { resetAI(); }");
@@ -270,8 +266,6 @@ console.log(command_name)
 }
 
 function stopAIAnswer() {
-debuginfo(2);
-console.log("stopAIAnswer")
     let sendcmd = "HmGoogleGemini.Cancel(" + getTickCount() + ")\n";
     let text = "応答を停止";
     let commandline = `"${aiExePath}" "HmGoogleGemini.Cancel()"`;

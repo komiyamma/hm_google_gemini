@@ -1,2 +1,2 @@
-HmGoogleGemini.Cancel(79689187)
-応答を停止
+HmGoogleGemini.Message(80158546)
+byOneByの意味は？
