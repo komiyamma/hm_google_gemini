@@ -178,10 +178,7 @@ internal class ChatSession
 
                 if (_cst.IsCancellationRequested)
                 {
-                    var errmsg = "\n\n\nAIの応答をキャンセルしました。\n\n\n";
-                    fullText.Append(errmsg);
-                    SaveAddTextToFile(errmsg);
-                    break;
+                    throw new OperationCanceledException("AIの応答をキャンセルしました。");
                 }
 
                 var text = responseItem.Candidates[0].Content.Parts[0].Text;
@@ -212,7 +209,7 @@ internal class ChatSession
         }
         catch (Exception e)
         {
-            SaveAddTextToFile("\n\n\n" + e.Message + "\n\n\n");
+            SaveAddTextToFile("\r\n\r\n" + e.GetType().Name + "\r\n\r\n" + e.Message + "\r\n");
             conversationUpdateCancel = true;
             this.Cancel();
             // Console.WriteLine("問い合わせをキャンセルしました。" + e);
