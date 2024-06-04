@@ -14,8 +14,14 @@ js {
 
 // ------------- 会話エンジンの設定項目 -------------
 
+// Google Cloud Console 上の「プロジェクトID」(プロジェクト名ではなくプロジェクトID。プロジェクトIDには空白は入らない)
+// https://console.cloud.google.com/
 const projectId = "new-project-20240307";
+
+// 該当のプロジェクトのlocation
 const locationName = "us-central1";
+
+// 該当のプロジェクトで使用する gemini-pro系。(gemini-1.0-pro や gemini-1.5-pro)
 const modelName = "gemini-1.0-pro";
 
 const renderPaneCustomParam = {
