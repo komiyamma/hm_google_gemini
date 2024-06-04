@@ -178,7 +178,9 @@ internal class ChatSession
 
                 if (_cst.IsCancellationRequested)
                 {
-                    SaveAddTextToFile("\n\n\nAIの応答をキャンセルしました。\n\n\n");
+                    var errmsg = "\n\n\nAIの応答をキャンセルしました。\n\n\n";
+                    fullText.Append(errmsg);
+                    SaveAddTextToFile(errmsg);
                     break;
                 }
 
