@@ -30,6 +30,9 @@ const is_one_ai_renderpane = 1;  // AI関連のレンダリング枠は(他の�
 
 const currentmacrodir = currentmacrodirectory();
 
+// 宣言のみ。この空間マクロで時間を超えて共有するので初期化してはならない。
+var avilablePort;
+
 // 有効ポートの受け口。非同期にてここにopenHttpServer関数で代入される。
 // 有効なポートが見つからない時や、時間切れになることもありえる
 // 一度ポートを探して、0という「見つからない」という値が入っていることもある。この際も一応改めて探す
@@ -98,14 +101,21 @@ function oneAIWindowFrameCheck() {
     }
 }
 
+let questionTextCache = getQuestionText();
+
 // 質問内容があるかどうか
 function hasQuestionText() {
     // getSelectedTextは "" や undefined になりえるので、このような判定
-    return Boolean( hidemaru.getSelectedText() );
+    return Boolean( questionTextCache );
 }
 
 // 質問内容のテキスト
 function getQuestionText() {
+    // ユーザーによって、このような関数が定義されていれば、これを利用する。
+    if (typeof(onRequestQuestionText) == "function") {
+        return onRequestQuestionText();
+    }
+
     return hidemaru.getSelectedText();
 }
 
