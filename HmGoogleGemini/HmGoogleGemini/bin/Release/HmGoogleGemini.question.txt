@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(103453343)
-JavaScriptで関数名の文字列からグローバス関数を呼びだすには？
+HmGoogleGemini.Message(112119593)
+あいうえお
