@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(131928859)
-IntelとRyzenを表で比較してください。
+HmGoogleGemini.Clear(140111421)
+リセット

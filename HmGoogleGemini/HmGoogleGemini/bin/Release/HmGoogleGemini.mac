@@ -1,5 +1,5 @@
 ﻿/*
- * HmGoogleGemini v 1.0.0.1
+ * HmGoogleGemini v 1.1.0.4
  *
  * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
@@ -11,11 +11,15 @@ hidemaruversion "9.25.99";
 jsmode @"WebView2\HmGoogleGemini";
 js {
 
+/// <reference path="../types/hm_jsmode.d.ts" />
+/// declare function onRequestQuestionText(): any;
+/// declare function onCompleteAnswerText(answer_text:string ): any;
+
 
 // ------------- 会話エンジンの設定項目 -------------
 
 const projectId = "new-project-20240307";  // Google Cloud Console 上の「プロジェクトID」(プロジェクト名ではなくプロジェクトID。プロジェクトIDには空白は入らない)
-                                           // https://console.cloud.google.com/
+// https://console.cloud.google.com/
 
 const locationName = "us-central1";        // 該当のプロジェクトのlocation
 
@@ -35,8 +39,12 @@ const isOneAtTimeAIRenderPane = 1;         // AI関連のレンダリング枠�
 function getArgParamJsonObj() {
     let arg_text = getarg(0);
     if (!arg_text) { return null; }
-    let arg_param = JSON.parse(arg_text);
-    return arg_param
+    try {
+        let arg_param = JSON.parse(arg_text);
+        return arg_param
+    } catch (err) {
+        outputAlert(err);
+    }
 }
 
 const argParamJsonObj = getArgParamJsonObj();
@@ -49,7 +57,7 @@ var avilablePort;
 // 有効ポートの受け口。非同期にてここにopenHttpServer関数で代入される。
 // 有効なポートが見つからない時や、時間切れになることもありえる
 // 一度ポートを探して、0という「見つからない」という値が入っていることもある。この際も一応改めて探す
-if (! Boolean(avilablePort) ) {
+if (!Boolean(avilablePort)) {
     openHttpServer();
 }
 
@@ -99,9 +107,9 @@ function oneAIWindowFrameCheck() {
         return;
     }
 
-    let lastAiRenderPaneTargetName = getstaticvariable( "OneAtTimeAIRenderPane", 2 );
+    let lastAiRenderPaneTargetName = getstaticvariable("OneAtTimeAIRenderPane", 2);
     // 自分だよ、何もしない。
-    if (lastAiRenderPaneTargetName == renderPaneTargetName ) {
+    if (lastAiRenderPaneTargetName == renderPaneTargetName) {
         return;
     }
 
@@ -120,7 +128,7 @@ function oneAIWindowFrameCheck() {
 // 質問内容のテキスト
 function getQuestionText() {
     // ユーザーによって、このような関数が引数として引き渡されていれば、これを利用する。
-    if (argParamJsonObj?.onRequestQuestionText && typeof(onRequestQuestionText) == "function") {
+    if (argParamJsonObj?.onRequestQuestionText && typeof (onRequestQuestionText) == "function") {
         try {
             let ret = onRequestQuestionText();
             // この判定自体には意味はないが、返り値が文字列ではなく、true や false があるんだということを意識するために記述しておく。
@@ -128,7 +136,7 @@ function getQuestionText() {
                 return ret;
             }
             return ret;
-        } catch(err) {
+        } catch (err) {
             outputAlert(err);
         }
     }
@@ -142,11 +150,11 @@ let questionTextCache = getQuestionText();
 // 質問内容があるかどうか
 function hasQuestionText() {
     // ユーザーによって、このような関数が引数として引き渡されていれば、その内容(のキャッシュ)が有効であるのかどうか。
-    if (argParamJsonObj?.onRequestQuestionText && typeof(onRequestQuestionText) == "function") {
+    if (argParamJsonObj?.onRequestQuestionText && typeof (onRequestQuestionText) == "function") {
         try {
             // テキストの場合にQuestionがあるとみなす。
-            return typeof(questionTextCache) == "string";
-        } catch(err) {
+            return typeof (questionTextCache) == "string";
+        } catch (err) {
             outputAlert(err);
         }
     } else {
@@ -158,19 +166,19 @@ function hasQuestionText() {
 // メニューを表示するべきかどうか
 function mustShowMenu() {
     // ユーザーによって、このような関数が引数として引き渡されていれば、その内容(のキャッシュ)が有効であるのかどうか。
-    if (argParamJsonObj?.onRequestQuestionText && typeof(onRequestQuestionText) == "function") {
+    if (argParamJsonObj?.onRequestQuestionText && typeof (onRequestQuestionText) == "function") {
         try {
             // getSelectedTextは "" や undefined になりえるので、このような判定
-            if (questionTextCache ===true) {
+            if (questionTextCache === true) {
                 return true;
             }
-            if (questionTextCache ===false) {
+            if (questionTextCache === false) {
                 return false;
             }
-            if (typeof(questionTextCache) ==="string") {
+            if (typeof (questionTextCache) === "string") {
                 return false;
             }
-        } catch(err) {
+        } catch (err) {
             outputAlert(err);
         }
     } else {
@@ -191,8 +199,8 @@ function noNeedRenderPaneReOpen() {
         };
 
         // 文字列の"0" or "1"なので注意が必要
-        let isShowNow = renderpanecommand( renderpane_json_param );
-        if (isShowNow == "1" ) {
+        let isShowNow = renderpanecommand(renderpane_json_param);
+        if (isShowNow == "1") {
             return true;
         }
     }
@@ -231,7 +239,7 @@ function openRenderPaneCommand(port) {
 
     // １つのウィンドウに絞るフラグがONなら、登録しておく
     if (isOneAtTimeAIRenderPane) {
-        setstaticvariable( "OneAtTimeAIRenderPane", renderPaneTargetName, 2 );
+        setstaticvariable("OneAtTimeAIRenderPane", renderPaneTargetName, 2);
     }
 }
 
@@ -253,7 +261,7 @@ const aiExePath = currentMacroDirectory + "\\HmGoogleGemini.exe";
 function outputAlert(msg) {
     let hidemaruexedir = hidemarudir();
     let dll = loaddll(hidemaruexedir + "\\HmOutputPane.dll");
-    dll.dllFuncW.Output(msg + "\r\n");
+    dll.dllfunc.Output(hidemaru.getCurrentWindowHandle(), msg + "\r\n");
 }
 
 // ユーザーの「質問内容」が入るテキストファイル
@@ -298,7 +306,7 @@ function onHtmlEventHandler(command_name) {
             break;
         case "answer_complete":
             _completeAnswerText = "";
-            if (argParamJsonObj?.onCompleteAnswerText && typeof(onCompleteAnswerText) == "function") {
+            if (argParamJsonObj?.onCompleteAnswerText && typeof (onCompleteAnswerText) == "function") {
                 // AIの回答の原文を取得
                 let answer_text = hidemaru.loadTextFile(answerFileName) || "";
                 if (!answer_text) { return; }
@@ -342,20 +350,20 @@ function pasteAIAnswer() {
 function getSelectedMenuCommand() {
     let menuLabelList = [
         {
-            cmd:"stop",
-            txt:"応答を停止 (&S)",
+            cmd: "stop",
+            txt: "応答を停止 (&S)",
         },
         {
-            cmd:"reset",
-            txt:"全リセット (&R)",
+            cmd: "reset",
+            txt: "全リセット (&R)",
         },
         {
-            cmd:"paste",
-            txt:"応答を張り付け (&V)"
+            cmd: "paste",
+            txt: "応答を張り付け (&V)"
         },
     ];
-    let menuCommandList = menuLabelList.map(item=>item.cmd);
-    let menuTextList = menuLabelList.map(item=>item.txt);
+    let menuCommandList = menuLabelList.map(item => item.cmd);
+    let menuTextList = menuLabelList.map(item => item.txt);
 
     let selectMenuID = menuarray(menuTextList); // 選択しなければ0: 選択は最初の項目が1
 
@@ -364,7 +372,7 @@ function getSelectedMenuCommand() {
         return false;
     }
 
-    let selectMenuIx = selectMenuID-1; // 配列用に使うので、0オリジンに変更。
+    let selectMenuIx = selectMenuID - 1; // 配列用に使うので、0オリジンに変更。
     let selectCommand = menuCommandList[selectMenuIx];
 
     return selectCommand;
@@ -434,6 +442,8 @@ function doMain() {
 if (avilablePort > 0) {
     doMain();
 }
+
+
 
 
 } // js
