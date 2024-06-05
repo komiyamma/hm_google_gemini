@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(112119593)
-あいうえお
+HmGoogleGemini.Message(131928859)
+IntelとRyzenを表で比較してください。

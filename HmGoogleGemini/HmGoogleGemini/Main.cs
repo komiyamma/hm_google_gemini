@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,26 @@ using System.Threading.Tasks;
 
 internal partial class HmGoogleGemini
 {
+    static void ifOldProcessIsOtherDirectoryKillIt()
+    {
+        string currentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+        string processName = Process.GetCurrentProcess().ProcessName;
+
+        Process[] processes = Process.GetProcessesByName(processName);
+
+        foreach (Process p in processes)
+        {
+            if (p.Id != Process.GetCurrentProcess().Id)
+            {
+                string processDirectory = Path.GetDirectoryName(p.MainModule.FileName);
+                if (processDirectory != currentDirectory)
+                {
+                    p.Kill();
+                }
+            }
+        }
+    }
+
     static void ifProcessHasExistKillIt()
     {
         // 現在のプロセスの名前を取得
@@ -25,6 +46,9 @@ internal partial class HmGoogleGemini
 
     static async Task Main(String[] args)
     {
+        // 古いプロセスが他のディレクトリにある場合はKillする
+        ifOldProcessIsOtherDirectoryKillIt();
+
         // 自分が2個目なら終了(2重起動しｊない)
         ifProcessHasExistKillIt();
 
