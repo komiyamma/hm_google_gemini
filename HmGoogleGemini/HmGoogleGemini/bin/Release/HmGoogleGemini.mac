@@ -271,6 +271,7 @@ function outputAlert(msg) {
 // ユーザーの「質問内容」が入るテキストファイル
 const questionFileName = currentMacroDirectory + "\\HmGoogleGemini.question.txt";
 const answerFileName = currentMacroDirectory + "\\HmGoogleGemini.txt";
+const completeFileName = currentMacroDirectory + "\\HmOpenAiGpt.complete.txt";
 
 // 質問内容の1行目に「時刻」を入れることで、質問時刻がわかるようにしている。
 // これはシステムが「ファイルの更新」を非常に頻繁に誤爆して多重検知するために必要。
@@ -341,6 +342,7 @@ function resetAI() {
     runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
     hidemaru.saveTextFile(answerFileName, "", "utf8");
+    hidemaru.saveTextFile(completeFileName, "", "utf8");
 }
 
 function pasteAIAnswer() {
