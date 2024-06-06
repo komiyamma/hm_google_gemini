@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(218683968)
-C#で200ミリ秒待つ処理はどのように書きますか？
+HmGoogleGemini.Message(240289578)
+IntelとRyzenを表で比較してください。
