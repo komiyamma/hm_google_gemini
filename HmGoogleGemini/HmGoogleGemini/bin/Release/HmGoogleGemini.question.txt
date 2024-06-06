@@ -1,2 +1,2 @@
-HmGoogleGemini.Message(218036296)
-1+1は？
+HmGoogleGemini.Message(218683968)
+C#で200ミリ秒待つ処理はどのように書きますか？
