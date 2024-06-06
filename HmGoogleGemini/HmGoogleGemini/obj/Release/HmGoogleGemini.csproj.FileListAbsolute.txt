@@ -90,7 +90,6 @@ G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\libgrpc
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\libgrpc_csharp_ext.x64.dylib
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\HmGoogleGemini.exe.config
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\HmGoogleGemini.exe
-G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\HmGoogleGemini.pdb
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\Google.Api.CommonProtos.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\Google.Api.Gax.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\Google.Api.Gax.Grpc.dll
@@ -169,4 +168,3 @@ G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\HmGoogl
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\HmGoogleGemini.csproj.CoreCompileInputs.cache
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\HmGoogle.6699F8EF.Up2Date
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\HmGoogleGemini.exe
-G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\HmGoogleGemini.pdb

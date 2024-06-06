@@ -33,9 +33,17 @@ internal partial class HmGoogleGemini
 
         ClearAnswerFile();
 
-        // コンテキストを追跡するためにチャットセッションを作成する
-        chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
-
+        try { 
+            // コンテキストを追跡するためにチャットセッションを作成する
+            chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
+        } catch(Exception e)
+        {
+            SaveAllTextToAnswerFile("\r\n\r\n" + e.GetType().Name + "\r\n\r\n" + e.Message + "\r\n");
+            chatSession.Cancel();
+            // Console.WriteLine("問い合わせをキャンセルしました。" + e);
+            // Console.WriteLine("アプリを終了します。");
+            Environment.Exit(0);
+        }
         /*
         string prompt = "こんにちわ。私は日本語で会話します。";
         Console.WriteLine($"\nUser: {prompt}");
