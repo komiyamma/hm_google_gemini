@@ -1,6 +1,1 @@
 ﻿
-
-
-RpcException
-
-Status(StatusCode="PermissionDenied", Detail="Permission denied on resource project robotic-gist-425611-v8.")
