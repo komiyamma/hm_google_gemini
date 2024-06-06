@@ -1,7 +1,7 @@
 # HmGoogleGemini
 
 ![HmGoogleGemini v1.0.0](https://img.shields.io/badge/HmGoogleGemini-v1.0.0-6479ff.svg)
-![gemini-1.5-pro](https://img.shields.io/badge/gemini-1.0_pro-6479ff.svg)
+![gemini-1.5-pro](https://img.shields.io/badge/gemini-1.5_pro-6479ff.svg)
 ![gemini-1.5-flash](https://img.shields.io/badge/gemini-1.5_flash-6479ff.svg)
 ![gemini-1.0-pro](https://img.shields.io/badge/gemini-1.0_pro-6479ff.svg)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
