@@ -1,5 +1,5 @@
 ﻿/*
- * HmGoogleGemini v 1.1.0.7
+ * HmGoogleGemini v 1.1.0.8
  *
  * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
@@ -45,6 +45,8 @@ function getArgParamJsonObj() {
     }
 }
 
+const renderPaneTargetName = "HmGoogleGemini";
+
 const argParamJsonObj = getArgParamJsonObj();
 
 const currentMacroDirectory = currentmacrodirectory();
@@ -88,7 +90,7 @@ function openHttpServer() {
                 }
                 if (port != null) {
                     avilablePort = port;
-                    hidemaru.postExecMacroMemory("js { doMain() }");
+                    pushPostExecMacroMemory("js { doMain() }");
                 }
             } catch(err) {
                 outputAlert(err);
@@ -100,8 +102,16 @@ function openHttpServer() {
     }
 }
 
-
-const renderPaneTargetName = "HmGoogleGemini";
+// hidemaru.postExecMacroMemoryの実行を確かなものとする関数
+function pushPostExecMacroMemory(command) {
+    // 情報は取得したので検索マーカー全て消す。
+    let peRetry = hidemaru.setInterval(()=>{
+        if (hidemaru.isScheduled?.()) return;
+        let success = hidemaru.postExecMacroMemory(command);
+        if (success === 0) return; // 再挑戦
+        hidemaru.clearInterval(peRetry);
+    }, 100);
+}
 
 // AIウィンドウを１つだけに絞る処理
 function oneAIWindowFrameCheck() {
@@ -282,8 +292,7 @@ function getTickCount() {
 function doSendQuestionContent() {
     let text = questionTextCache;
     let commandline = `"${aiExePath}" "${projectId}" "${locationName}" "${modelName}"`;
-    runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
-    //      runex(commandline, 0); // デバッグ用
+    hidemaru.runProcess(commandline, currentMacroDirectory, "stdioAlive", "sjis");
 
     let sendcmd = "HmGoogleGemini.Message(" + getTickCount() + ")\n";
     hidemaru.setTimeout(
@@ -302,10 +311,10 @@ function syncOnCompleteAnswerText() {
 function onHtmlEventHandler(command_name) {
     switch (command_name) {
         case "reset":
-            hidemaru.postExecMacroMemory("js { resetAI(); }");
+            resetAI();
             break;
         case "stop":
-            hidemaru.postExecMacroMemory("js { stopAIAnswer(); }");
+            stopAIAnswer();
             break;
         case "answer_complete":
             _completeAnswerText = "";
@@ -319,7 +328,7 @@ function onHtmlEventHandler(command_name) {
 
                 _completeAnswerText = normalizeNewLineText;
                 // ユーザーが非同期だと理解が大変なので同期にしておく
-                hidemaru.postExecMacroMemory("js { syncOnCompleteAnswerText(); }");
+                pushPostExecMacroMemory("js { syncOnCompleteAnswerText(); }");
             }
             break;
     }
@@ -329,7 +338,7 @@ function stopAIAnswer() {
     let sendcmd = "HmGoogleGemini.Cancel(" + getTickCount() + ")\n";
     let text = "応答を停止";
     let commandline = `"${aiExePath}" "HmGoogleGemini.Cancel()"`;
-    runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+    hidemaru.runProcess(commandline, currentMacroDirectory, "stdioAlive", "sjis");
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
 }
 
@@ -337,7 +346,7 @@ function resetAI() {
     let sendcmd = "HmGoogleGemini.Clear(" + getTickCount() + ")\n";
     let text = "リセット";
     let commandline = `"${aiExePath}" "HmGoogleGemini.Clear()"`;
-    runex(commandline, 0, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0);
+    hidemaru.runProcess(commandline, currentMacroDirectory, "stdioAlive", "sjis");
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
     hidemaru.saveTextFile(answerFileName, "", "utf8");
     hidemaru.saveTextFile(completeFileName, "HmGoogleGemini.MessageCompleteClear(0)\n", "utf8");
