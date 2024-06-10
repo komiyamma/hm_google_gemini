@@ -66,6 +66,10 @@ internal partial class HmGoogleGemini
             {
                 return;
             }
+            if (command.Contains("HmGoogleGemini.Pop()"))
+            {
+                return;
+            }
         }
 
         // Windowsがシャットダウンするときに呼び出される処理を登録等

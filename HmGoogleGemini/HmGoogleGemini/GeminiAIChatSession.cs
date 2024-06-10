@@ -30,11 +30,15 @@ internal class ChatSession
         InitContents();
     }
 
+    static object lockContents = new object();
 
     private void InitContents()
     {
-        // リクエスト毎に送信する内容を初期化する。
-        _contents = new List<Content>();
+        lock (lockContents)
+        {
+            // リクエスト毎に送信する内容を初期化する。
+            _contents = new List<Content>();
+        }
     }
 
     // AIからの返答がどうも進んでいない、といったことを判定する。５秒進んでいないようだと、キャンセルを発動する。
@@ -80,14 +84,34 @@ internal class ChatSession
     // 会話履歴全部クリア
     public void Clear()
     {
-        _contents.Clear();
+        lock (lockContents)
+        {
+            _contents.Clear();
+        }
     }
+
+    // 最後の「質問と応答」の履歴を削除
+    public void PopCotent()
+    {
+        lock (lockContents)
+        {
+            var len = _contents.Count;
+            // 1番目はシステム。最後の２つを除去する。
+            if (len >= 3)
+            {
+                _contents.RemoveRange(len - 2, 2);
+            }
+        }
+    }
+
 
     // AIの返答を途中キャンセル
     public void Cancel()
     {
         _cst.Cancel();
     }
+
+
 
     private void CancelCheck()
     {
@@ -124,7 +148,11 @@ internal class ChatSession
                 Text = prompt
             }
         });
-        _contents.Add(content);
+
+        lock (lockContents)
+        {
+            _contents.Add(content);
+        }
 
         // コンテンツ生成のリクエストを作成する。
         var generateContentRequest = new GenerateContentRequest
@@ -139,7 +167,11 @@ internal class ChatSession
                 MaxOutputTokens = 4096,
             }
         };
-        generateContentRequest.Contents.AddRange(_contents);
+
+        lock (lockContents)
+        {
+            generateContentRequest.Contents.AddRange(_contents);
+        }
 
         _cst = new CancellationTokenSource();
 
@@ -204,7 +236,10 @@ internal class ChatSession
                     Text = alltext
                 }
             });
-            _contents.Add(answer);
+            lock (lockContents)
+            {
+                _contents.Add(answer);
+            }
             return alltext;
         }
         catch (Exception e)
