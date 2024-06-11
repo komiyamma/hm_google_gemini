@@ -111,10 +111,23 @@ internal class ChatSession
         _cst.Cancel();
     }
 
-
+    static DateTime lastCheckTime = DateTime.MinValue; // 1分前の時間からのスタート
 
     private void CancelCheck()
     {
+        // 質問ファイルの日時調べる
+        FileInfo fileInfo = new FileInfo(HmGoogleGemini.questionFilePath);
+        // ファイルが更新されていたら、チェック継続
+        if (fileInfo.LastWriteTime > lastCheckTime)
+        {
+            lastCheckTime = fileInfo.LastWriteTime;
+        }
+        else
+        {
+            return;
+        }
+
+
         string question_text = "";
         using (StreamReader reader = new StreamReader(HmGoogleGemini.questionFilePath, Encoding.UTF8))
         {

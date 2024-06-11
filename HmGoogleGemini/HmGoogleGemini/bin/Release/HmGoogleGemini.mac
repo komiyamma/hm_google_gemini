@@ -105,9 +105,8 @@ function openHttpServer() {
 // hidemaru.postExecMacroMemoryの実行を確かなものとする関数
 function pushPostExecMacroMemory(command) {
     let peRetry = hidemaru.setInterval(()=>{
-        let isScheduled = hidemaru.postExecMacroMemory(command);
-        if (isScheduled === 0) return; // 再挑戦
-        hidemaru.clearInterval(peRetry);
+        let isScheduled = hidemaru.postExecMacroMemory(command) ?? 1;
+        if (isScheduled) { hidemaru.clearInterval(peRetry); }
     }, 100);
 }
 
