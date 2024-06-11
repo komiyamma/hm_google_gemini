@@ -1,0 +1,69 @@
+﻿jsmode @"WebView2\HmGoogleGemini";
+js {
+ 
+var _tempRequestQuestionText = "";
+function onRequestQuestionText() {
+    return _tempRequestQuestionText;
+}
+ 
+function onCompleteAnswerText(answer_text) {
+    let dll = loaddll(hidemarudir() + "\\HmOutputPane.dll");
+    dll.dllFuncW.OutputW(hidemaruhandle(0), answer_text + "\r\n");
+}
+ 
+// HmGoogleGeminiと同じマクロ空間を共有しているため、
+// HmGoogleGemini が使うはずのない 関数名や変数名にする必要がある
+function _errorToOutputPane(error_message) {
+    let dll = loaddll(hidemarudir() + "\\HmOutputPane.dll");
+    dll.dllFuncW.OutputW(hidemaruhandle(0), error_message + "\r\n");
+}
+ 
+function myEntryPoint() {
+ 
+    let selectedtext = getselectedtext();
+ 
+    // テキストを選択してなかったら、呼び出し先のメニューにそのままselecting情報を委譲(true)
+    if (!selectedtext) {
+        _errorToOutputPane("テキストの選択対象がありません");
+        return true;
+    }
+ 
+    let menu_label_list = 
+    [
+        "英翻訳",
+        "日本訳"
+    ];
+ 
+    let menu_command_list =
+    [
+       "以下の文章を英語に翻訳してください。\n\n###\n" + selectedtext,
+       "以下の文章を日本語に翻訳してください。\n\n###\n" + selectedtext,
+    ];
+ 
+    let selectedMenuID = menuarray(menu_label_list);
+ 
+    // 0はメニューキャンセル
+    if (selectedMenuID === 0) {
+ 
+        // HmGoogleGeminiのレンダリング枠を閉じておく
+        renderpanecommand({target:"HmGoogleGemini", show:0});
+ 
+        // キャンセルの意思なので、HmGoogleGemini自体を呼び出さない
+        return;
+    }
+ 
+    // なんだかのメニュー内容を選んでいるのであれば...
+    else {
+        let selectedMenuIX = selectedMenuID - 1; // menu は選択した番号が1から始まるから0からになおす
+ 
+        // メニューで選んだ内容を後で使えるようにする。
+        _tempRequestQuestionText = menu_command_list[selectedMenuIX]
+ 
+        let argobj = {onRequestQuestionText:1, onCompleteAnswerText:1};
+        hidemaru.postExecMacroFile( currentmacrodirectory() + "\\HmGoogleGemini.mac", argobj );
+    }
+}
+ 
+myEntryPoint();
+ 
+} // js

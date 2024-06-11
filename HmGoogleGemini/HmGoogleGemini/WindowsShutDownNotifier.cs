@@ -7,9 +7,10 @@ partial class HmGoogleGemini
     // Windowsがシャットダウンするときに呼び出されるイベントハンドラを登録する
     static void WindowsShutDownNotifier()
     {
-        SystemEvents.SessionEnding += SystemEvents_SessionEnding;
+        // SystemEvents.SessionEnding += SystemEvents_SessionEnding;
     }
 
+    /*
     // Windowsがシャットダウンするときに呼び出されるイベントハンドラ
     private static async void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
     {
@@ -21,5 +22,6 @@ partial class HmGoogleGemini
             // Console.WriteLine("Windowsがシャットダウンしています。ここで必要な操作を行ってください。");
         }
     }
+    */
 
 }

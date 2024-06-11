@@ -1,0 +1,5 @@
+C:\Users\master\source\repos\HmGoogleGemini\HmGoogleGemini\obj\Debug\net8.0\HmGoogleGemini.csproj.AssemblyReference.cache
+C:\Users\master\source\repos\HmGoogleGemini\HmGoogleGemini\obj\Debug\net8.0\HmGoogleGemini.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\master\source\repos\HmGoogleGemini\HmGoogleGemini\obj\Debug\net8.0\HmGoogleGemini.AssemblyInfoInputs.cache
+C:\Users\master\source\repos\HmGoogleGemini\HmGoogleGemini\obj\Debug\net8.0\HmGoogleGemini.AssemblyInfo.cs
+C:\Users\master\source\repos\HmGoogleGemini\HmGoogleGemini\obj\Debug\net8.0\HmGoogleGemini.csproj.CoreCompileInputs.cache
