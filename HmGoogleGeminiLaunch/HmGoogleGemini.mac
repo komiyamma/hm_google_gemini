@@ -1,5 +1,5 @@
 ﻿/*
- * HmGoogleGemini v 1.1.1.3
+ * HmGoogleGemini v 1.1.1.4
  *
  * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
@@ -265,6 +265,9 @@ function closeRenderPaneCommand() {
     renderpanecommand(renderpane_json_param);
 }
 
+function focusEditor() {
+    pushPostExecMacroMemory("js {setfocus(1);}");
+}
 
 const aiExePath = currentMacroDirectory + "\\HmGoogleGemini.exe";
 
@@ -305,6 +308,8 @@ function syncOnCompleteAnswerText() {
     onCompleteAnswerText(_completeAnswerText);
 }
 
+
+
 function onHtmlEventHandler(command_name) {
     switch (command_name) {
         case "reset":
@@ -312,6 +317,10 @@ function onHtmlEventHandler(command_name) {
             break;
         case "stop":
             stopAIAnswer();
+            break;
+        case "paste":
+            pasteAIAnswer();
+            focusEditor();
             break;
         case "pop":
             popAIAnswer();
@@ -380,7 +389,7 @@ function getSelectedMenuCommand() {
         },
         {
             cmd: "paste",
-            txt: "応答を張り付け (&V)"
+            txt: "応答を貼り付け (&V)"
         },
     ];
     let menuCommandList = menuLabelList.map(item => item.cmd);
