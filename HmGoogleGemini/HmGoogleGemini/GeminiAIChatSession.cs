@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-internal class ChatSession
+internal partial class ChatSession
 {
     private string _modelPath;
     private PredictionServiceClient _predictionServiceClient;
@@ -39,6 +39,8 @@ internal class ChatSession
             // リクエスト毎に送信する内容を初期化する。
             _contents = new List<Content>();
         }
+
+        InitMessageListRemoverTask();
     }
 
     // AIからの返答がどうも進んでいない、といったことを判定する。５秒進んでいないようだと、キャンセルを発動する。
@@ -96,8 +98,8 @@ internal class ChatSession
         lock (lockContents)
         {
             var len = _contents.Count;
-            // 1番目はシステム。最後の２つを除去する。
-            if (len >= 3)
+            // 最後の２つを除去する。Google Gemini は OpenAi Gptとは異なり、1番目にシステムとかは入っていない。
+            if (len >= 2)
             {
                 _contents.RemoveRange(len - 2, 2);
             }

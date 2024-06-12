@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ym8tXEqEx24=",
+  "dgSpecHash": "x/2c5Pi5gf4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\master\\source\\repos\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
+  "projectFilePath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\master\\.nuget\\packages\\google.api.commonprotos\\2.15.0\\google.api.commonprotos.2.15.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.api.gax\\4.8.0\\google.api.gax.4.8.0.nupkg.sha512",

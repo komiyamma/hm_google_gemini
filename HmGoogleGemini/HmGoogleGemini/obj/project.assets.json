@@ -927,13 +927,13 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.1.1.2",
+    "version": "1.1.1.4",
     "restore": {
-      "projectUniqueName": "C:\\Users\\master\\source\\repos\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
+      "projectUniqueName": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
       "projectName": "HmGoogleGemini",
-      "projectPath": "C:\\Users\\master\\source\\repos\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
+      "projectPath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
       "packagesPath": "C:\\Users\\master\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\master\\source\\repos\\HmGoogleGemini\\HmGoogleGemini\\obj\\",
+      "outputPath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
