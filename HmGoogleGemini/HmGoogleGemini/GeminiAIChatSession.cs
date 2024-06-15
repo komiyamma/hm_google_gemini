@@ -117,34 +117,39 @@ internal partial class ChatSession
 
     private void CancelCheck()
     {
-        // 質問ファイルの日時調べる
-        FileInfo fileInfo = new FileInfo(HmGoogleGemini.questionFilePath);
-        // ファイルが更新されていたら、チェック継続
-        if (fileInfo.LastWriteTime > lastCheckTime)
+        try
         {
-            lastCheckTime = fileInfo.LastWriteTime;
-        }
-        else
-        {
-            return;
-        }
+            // 質問ファイルの日時調べる
+            FileInfo fileInfo = new FileInfo(HmGoogleGemini.questionFilePath);
+            // ファイルが更新されていたら、チェック継続
+            if (fileInfo.LastWriteTime > lastCheckTime)
+            {
+                lastCheckTime = fileInfo.LastWriteTime;
+            }
+            else
+            {
+                return;
+            }
 
 
-        string question_text = "";
-        using (StreamReader reader = new StreamReader(HmGoogleGemini.questionFilePath, Encoding.UTF8))
-        {
-            question_text = reader.ReadToEnd();
-        }
+            string question_text = "";
+            using (StreamReader reader = new StreamReader(HmGoogleGemini.questionFilePath, Encoding.UTF8))
+            {
+                question_text = reader.ReadToEnd();
+            }
 
-        // 1行目にコマンドと質問がされた時刻に相当するTickCount相当の値が入っている
-        // これによって値が進んでいることがわかる。
-        // 正規表現を使用して数値を抽出
-        Regex regex = new Regex(@"HmGoogleGemini\.Cancel");
-        Match match = regex.Match(question_text);
-        if (match.Success)
+            // 1行目にコマンドと質問がされた時刻に相当するTickCount相当の値が入っている
+            // これによって値が進んでいることがわかる。
+            // 正規表現を使用して数値を抽出
+            Regex regex = new Regex(@"HmGoogleGemini\.Cancel");
+            Match match = regex.Match(question_text);
+            if (match.Success)
+            {
+                this.Cancel();
+                conversationUpdateCancel = true;
+            }
+        } catch (Exception e)
         {
-            this.Cancel();
-            conversationUpdateCancel = true;
         }
     }
 
@@ -228,10 +233,20 @@ internal partial class ChatSession
                     throw new OperationCanceledException("AIの応答をキャンセルしました。");
                 }
 
-                var text = responseItem.Candidates[0].Content.Parts[0].Text;
-                fullText.Append(text);
-                SaveAddTextToFile(text);
-                // Console.WriteLine(text);
+                var text = "";
+                try
+                {
+                    text = responseItem.Candidates[0].Content.Parts[0].Text;
+                }
+                catch (Exception e)
+                {
+                }
+                if (text != null)
+                {
+                    fullText.Append(text);
+                    SaveAddTextToFile(text);
+                }
+
             }
 
             var alltext = fullText.ToString();
