@@ -179,7 +179,7 @@ internal partial class ChatSession
                 TopP = 1,
                 TopK = 32,
                 CandidateCount = 1,
-                MaxOutputTokens = 4096,
+                // MaxOutputTokens = 4096,
             }
         };
 
