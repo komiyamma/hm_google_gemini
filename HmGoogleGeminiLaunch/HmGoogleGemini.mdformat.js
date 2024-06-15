@@ -12,7 +12,7 @@ function formatMarkdownTable(text) {
         try {
             // テーブル全体を行に分割。無意味な行はカット
             const lines = match.split("\n")
-                             .filter(line => !/^\s*$/.test(line));
+                               .filter(line => !/^\s*$/.test(line));
 
             // 各行を「|」で分割し、セル内の文字列を確保する
             // 各行を「|」で分割し、セル内の文字列を確保する
@@ -29,7 +29,7 @@ function formatMarkdownTable(text) {
 
             // それぞれのセルの長さ情報を確保する
             const cells_len_in_line = cells_in_line.map(
-                                        cells => cells.map(cell => getCellLength(cell))
+                                          cells => cells.map(cell => getCellLength(cell))
                                       );
 
             // それぞれの列の最大の文字数
