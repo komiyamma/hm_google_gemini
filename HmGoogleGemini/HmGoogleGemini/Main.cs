@@ -44,13 +44,24 @@ internal partial class HmGoogleGemini
         }
     }
 
+    static void killExistsProcess()
+    {
+        string processName = Process.GetCurrentProcess().ProcessName;
+        Process[] processes = Process.GetProcessesByName(processName);
+
+        foreach (Process process in processes)
+        {
+            if (process.Id != Process.GetCurrentProcess().Id)
+            {
+                process.Kill();
+            }
+        }
+    }
+
     static async Task Main(String[] args)
     {
         // 古いプロセスが他のディレクトリにある場合はKillする
         ifOldProcessIsOtherDirectoryKillIt();
-
-        // 自分が2個目なら終了(2重起動しｊない)
-        ifProcessHasExistKillIt();
 
         // クリアの命令をすると、先に実行していた方が先に閉じてしまうことがある。
         // よってマクロから明示的にClearする時は、引数にて「実行を継続するようなプロセスではないですよ」といった意味で
@@ -60,6 +71,8 @@ internal partial class HmGoogleGemini
             var command = args[0];
             if (command.Contains("HmGoogleGemini.Clear()"))
             {
+                await Task.Delay(500); // 0.5秒まつ
+                killExistsProcess(); // 強制的に過去のものも削除
                 return;
             }
             if (command.Contains("HmGoogleGemini.Cancel()"))
@@ -71,6 +84,10 @@ internal partial class HmGoogleGemini
                 return;
             }
         }
+
+        // 自分が2個目なら終了(2重起動しない)
+        ifProcessHasExistKillIt();
+
 
         // Windowsがシャットダウンするときに呼び出される処理を登録等
         WindowsShutDownNotifier();

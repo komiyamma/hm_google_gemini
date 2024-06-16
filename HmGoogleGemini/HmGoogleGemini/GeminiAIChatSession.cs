@@ -45,6 +45,7 @@ internal partial class ChatSession
 
     // AIからの返答がどうも進んでいない、といったことを判定する。５秒進んでいないようだと、キャンセルを発動する。
     bool conversationUpdateCancel = false;
+
     async Task conversationUpdateCheck()
     {
         conversationUpdateCancel = false;
@@ -78,7 +79,6 @@ internal partial class ChatSession
             }
         }
     }
-
 
     // 質問してAIの応答の途中でキャンセルするためのトークン
     static CancellationTokenSource _cst;
