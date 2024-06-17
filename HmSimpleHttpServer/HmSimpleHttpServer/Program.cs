@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -38,35 +39,21 @@ internal class HmSimpleHttpServer
         watcher.EnableRaisingEvents = true;
     }
 
-    private static async void OnCreateCommandFileChanged(object sender, FileSystemEventArgs e)
+    private static void OnCreateCommandFileChanged(object sender, FileSystemEventArgs e)
     {
 
-        string filePath = e.FullPath;
-        FileInfo fileInfo = new FileInfo(filePath);
+        FileInfo fileInfo = new FileInfo(targetFileName);
 
         if (File.Exists(targetFileName) == false)
         {
-            System.Diagnostics.Trace.WriteLine("ファイルが無い");
             return;
         }
 
         // ファイルサイズが0なら終了
         if (fileInfo.Length > 0)
         {
-            for (int i = 0; i < 20; i++)
-            {
-                try
-                {
-                    System.Diagnostics.Trace.WriteLine("終了の合図が来たので終了します。");
-                    server?.Destroy();
-                    File.Delete(targetFileName);
-                    Environment.Exit(0);
-                }
-                catch (Exception)
-                {
-                    await Task.Delay(100); // 0.1秒待つ
-                }
-            }
+            server?.Destroy();
+            Environment.Exit(0);
         }
     }
 
@@ -111,7 +98,7 @@ internal class HmSimpleHttpServer
 
         while (true)
         {
-            await Task.Delay(2000); // 2秒待つ
+            await Task.Delay(1000); // 1秒待つ
             if (!IsWindow(hmWndHandle))
             {
                 break;
@@ -124,6 +111,8 @@ internal class HmSimpleHttpServer
             {
                 break;
             }
+
+            OnCreateCommandFileChanged(null, null);
         }
 
         server.Destroy();
