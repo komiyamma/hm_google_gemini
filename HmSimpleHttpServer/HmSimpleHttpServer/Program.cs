@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 
 internal class HmSimpleHttpServer
@@ -18,11 +19,81 @@ internal class HmSimpleHttpServer
     [DllImport("user32.dll", SetLastError = true)]
     static extern bool IsWindow(nint hWnd);
 
+    static FileSystemWatcher watcher;
+
+    static string targetFileName = "HmSimpleHttpServer.txt";
+
+    static void CreateCommandFileWatcher()
+    {
+        watcher = new FileSystemWatcher();
+
+        watcher.Path = System.AppContext.BaseDirectory;
+
+        watcher.Filter = targetFileName;
+
+        watcher.NotifyFilter = NotifyFilters.LastWrite;
+
+        watcher.Changed += new FileSystemEventHandler(OnCreateCommandFileChanged);
+
+        watcher.EnableRaisingEvents = true;
+    }
+
+    private static async void OnCreateCommandFileChanged(object sender, FileSystemEventArgs e)
+    {
+
+        string filePath = e.FullPath;
+        FileInfo fileInfo = new FileInfo(filePath);
+
+        if (File.Exists(targetFileName) == false)
+        {
+            System.Diagnostics.Trace.WriteLine("ファイルが無い");
+            return;
+        }
+
+        // ファイルサイズが0なら終了
+        if (fileInfo.Length > 0)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                try
+                {
+                    System.Diagnostics.Trace.WriteLine("終了の合図が来たので終了します。");
+                    server?.Destroy();
+                    File.Delete(targetFileName);
+                    Environment.Exit(0);
+                }
+                catch (Exception)
+                {
+                    await Task.Delay(100); // 0.1秒待つ
+                }
+            }
+        }
+    }
+
+    static async void ClearCommandFile()
+    {
+        for (int i = 0; i <10; i++)
+        {
+            try
+            {
+                File.Delete(targetFileName);
+                break;
+            }
+            catch (Exception)
+            {
+                await Task.Delay(140); // 0.14秒待つ
+            }
+        }
+    }
+
+    static nint hmWndHandle = 0;
+
+    static HmSimpleHttpServer server;
     // 秀丸の該当プロセスのウィンドウハンドルの値がもらいやすいので、これが存在しなくなっていたら、このプロセスも終了するようにする。
     static async Task Main(String[] args)
     {
+        ClearCommandFile();
 
-        nint hmWndHandle = 0;
         try
         {
             if (args.Length > 0)
@@ -32,9 +103,11 @@ internal class HmSimpleHttpServer
         }
         catch (Exception) { }
 
-        HmSimpleHttpServer server = new HmSimpleHttpServer();
+        server = new HmSimpleHttpServer();
         int port = server.Launch();
         Console.WriteLine("PORT:" + port);
+
+        CreateCommandFileWatcher();
 
         while (true)
         {

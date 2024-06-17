@@ -64,6 +64,10 @@ if (!Boolean(avilablePort)) {
     openHttpServer();
 }
 
+const httpServerCommandFileName = currentMacroDirectory + "\\HmSimpleHttpServer.txt";
+
+deletefile(httpServerCommandFileName);
+
 // 簡易Httpサーバーを立てる。ポート自体付きでサーバーを立てることが出来ない限定的なマシンだと失敗するだろう。
 function openHttpServer() {
     function getExtractPort(text) {
@@ -282,6 +286,7 @@ const questionFileName = currentMacroDirectory + "\\HmGoogleGemini.question.txt"
 const answerFileName = currentMacroDirectory + "\\HmGoogleGemini.txt";
 const completeFileName = currentMacroDirectory + "\\HmGoogleGemini.complete.txt";
 
+
 // 質問内容の1行目に「時刻」を入れることで、質問時刻がわかるようにしている。
 // これはシステムが「ファイルの更新」を非常に頻繁に誤爆して多重検知するために必要。
 // 多重検知した際に、「その内容はもう受付済み」という判断をするために「時刻」を質問内容に刻むようにしている。
@@ -363,6 +368,24 @@ function popAIAnswer() {
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
 }
 
+void resetHttpServer() {
+    let savetyCount = 0;
+    let serverClearInterval = hidemaru.setInterval(()=>{
+        savetyCount++
+        let success = hidemaru.saveTextFile(httpServerCommandFileName, String(hidemaru.getCurrentWindowHandle()));
+        if (success) {
+console.log("書き込み成功");
+            hidemaru.clearInterval(serverClearInterval);
+            return;
+        }
+        if (savetyCount > 5) {
+console.log("セーフティ脱出");
+            hidemaru.clearInterval(serverClearInterval);
+            return;
+        }
+    }, 200);
+}
+
 function resetAI() {
     let sendcmd = "HmGoogleGemini.Clear(" + getTickCount() + ")\n";
     let text = "リセット";
@@ -371,6 +394,8 @@ function resetAI() {
     hidemaru.saveTextFile(questionFileName, sendcmd + text, "utf8");
     hidemaru.saveTextFile(answerFileName, "", "utf8");
     hidemaru.saveTextFile(completeFileName, "HmGoogleGemini.MessageCompleteClear(0)\n", "utf8");
+
+    resetHttpServer();
 }
 
 function pasteAIAnswer() {
