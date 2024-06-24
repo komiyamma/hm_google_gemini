@@ -65,7 +65,7 @@ function formatMarkdownTable(text) {
         return match;
     }
 
-    // プロポーショナル
+    // 日本語等幅フォント想定
     function getCellLength(text) {
         let length = 0;
         for (const char of text) {
