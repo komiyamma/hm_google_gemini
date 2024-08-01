@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3P+bLjQSKH0=",
+  "dgSpecHash": "o0gARIGA43c=",
   "success": true,
   "projectFilePath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\master\\.nuget\\packages\\google.apis\\1.67.0\\google.apis.1.67.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.apis.auth\\1.67.0\\google.apis.auth.1.67.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.apis.core\\1.67.0\\google.apis.core.1.67.0.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\google.cloud.aiplatform.v1\\3.4.0\\google.cloud.aiplatform.v1.3.4.0.nupkg.sha512",
+    "C:\\Users\\master\\.nuget\\packages\\google.cloud.aiplatform.v1\\3.5.0\\google.cloud.aiplatform.v1.3.5.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.cloud.iam.v1\\3.3.0\\google.cloud.iam.v1.3.3.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.cloud.location\\2.3.0\\google.cloud.location.2.3.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.longrunning\\3.3.0\\google.longrunning.3.3.0.nupkg.sha512",
