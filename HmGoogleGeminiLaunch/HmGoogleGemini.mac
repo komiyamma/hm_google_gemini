@@ -1,5 +1,5 @@
 ﻿/*
- * HmGoogleGemini v 1.1.2.7
+ * HmGoogleGemini v 1.1.2.9
  *
  * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
@@ -324,7 +324,11 @@ function syncOnCompleteAnswerText() {
 
 
 
-function onHtmlEventHandler(command_name) {
+function onHtmlEventHandler(command_obj) {
+    if (typeof(command_obj) == "string") {
+        command_obj = JSON.parse(command_obj);
+    }
+    let command_name = command_obj.command || ""
     switch (command_name) {
         case "reset":
             resetAI();
