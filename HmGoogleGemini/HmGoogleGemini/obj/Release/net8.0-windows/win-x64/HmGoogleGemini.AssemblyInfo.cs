@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("2024 @ Akitsugu Komiyama")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.1.7")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.1.7+d9ae2152e91620e72c92265c164690e84f354298")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.1.7+804c0bfd0380a0dfc68963686f880386b2c767eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("HmGoogleGemini")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HmGoogleGemini")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.1.7")]
