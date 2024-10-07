@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "Google.Api.CommonProtos/2.15.0": {
+      "Google.Api.CommonProtos/2.16.0": {
         "type": "package",
         "dependencies": {
-          "Google.Protobuf": "[3.25.0, 4.0.0)"
+          "Google.Protobuf": "[3.28.2, 4.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/Google.Api.CommonProtos.dll": {
@@ -21,11 +21,12 @@
           "build/_._": {}
         }
       },
-      "Google.Api.Gax/4.8.0": {
+      "Google.Api.Gax/4.9.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "System.Diagnostics.DiagnosticSource": "6.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Google.Api.Gax.dll": {
@@ -38,15 +39,15 @@
           }
         }
       },
-      "Google.Api.Gax.Grpc/4.8.0": {
+      "Google.Api.Gax.Grpc/4.9.0": {
         "type": "package",
         "dependencies": {
-          "Google.Api.CommonProtos": "2.15.0",
-          "Google.Api.Gax": "4.8.0",
-          "Google.Apis.Auth": "[1.67.0, 2.0.0)",
-          "Grpc.Auth": "[2.60.0, 3.0.0)",
-          "Grpc.Core.Api": "[2.60.0, 3.0.0)",
-          "Grpc.Net.Client": "[2.60.0, 3.0.0)",
+          "Google.Api.CommonProtos": "2.16.0",
+          "Google.Api.Gax": "4.9.0",
+          "Google.Apis.Auth": "1.68.0",
+          "Grpc.Auth": "2.66.0",
+          "Grpc.Core.Api": "2.66.0",
+          "Grpc.Net.Client": "2.66.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         },
         "compile": {
@@ -60,10 +61,10 @@
           }
         }
       },
-      "Google.Apis/1.67.0": {
+      "Google.Apis/1.68.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis.Core": "1.67.0"
+          "Google.Apis.Core": "1.68.0"
         },
         "compile": {
           "lib/net6.0/Google.Apis.dll": {
@@ -76,11 +77,11 @@
           }
         }
       },
-      "Google.Apis.Auth/1.67.0": {
+      "Google.Apis.Auth/1.68.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis": "1.67.0",
-          "Google.Apis.Core": "1.67.0",
+          "Google.Apis": "1.68.0",
+          "Google.Apis.Core": "1.68.0",
           "System.Management": "7.0.2"
         },
         "compile": {
@@ -94,7 +95,7 @@
           }
         }
       },
-      "Google.Apis.Core/1.67.0": {
+      "Google.Apis.Core/1.68.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
@@ -110,10 +111,10 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.7.0": {
+      "Google.Cloud.AIPlatform.V1/3.8.0": {
         "type": "package",
         "dependencies": {
-          "Google.Api.Gax.Grpc": "[4.8.0, 5.0.0)",
+          "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
           "Google.Cloud.Iam.V1": "[3.3.0, 4.0.0)",
           "Google.Cloud.Location": "[2.3.0, 3.0.0)",
           "Google.LongRunning": "[3.3.0, 4.0.0)"
@@ -177,7 +178,7 @@
           }
         }
       },
-      "Google.Protobuf/3.25.0": {
+      "Google.Protobuf/3.28.2": {
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
@@ -190,11 +191,11 @@
           }
         }
       },
-      "Grpc.Auth/2.60.0": {
+      "Grpc.Auth/2.66.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis.Auth": "1.46.0",
-          "Grpc.Core.Api": "2.60.0"
+          "Google.Apis.Auth": "1.68.0",
+          "Grpc.Core.Api": "2.66.0"
         },
         "compile": {
           "lib/netstandard2.0/Grpc.Auth.dll": {
@@ -207,7 +208,7 @@
           }
         }
       },
-      "Grpc.Core.Api/2.60.0": {
+      "Grpc.Core.Api/2.66.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
@@ -220,10 +221,10 @@
           }
         }
       },
-      "Grpc.Net.Client/2.60.0": {
+      "Grpc.Net.Client/2.66.0": {
         "type": "package",
         "dependencies": {
-          "Grpc.Net.Common": "2.60.0",
+          "Grpc.Net.Common": "2.66.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
         },
         "compile": {
@@ -237,10 +238,10 @@
           }
         }
       },
-      "Grpc.Net.Common/2.60.0": {
+      "Grpc.Net.Common/2.66.0": {
         "type": "package",
         "dependencies": {
-          "Grpc.Core.Api": "2.60.0"
+          "Grpc.Core.Api": "2.66.0"
         },
         "compile": {
           "lib/net8.0/Grpc.Net.Common.dll": {
@@ -327,6 +328,25 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "System.Diagnostics.DiagnosticSource/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
       "System.Management/7.0.2": {
         "type": "package",
         "dependencies": {
@@ -351,14 +371,30 @@
             "rid": "win"
           }
         }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
       }
     }
   },
   "libraries": {
-    "Google.Api.CommonProtos/2.15.0": {
-      "sha512": "k+43CTEgMbT4C2JjcIJon3GvMNFJ3kLMjPTedOkXUAt0D5cFfrlee+M4oieueAVhbXktR89yoj5O/kVmC/AKJw==",
+    "Google.Api.CommonProtos/2.16.0": {
+      "sha512": "37MuZrE9AAqHAdYgFLoTHydAiXDRriQZGVKEg6fr6ASnrY5GtauYXnQrGk5x2K3NmYzEXe+wkpaPVmxjb3NKjg==",
       "type": "package",
-      "path": "google.api.commonprotos/2.15.0",
+      "path": "google.api.commonprotos/2.16.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -421,7 +457,7 @@
         "content/protos/google/type/postal_address.proto",
         "content/protos/google/type/quaternion.proto",
         "content/protos/google/type/timeofday.proto",
-        "google.api.commonprotos.2.15.0.nupkg.sha512",
+        "google.api.commonprotos.2.16.0.nupkg.sha512",
         "google.api.commonprotos.nuspec",
         "lib/net461/Google.Api.CommonProtos.dll",
         "lib/net461/Google.Api.CommonProtos.pdb",
@@ -431,16 +467,16 @@
         "lib/netstandard2.0/Google.Api.CommonProtos.xml"
       ]
     },
-    "Google.Api.Gax/4.8.0": {
-      "sha512": "xlV8Jq/G5CQAA3PwYAuKGjfzGOP7AvjhREnE6vgZlzxREGYchHudZWa2PWSqFJL+MBtz9YgitLpRogANN3CVvg==",
+    "Google.Api.Gax/4.9.0": {
+      "sha512": "fjHHYcQ99u0ztqwT537rvVtJMdDy6G2VHBZ+F1cBjDGYNVZfrpk40DMQ/OpUGToT9ZGHVirhh3eJ73bw2ANVPQ==",
       "type": "package",
-      "path": "google.api.gax/4.8.0",
+      "path": "google.api.gax/4.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.api.gax.4.8.0.nupkg.sha512",
+        "google.api.gax.4.9.0.nupkg.sha512",
         "google.api.gax.nuspec",
         "lib/net462/Google.Api.Gax.dll",
         "lib/net462/Google.Api.Gax.pdb",
@@ -450,16 +486,16 @@
         "lib/netstandard2.0/Google.Api.Gax.xml"
       ]
     },
-    "Google.Api.Gax.Grpc/4.8.0": {
-      "sha512": "njcDsrFMZTmG2xdar6o5zyj7YVCUv6JNWU7un+q15Fm9DpGt0HSqHVnabVD2LBjUa3JWrqWX2kVv0w7qx4+tFQ==",
+    "Google.Api.Gax.Grpc/4.9.0": {
+      "sha512": "ToCx/0cs+wJ9j7vzKRcPAKneJVZrz/s9JhW9QsFx1dar9WzTxawQZ8xTjyieSy8tY0UiYCL1qYkn/iRrklYnSA==",
       "type": "package",
-      "path": "google.api.gax.grpc/4.8.0",
+      "path": "google.api.gax.grpc/4.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.api.gax.grpc.4.8.0.nupkg.sha512",
+        "google.api.gax.grpc.4.9.0.nupkg.sha512",
         "google.api.gax.grpc.nuspec",
         "lib/net462/Google.Api.Gax.Grpc.dll",
         "lib/net462/Google.Api.Gax.Grpc.pdb",
@@ -469,16 +505,16 @@
         "lib/netstandard2.0/Google.Api.Gax.Grpc.xml"
       ]
     },
-    "Google.Apis/1.67.0": {
-      "sha512": "XM8/fViJaB1pN61OdXy5RMZoQEqd3hKlWvA/K431gFSb5XtQ48BynfgrbBkUtFcPbSRa4BdjBHzSbkBh/skyMg==",
+    "Google.Apis/1.68.0": {
+      "sha512": "s2MymhdpH+ybZNBeZ2J5uFgFHApBp+QXf9FjZSdM1lk/vx5VqIknJwnaWiuAzXxPrLEkesX0Q+UsiWn39yZ9zw==",
       "type": "package",
-      "path": "google.apis/1.67.0",
+      "path": "google.apis/1.68.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.1.67.0.nupkg.sha512",
+        "google.apis.1.68.0.nupkg.sha512",
         "google.apis.nuspec",
         "lib/net462/Google.Apis.dll",
         "lib/net462/Google.Apis.pdb",
@@ -491,16 +527,16 @@
         "lib/netstandard2.0/Google.Apis.xml"
       ]
     },
-    "Google.Apis.Auth/1.67.0": {
-      "sha512": "Bs9BlbZ12Y4NXzMONjpzQhZr9VbwLUTGMHkcQRF36aYnk2fYrmj5HNVNh7PPHDDq1fcEQpCtPic2nSlpYQLKXw==",
+    "Google.Apis.Auth/1.68.0": {
+      "sha512": "hFx8Qz5bZ4w0hpnn4tSmZaaFpjAMsgVElZ+ZgVLUZ2r9i+AKcoVgwiNfv1pruNS5cCvpXqhKECbruBCfRezPHA==",
       "type": "package",
-      "path": "google.apis.auth/1.67.0",
+      "path": "google.apis.auth/1.68.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.auth.1.67.0.nupkg.sha512",
+        "google.apis.auth.1.68.0.nupkg.sha512",
         "google.apis.auth.nuspec",
         "lib/net462/Google.Apis.Auth.dll",
         "lib/net462/Google.Apis.Auth.pdb",
@@ -513,16 +549,16 @@
         "lib/netstandard2.0/Google.Apis.Auth.xml"
       ]
     },
-    "Google.Apis.Core/1.67.0": {
-      "sha512": "IPq0I3B01NYZraPoMl8muELFLg4Vr2sbfyZp4PR2Xe3MAhHkZCiKyV28Yh1L14zIKUb0X0snol1sR5/mx4S6Iw==",
+    "Google.Apis.Core/1.68.0": {
+      "sha512": "pAqwa6pfu53UXCR2b7A/PAPXeuVg6L1OFw38WckN27NU2+mf+KTjoEg2YGv/f0UyKxzz7DxF1urOTKg/6dTP9g==",
       "type": "package",
-      "path": "google.apis.core/1.67.0",
+      "path": "google.apis.core/1.68.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.core.1.67.0.nupkg.sha512",
+        "google.apis.core.1.68.0.nupkg.sha512",
         "google.apis.core.nuspec",
         "lib/net462/Google.Apis.Core.dll",
         "lib/net462/Google.Apis.Core.pdb",
@@ -535,16 +571,16 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Google.Cloud.AIPlatform.V1/3.7.0": {
-      "sha512": "8wslmWz7aRqZDw4UQftgscvHyHHr8YZXP9Mc27e/NOvCdDQnypJH6rYlOFuALFmxOPxRYDkhaFnbPgOqXaVMXg==",
+    "Google.Cloud.AIPlatform.V1/3.8.0": {
+      "sha512": "eWDzagpAXI3xcVL4r1fpdLxa5N0SALynhlmOdO3Ar1mfmCy3RHyooTytvM0HJsS2jpL3Ex9GTWFu058aojSJCQ==",
       "type": "package",
-      "path": "google.cloud.aiplatform.v1/3.7.0",
+      "path": "google.cloud.aiplatform.v1/3.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.cloud.aiplatform.v1.3.7.0.nupkg.sha512",
+        "google.cloud.aiplatform.v1.3.8.0.nupkg.sha512",
         "google.cloud.aiplatform.v1.nuspec",
         "lib/net462/Google.Cloud.AIPlatform.V1.dll",
         "lib/net462/Google.Cloud.AIPlatform.V1.pdb",
@@ -611,14 +647,14 @@
         "lib/netstandard2.0/Google.LongRunning.xml"
       ]
     },
-    "Google.Protobuf/3.25.0": {
-      "sha512": "pIEkH1IqZV1iK8J5MYdG1kOyY0EoQLB6yEKvBq12RYNtvGXwCvnQg5zQsFmcqAEPtIZvSqPozIbUZaEd5a2gCg==",
+    "Google.Protobuf/3.28.2": {
+      "sha512": "Z86ZKAB+v1B/m0LTM+EVamvZlYw/g3VND3/Gs4M/+aDIxa2JE9YPKjDxTpf0gv2sh26hrve3eI03brxBmzn92g==",
       "type": "package",
-      "path": "google.protobuf/3.25.0",
+      "path": "google.protobuf/3.28.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "google.protobuf.3.25.0.nupkg.sha512",
+        "google.protobuf.3.28.2.nupkg.sha512",
         "google.protobuf.nuspec",
         "lib/net45/Google.Protobuf.dll",
         "lib/net45/Google.Protobuf.pdb",
@@ -634,15 +670,15 @@
         "lib/netstandard2.0/Google.Protobuf.xml"
       ]
     },
-    "Grpc.Auth/2.60.0": {
-      "sha512": "mJAllsSsFix/wrp1l5QmHXRlzMFmnIGZJYuHG1thkDJPUE9ltHPkdL5x30xGpqKvka02Il2oHd66gt8YfSOIWg==",
+    "Grpc.Auth/2.66.0": {
+      "sha512": "FRQlhMAcHf0GjAXIfhN6RydfZncLLXNNTOtpLL1bt57kp59vu40faW+dr6Vwl7ef/IUFfF38aiB5jvhAA/9Aow==",
       "type": "package",
-      "path": "grpc.auth/2.60.0",
+      "path": "grpc.auth/2.66.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grpc.auth.2.60.0.nupkg.sha512",
+        "grpc.auth.2.66.0.nupkg.sha512",
         "grpc.auth.nuspec",
         "lib/net462/Grpc.Auth.dll",
         "lib/net462/Grpc.Auth.pdb",
@@ -653,15 +689,15 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Core.Api/2.60.0": {
-      "sha512": "VWah+8dGJhhsay5BQ/Ljq6GYDWj0lSjdzqyoBgUQhXTbBqhs+q5dRFROKxI1xxzlL4pfUO45cf/y+KnHVFG9ew==",
+    "Grpc.Core.Api/2.66.0": {
+      "sha512": "HsjsQVAHe4hqP4t4rpUnmq+MZvPdyrlPsWF4T5fbMvyP3o/lMV+KVJfDlaNH8+v0aGQTVT3EsDFufbhaWb52cw==",
       "type": "package",
-      "path": "grpc.core.api/2.60.0",
+      "path": "grpc.core.api/2.66.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grpc.core.api.2.60.0.nupkg.sha512",
+        "grpc.core.api.2.66.0.nupkg.sha512",
         "grpc.core.api.nuspec",
         "lib/net462/Grpc.Core.Api.dll",
         "lib/net462/Grpc.Core.Api.pdb",
@@ -675,15 +711,15 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Net.Client/2.60.0": {
-      "sha512": "J9U96gjZHOcqSgAThg9vZZhLsbTD005bUggPtMP/RVQnGc3+tQJTpkRUCJtJWq9cykNydsRVoyU38TjPP/VJ4A==",
+    "Grpc.Net.Client/2.66.0": {
+      "sha512": "GwkSsssXFgN9+M2U+UQWdErf61sn1iqgP+2NRBlDXATcP9vlxda0wySxd/eIL8U522+SnyFNUXlvQ5tAzGk9cA==",
       "type": "package",
-      "path": "grpc.net.client/2.60.0",
+      "path": "grpc.net.client/2.66.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grpc.net.client.2.60.0.nupkg.sha512",
+        "grpc.net.client.2.66.0.nupkg.sha512",
         "grpc.net.client.nuspec",
         "lib/net462/Grpc.Net.Client.dll",
         "lib/net462/Grpc.Net.Client.pdb",
@@ -706,14 +742,14 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Net.Common/2.60.0": {
-      "sha512": "Y/917aplgD1RA0q1cd9WpnMGyl9Luu3WZl6ZMpPvNQwg2TNw/3uXUDSriDBybeCtxnKUCtxUcWO3WsVkhM1DcA==",
+    "Grpc.Net.Common/2.66.0": {
+      "sha512": "YJpQpIvpo0HKlsG6SHwaieyji08qfv0DdEDIewCAA0egQY08637sHOj1netLGUhzBEsCqlGC3e92TZ2uqhxnvw==",
       "type": "package",
-      "path": "grpc.net.common/2.60.0",
+      "path": "grpc.net.common/2.66.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "grpc.net.common.2.60.0.nupkg.sha512",
+        "grpc.net.common.2.66.0.nupkg.sha512",
         "grpc.net.common.nuspec",
         "lib/net6.0/Grpc.Net.Common.dll",
         "lib/net6.0/Grpc.Net.Common.pdb",
@@ -888,6 +924,31 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Diagnostics.DiagnosticSource/6.0.1": {
+      "sha512": "KiLYDu2k2J82Q9BJpWiuQqCkFjRBWVq4jDzKKWawVi9KWzyD0XG3cmfX0vqTQlL14Wi9EufJrbL0+KCLTbqWiQ==",
+      "type": "package",
+      "path": "system.diagnostics.diagnosticsource/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Diagnostics.DiagnosticSource.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net461/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net6.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net6.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
+        "system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Management/7.0.2": {
       "sha512": "/qEUN91mP/MUQmJnM5y5BdT7ZoPuVrtxnFlbJ8a3kBJGhe2wCzBfnPFtK2wTtEEcf3DMGR9J00GZZfg6HRI6yA==",
       "type": "package",
@@ -915,11 +976,36 @@
         "system.management.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Google.Cloud.AIPlatform.V1 >= 3.7.0"
+      "Google.Cloud.AIPlatform.V1 >= 3.8.0"
     ]
   },
   "packageFolders": {
@@ -974,7 +1060,7 @@
         "dependencies": {
           "Google.Cloud.AIPlatform.V1": {
             "target": "Package",
-            "version": "[3.7.0, )"
+            "version": "[3.8.0, )"
           }
         },
         "imports": [
