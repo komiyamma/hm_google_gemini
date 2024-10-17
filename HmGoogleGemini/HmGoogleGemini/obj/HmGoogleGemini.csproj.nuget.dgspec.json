@@ -52,7 +52,7 @@
           "dependencies": {
             "Google.Cloud.AIPlatform.V1": {
               "target": "Package",
-              "version": "[3.8.0, )"
+              "version": "[3.9.0, )"
             }
           },
           "imports": [
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
