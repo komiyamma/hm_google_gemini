@@ -111,11 +111,11 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.12.0": {
+      "Google.Cloud.AIPlatform.V1/3.13.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
-          "Google.Cloud.Iam.V1": "[3.3.0, 4.0.0)",
+          "Google.Cloud.Iam.V1": "[3.4.0, 4.0.0)",
           "Google.Cloud.Location": "[2.3.0, 3.0.0)",
           "Google.LongRunning": "[3.3.0, 4.0.0)"
         },
@@ -130,10 +130,10 @@
           }
         }
       },
-      "Google.Cloud.Iam.V1/3.3.0": {
+      "Google.Cloud.Iam.V1/3.4.0": {
         "type": "package",
         "dependencies": {
-          "Google.Api.Gax.Grpc": "[4.8.0, 5.0.0)"
+          "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/Google.Cloud.Iam.V1.dll": {
@@ -499,11 +499,11 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.12.0": {
+      "Google.Cloud.AIPlatform.V1/3.13.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
-          "Google.Cloud.Iam.V1": "[3.3.0, 4.0.0)",
+          "Google.Cloud.Iam.V1": "[3.4.0, 4.0.0)",
           "Google.Cloud.Location": "[2.3.0, 3.0.0)",
           "Google.LongRunning": "[3.3.0, 4.0.0)"
         },
@@ -518,10 +518,10 @@
           }
         }
       },
-      "Google.Cloud.Iam.V1/3.3.0": {
+      "Google.Cloud.Iam.V1/3.4.0": {
         "type": "package",
         "dependencies": {
-          "Google.Api.Gax.Grpc": "[4.8.0, 5.0.0)"
+          "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/Google.Cloud.Iam.V1.dll": {
@@ -953,16 +953,16 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Google.Cloud.AIPlatform.V1/3.12.0": {
-      "sha512": "x6GLNq4xI5RFx9PeCzJryC/lg6iIn/HwEQzho2hB+akaTwafjbynY4avGUZ7TUUrhHvbrHgXdDSnr+5UlRTYrA==",
+    "Google.Cloud.AIPlatform.V1/3.13.0": {
+      "sha512": "RUy83mSwId50RK6ZxFCodZn4gqGDXsEg0Wfct+9RZQVYodaLHaavwwjvZtVpdkpKFsa5ZuEwrDL35MrH1/CJbQ==",
       "type": "package",
-      "path": "google.cloud.aiplatform.v1/3.12.0",
+      "path": "google.cloud.aiplatform.v1/3.13.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.cloud.aiplatform.v1.3.12.0.nupkg.sha512",
+        "google.cloud.aiplatform.v1.3.13.0.nupkg.sha512",
         "google.cloud.aiplatform.v1.nuspec",
         "lib/net462/Google.Cloud.AIPlatform.V1.dll",
         "lib/net462/Google.Cloud.AIPlatform.V1.pdb",
@@ -972,16 +972,16 @@
         "lib/netstandard2.0/Google.Cloud.AIPlatform.V1.xml"
       ]
     },
-    "Google.Cloud.Iam.V1/3.3.0": {
-      "sha512": "HNPUaTwVTUQuiWjllxCzTjGjM6wL5LYhny81sdRbRTdzSUTmV5pMQHqz4L3moaApXxZuFlhpFvHXhMJBLKYTkQ==",
+    "Google.Cloud.Iam.V1/3.4.0": {
+      "sha512": "MBs/hyBOiTWZ+v9UHrXjWIxgeJo5q6PI2kmA0HMG3wrL4xIsctZLdM6KQjic8tc3kMnKlPb6gcInN8xQjFiM3g==",
       "type": "package",
-      "path": "google.cloud.iam.v1/3.3.0",
+      "path": "google.cloud.iam.v1/3.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.cloud.iam.v1.3.3.0.nupkg.sha512",
+        "google.cloud.iam.v1.3.4.0.nupkg.sha512",
         "google.cloud.iam.v1.nuspec",
         "lib/net462/Google.Cloud.Iam.V1.dll",
         "lib/net462/Google.Cloud.Iam.V1.pdb",
@@ -1387,7 +1387,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Google.Cloud.AIPlatform.V1 >= 3.12.0"
+      "Google.Cloud.AIPlatform.V1 >= 3.13.0"
     ]
   },
   "packageFolders": {
@@ -1443,7 +1443,7 @@
         "dependencies": {
           "Google.Cloud.AIPlatform.V1": {
             "target": "Package",
-            "version": "[3.12.0, )"
+            "version": "[3.13.0, )"
           }
         },
         "imports": [
