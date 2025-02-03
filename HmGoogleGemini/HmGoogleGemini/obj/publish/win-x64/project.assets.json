@@ -111,7 +111,7 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.13.0": {
+      "Google.Cloud.AIPlatform.V1/3.16.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
@@ -499,7 +499,7 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.13.0": {
+      "Google.Cloud.AIPlatform.V1/3.16.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
@@ -953,16 +953,16 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Google.Cloud.AIPlatform.V1/3.13.0": {
-      "sha512": "RUy83mSwId50RK6ZxFCodZn4gqGDXsEg0Wfct+9RZQVYodaLHaavwwjvZtVpdkpKFsa5ZuEwrDL35MrH1/CJbQ==",
+    "Google.Cloud.AIPlatform.V1/3.16.0": {
+      "sha512": "V9XcqHPuK5FwZUwmsHTdymVovQenQ3QS4dDbWRPGEuz+sZ2p1mHpjIbpGVohSNf8nayJp43/Xl8+OTZUuB4SXw==",
       "type": "package",
-      "path": "google.cloud.aiplatform.v1/3.13.0",
+      "path": "google.cloud.aiplatform.v1/3.16.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.cloud.aiplatform.v1.3.13.0.nupkg.sha512",
+        "google.cloud.aiplatform.v1.3.16.0.nupkg.sha512",
         "google.cloud.aiplatform.v1.nuspec",
         "lib/net462/Google.Cloud.AIPlatform.V1.dll",
         "lib/net462/Google.Cloud.AIPlatform.V1.pdb",
@@ -1387,7 +1387,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Google.Cloud.AIPlatform.V1 >= 3.13.0"
+      "Google.Cloud.AIPlatform.V1 >= 3.16.0"
     ]
   },
   "packageFolders": {
@@ -1443,7 +1443,7 @@
         "dependencies": {
           "Google.Cloud.AIPlatform.V1": {
             "target": "Package",
-            "version": "[3.13.0, )"
+            "version": "[3.16.0, )"
           }
         },
         "imports": [
@@ -1460,15 +1460,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.11, 8.0.11]"
+            "version": "[8.0.12, 8.0.12]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.11, 8.0.11]"
+            "version": "[8.0.12, 8.0.12]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.11, 8.0.11]"
+            "version": "[8.0.12, 8.0.12]"
           }
         ],
         "frameworkReferences": {
@@ -1476,7 +1476,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
