@@ -1,6 +1,6 @@
 # HmGoogleGemini
 
-![HmGoogleGemini v1.1.2](https://img.shields.io/badge/HmGoogleGemini-v1.1.2-6479ff.svg)
+![HmGoogleGemini v1.1.3](https://img.shields.io/badge/HmGoogleGemini-v1.1.3-6479ff.svg)
 ![gemini-1.5-pro](https://img.shields.io/badge/gemini-1.5_pro-6479ff.svg)
 ![gemini-1.5-flash](https://img.shields.io/badge/gemini-1.5_flash-6479ff.svg)
 ![gemini-1.0-pro](https://img.shields.io/badge/gemini-1.0_pro-6479ff.svg)
