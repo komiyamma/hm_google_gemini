@@ -32,6 +32,10 @@ const renderPaneCustomParam = {
 
 const isOneAtTimeAIRenderPane = 1;           // AI関連のレンダリング枠は(他の種類のAIも含め)１つだけにする。(複数起動しそうになると、前のものが閉じる）
 
+
+// const proxyUrl = getenv("http_proxy") || getenv("https_proxy");
+                                             // プロキシを利用する場合は、このように。環境変数にない場合は文字列で直書きしてもよい。
+
 // --------------------------------------------------
 
 const renderPaneTargetName = "HmGoogleGemini";
@@ -321,10 +325,19 @@ function isContainsQuestionKey(key) {
     return questionKeyArray.includes(key);
 }
 
+// const proxyUrl の行をコメントアウトしてプロキシの変数自体が存在しないかもしれないので文字列になるようにしとく
+function getProxyUrl() {
+	if (typeof(proxyUrl) == "undefined") {
+	    return "";
+	}
+    return proxyUrl;
+}
+
 // 選択テキストを質問内容としてファイルに保存し、ＡＩを指定のパラメータやモデルで起動
 function sendQuestionContent() {
     let text = questionTextCache;
-    let commandline = `"${aiExePath}" "${projectId}" "${locationName}" "${modelName}"`;
+
+    let commandline = `"${aiExePath}" "${projectId}" "${locationName}" "${modelName}" "${getProxyUrl()}"`;
     hidemaru.runProcess(commandline, currentMacroDirectory, "stdioAlive", "sjis");
 
     let questionKey = getTickCount();

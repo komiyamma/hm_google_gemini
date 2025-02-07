@@ -11,6 +11,7 @@ internal partial class HmGoogleGemini
         string _location = "";   // "us-central1" とかそういうパターン
         string _model = "";      // "gemini-1.0-pro" とかそういうパターン
         string _publisher = "google";
+        string _proxy_url = "";
 
         try
         {
@@ -26,6 +27,11 @@ internal partial class HmGoogleGemini
                 // Console.WriteLine("_model:" + commandLineArgs[3]);
                 _model = commandLineArgs[3];
             }
+            if (commandLineArgs.Length >= 5)
+            {
+                // Console.WriteLine("_proxy_url:" + commandLineArgs[4]);
+                _proxy_url = commandLineArgs[4];
+            }
         }
         catch (Exception e)
         {
@@ -33,10 +39,12 @@ internal partial class HmGoogleGemini
 
         ClearAnswerFile();
 
-        try { 
+        try
+        {
             // コンテキストを追跡するためにチャットセッションを作成する
-            chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location);
-        } catch(Exception e)
+            chatSession = new ChatSession($"projects/{_projectId}/locations/{_location}/publishers/{_publisher}/models/{_model}", _location, _proxy_url);
+        }
+        catch (Exception e)
         {
             SaveAllTextToAnswerFile("\r\n\r\n" + e.GetType().Name + "\r\n\r\n" + e.Message + "\r\n");
             chatSession.Cancel();

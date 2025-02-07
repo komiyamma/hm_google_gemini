@@ -1,9 +1,12 @@
 ﻿
 using Google.Api.Gax.Grpc;
+using Google.Apis.Auth.OAuth2;
 using Google.Cloud.AIPlatform.V1;
+using Grpc.Net.Client;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,15 +20,34 @@ internal partial class ChatSession
 
     static List<Content> _contents;
     static int conversationUpdateCount = 1;
-    public ChatSession(string modelPath, string location)
+    public ChatSession(string modelPath, string location, string proxy_url)
     {
         _modelPath = modelPath;
 
-        // 予測サービス・クライアントを作成する。
-        _predictionServiceClient = new PredictionServiceClientBuilder
+        // マクロ内で、プロキシを利用すると明示していない。
+        if (String.IsNullOrEmpty(proxy_url))
         {
-            Endpoint = $"{location}-aiplatform.googleapis.com",
-        }.Build();
+            // 予測サービス・クライアントを作成する。
+            _predictionServiceClient = new PredictionServiceClientBuilder
+            {
+                Endpoint = $"{location}-aiplatform.googleapis.com",
+            }.Build();
+        }
+
+        // マクロ内で、プロキシを利用すると明示している。
+        else
+        {
+            // そのプロキシを使用して認証済みの呼び出しを作成する。
+            AuthenticatedCallInvoker callInvoker = GetProxyAuthenticatedCallInvoker(location, proxy_url);
+
+            // 予測サービス・クライアントを作成する。
+            _predictionServiceClient = new Google.Cloud.AIPlatform.V1.PredictionServiceClientBuilder
+            {
+                CallInvoker = callInvoker
+                //CallInvoker = channel.CreateCallInvoker(),
+                //CredentialsPath = credential,
+            }.Build();
+        }
 
         InitContents();
     }
