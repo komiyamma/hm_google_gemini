@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lR0eF36WtNs=",
+  "dgSpecHash": "3KJBN/KKEAc=",
   "success": true,
   "projectFilePath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
   "expectedPackageFiles": [
@@ -28,12 +28,5 @@
     "C:\\Users\\master\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "パッケージの脆弱性データの取得中にエラーが発生しました: ソース https://api.nuget.org/v3/index.json のサービス インデックスを読み込めません。"
-    }
-  ]
+  "logs": []
 }

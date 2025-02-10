@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TGZYc4tJSiY=",
+  "dgSpecHash": "xzL97kbJyZM=",
   "success": true,
   "projectFilePath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
   "expectedPackageFiles": [
@@ -31,12 +31,5 @@
     "C:\\Users\\master\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.12\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.12.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.12\\microsoft.aspnetcore.app.runtime.win-x64.8.0.12.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "パッケージの脆弱性データの取得中にエラーが発生しました: ソース https://api.nuget.org/v3/index.json のサービス インデックスを読み込めません。"
-    }
-  ]
+  "logs": []
 }

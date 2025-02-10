@@ -66,7 +66,8 @@
               "RelativeToolTip": "HmGoogleGemini\\HttpProxy.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAAwAwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T09:41:15.57Z"
+              "WhenOpened": "2025-02-07T09:41:15.57Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -89,9 +90,10 @@
               "RelativeDocumentMoniker": "HmGoogleGemini\\Main.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\Main.cs",
               "RelativeToolTip": "HmGoogleGemini\\Main.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAABFwC4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:49:25.03Z"
+              "WhenOpened": "2024-06-12T01:49:25.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -103,7 +105,8 @@
               "RelativeToolTip": "HmGoogleGemini\\QuestionFileWatcher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:46:47.016Z"
+              "WhenOpened": "2024-06-12T01:46:47.016Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -128,7 +131,8 @@
               "RelativeToolTip": "HmGoogleGemini\\MessageListAutoRemover.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAjwEUAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:31.742Z"
+              "WhenOpened": "2024-06-12T01:45:31.742Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -140,7 +144,8 @@
               "RelativeToolTip": "HmGoogleGemini\\WindowsShutDownNotifier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:24.738Z"
+              "WhenOpened": "2024-06-12T01:45:24.738Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -152,7 +157,8 @@
               "RelativeToolTip": "HmGoogleGemini\\IOTextController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:06.357Z"
+              "WhenOpened": "2024-06-12T01:45:06.357Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -162,7 +168,7 @@
               "RelativeDocumentMoniker": "HmGoogleGemini\\HmGoogleGemini.csproj",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
               "RelativeToolTip": "HmGoogleGemini\\HmGoogleGemini.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-06-12T01:44:59.684Z",
               "EditorCaption": ""
