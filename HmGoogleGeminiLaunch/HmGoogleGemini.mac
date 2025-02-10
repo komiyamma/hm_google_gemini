@@ -1,5 +1,5 @@
 ﻿/*
- * HmGoogleGemini v 1.2.0.1
+ * HmGoogleGemini v 1.2.0.2
  *
  * Copyright (c) 2024-2025 Akitsugu Komiyama
  * under the MIT License
@@ -327,9 +327,9 @@ function isContainsQuestionKey(key) {
 
 // const proxyUrl の行をコメントアウトしてプロキシの変数自体が存在しないかもしれないので文字列になるようにしとく
 function getProxyUrl() {
-	if (typeof(proxyUrl) == "undefined") {
-	    return "";
-	}
+    if (typeof(proxyUrl) == "undefined") {
+        return "";
+    }
     return proxyUrl;
 }
 
