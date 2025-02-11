@@ -9,7 +9,7 @@
 		<FileVersion>1.2.0.1</FileVersion>
 		<Version>1.2.0.1</Version>
 		<Authors>Akitsugu Komiyama</Authors>
-		<Copyright>2024 @ $(Authors)</Copyright>
+		<Copyright>2024-2025 @ $(Authors)</Copyright>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
