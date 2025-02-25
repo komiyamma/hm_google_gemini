@@ -22,11 +22,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -59,7 +63,7 @@
               "RelativeDocumentMoniker": "HmSimpleHttpServer\\Program.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmSimpleHttpServer\\HmSimpleHttpServer\\Program.cs",
               "RelativeToolTip": "HmSimpleHttpServer\\Program.cs",
-              "ViewState": "AQIAAM4AAAAAAAAAAAAAAOEAAAAJAAAA",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAUwCQAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-04T03:51:21.715Z",
               "EditorCaption": ""

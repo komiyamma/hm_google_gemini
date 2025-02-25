@@ -5,9 +5,9 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
-		<AssemblyVersion>1.2.0.1</AssemblyVersion>
-		<FileVersion>1.2.0.1</FileVersion>
-		<Version>1.2.0.1</Version>
+		<AssemblyVersion>1.2.0.4</AssemblyVersion>
+		<FileVersion>1.2.0.4</FileVersion>
+		<Version>1.2.0.4</Version>
 		<Authors>Akitsugu Komiyama</Authors>
 		<Copyright>2024-2025 @ $(Authors)</Copyright>
 	</PropertyGroup>
@@ -21,7 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Cloud.AIPlatform.V1" Version="3.17.0" />
+		<PackageReference Include="Google.Cloud.AIPlatform.V1" Version="3.19.0" />
 	</ItemGroup>
 
 </Project>

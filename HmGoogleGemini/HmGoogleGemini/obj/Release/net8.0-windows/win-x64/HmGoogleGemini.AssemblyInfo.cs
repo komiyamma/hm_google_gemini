@@ -13,12 +13,12 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Akitsugu Komiyama")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyCopyrightAttribute("2024 @ Akitsugu Komiyama")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.2.0.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.0.1+b43ee33f0439ee36ecedcdcb5b7cfcdac1bc76fb")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("2024-2025 @ Akitsugu Komiyama")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.2.0.4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.0.4+5be9ceeb5f029b32c2a3b5c97b4f8ffc4053d2c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("HmGoogleGemini")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HmGoogleGemini")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.2.0.1")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.2.0.4")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 
