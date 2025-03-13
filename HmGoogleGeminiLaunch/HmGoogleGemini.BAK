@@ -31,10 +31,6 @@
             margin-left: auto;
         }
 
-        #model_answer {
-            width: 96%;
-        }
-
         table {
             border-collapse: collapse;
         }
