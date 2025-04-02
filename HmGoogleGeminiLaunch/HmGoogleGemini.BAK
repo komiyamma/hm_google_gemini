@@ -19,7 +19,6 @@
 
         #model_answer {
             width: 96%;
-            word-break: auto-phrase;
         }
 
         #btn_stop {
@@ -39,13 +38,6 @@
         td {
             border: 1px solid #666;
         }
-
-        /*
-        body {
-            background-color: #222;
-            color:#eee
-        }
-        */
     </style>
     <script src="./HmGoogleGemini.marked.js"></script>
     <script src="./HmGoogleGemini.mdformat.js"></script>
