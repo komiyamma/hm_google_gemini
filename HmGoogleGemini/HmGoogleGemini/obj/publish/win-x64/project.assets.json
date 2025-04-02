@@ -111,7 +111,7 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.24.0": {
+      "Google.Cloud.AIPlatform.V1/3.25.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
@@ -499,7 +499,7 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.24.0": {
+      "Google.Cloud.AIPlatform.V1/3.25.0": {
         "type": "package",
         "dependencies": {
           "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
@@ -953,16 +953,16 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Google.Cloud.AIPlatform.V1/3.24.0": {
-      "sha512": "mmb/WwLkh3S2kIA2mGWAmgFpczqz7ZjsY+VMXU/Tn+hZsLZByiFj1E1rVXfDrCJj37MnQ+8oHzDvnxtjuZLiig==",
+    "Google.Cloud.AIPlatform.V1/3.25.0": {
+      "sha512": "U2wuRhSbRheOdSNEhbr5xpKu7lVt6Y0cTZEexuMfMV3SZfADhbiXg0PEnOOnGlJ6JS79yJIfRp+zNBWe8q65aw==",
       "type": "package",
-      "path": "google.cloud.aiplatform.v1/3.24.0",
+      "path": "google.cloud.aiplatform.v1/3.25.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.cloud.aiplatform.v1.3.24.0.nupkg.sha512",
+        "google.cloud.aiplatform.v1.3.25.0.nupkg.sha512",
         "google.cloud.aiplatform.v1.nuspec",
         "lib/net462/Google.Cloud.AIPlatform.V1.dll",
         "lib/net462/Google.Cloud.AIPlatform.V1.pdb",
@@ -1387,7 +1387,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Google.Cloud.AIPlatform.V1 >= 3.24.0"
+      "Google.Cloud.AIPlatform.V1 >= 3.25.0"
     ]
   },
   "packageFolders": {
@@ -1443,7 +1443,7 @@
         "dependencies": {
           "Google.Cloud.AIPlatform.V1": {
             "target": "Package",
-            "version": "[3.24.0, )"
+            "version": "[3.25.0, )"
           }
         },
         "imports": [
