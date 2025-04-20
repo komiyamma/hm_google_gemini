@@ -66,8 +66,7 @@
               "RelativeToolTip": "HmGoogleGemini\\HttpProxy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T09:41:15.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-07T09:41:15.57Z"
             },
             {
               "$type": "Document",
@@ -92,8 +91,7 @@
               "RelativeToolTip": "HmGoogleGemini\\Main.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAABFwC4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:49:25.03Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:49:25.03Z"
             },
             {
               "$type": "Document",
@@ -105,8 +103,7 @@
               "RelativeToolTip": "HmGoogleGemini\\QuestionFileWatcher.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAkwEIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:46:47.016Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:46:47.016Z"
             },
             {
               "$type": "Document",
@@ -116,7 +113,7 @@
               "RelativeDocumentMoniker": "HmGoogleGemini\\GeminiAIChatSession.cs",
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\GeminiAIChatSession.cs",
               "RelativeToolTip": "HmGoogleGemini\\GeminiAIChatSession.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAQwGEAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAYwNAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-12T01:45:35.326Z",
               "EditorCaption": ""
@@ -131,8 +128,7 @@
               "RelativeToolTip": "HmGoogleGemini\\MessageListAutoRemover.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAjwEUAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:31.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:45:31.742Z"
             },
             {
               "$type": "Document",
@@ -144,8 +140,7 @@
               "RelativeToolTip": "HmGoogleGemini\\WindowsShutDownNotifier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:24.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:45:24.738Z"
             },
             {
               "$type": "Document",
@@ -157,8 +152,7 @@
               "RelativeToolTip": "HmGoogleGemini\\IOTextController.cs",
               "ViewState": "AgIAAE8AAAAAAAAAAAAkwGQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:45:06.357Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:45:06.357Z"
             },
             {
               "$type": "Document",
@@ -170,8 +164,7 @@
               "RelativeToolTip": "HmGoogleGemini\\HmGoogleGemini.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-12T01:44:59.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T01:44:59.684Z"
             },
             {
               "$type": "Document",
@@ -182,12 +175,7 @@
               "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
               "RelativeToolTip": "HmGoogleGemini\\HmGoogleGemini.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-12T01:44:55.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2024-06-12T01:44:55.041Z"
             }
           ]
         }
