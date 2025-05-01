@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "HmGoogleGemini/1.2.0.4": {
         "dependencies": {
-          "Google.Cloud.AIPlatform.V1": "3.25.0"
+          "Google.Cloud.AIPlatform.V1": "3.27.0"
         },
         "runtime": {
           "HmGoogleGemini.dll": {}
@@ -90,7 +90,7 @@
           }
         }
       },
-      "Google.Cloud.AIPlatform.V1/3.25.0": {
+      "Google.Cloud.AIPlatform.V1/3.27.0": {
         "dependencies": {
           "Google.Api.Gax.Grpc": "4.9.0",
           "Google.Cloud.Iam.V1": "3.4.0",
@@ -99,8 +99,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/Google.Cloud.AIPlatform.V1.dll": {
-            "assemblyVersion": "3.25.0.0",
-            "fileVersion": "3.25.0.0"
+            "assemblyVersion": "3.27.0.0",
+            "fileVersion": "3.27.0.0"
           }
         }
       },
@@ -303,12 +303,12 @@
       "path": "google.apis.core/1.68.0",
       "hashPath": "google.apis.core.1.68.0.nupkg.sha512"
     },
-    "Google.Cloud.AIPlatform.V1/3.25.0": {
+    "Google.Cloud.AIPlatform.V1/3.27.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-U2wuRhSbRheOdSNEhbr5xpKu7lVt6Y0cTZEexuMfMV3SZfADhbiXg0PEnOOnGlJ6JS79yJIfRp+zNBWe8q65aw==",
-      "path": "google.cloud.aiplatform.v1/3.25.0",
-      "hashPath": "google.cloud.aiplatform.v1.3.25.0.nupkg.sha512"
+      "sha512": "sha512-qtjtU9H5YfZw1kDceXCPviciR+jAUQZ2PcZOsYTHOijBNol/0MlKPqJuXoG1UzOYuUKhB05xaV64ObJf+L/v2Q==",
+      "path": "google.cloud.aiplatform.v1/3.27.0",
+      "hashPath": "google.cloud.aiplatform.v1.3.27.0.nupkg.sha512"
     },
     "Google.Cloud.Iam.V1/3.4.0": {
       "type": "package",

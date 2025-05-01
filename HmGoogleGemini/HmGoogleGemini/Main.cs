@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 internal partial class HmGoogleGemini
 {
-    static void ifOldProcessIsOtherDirectoryKillIt()
+    static void IfOldProcessIsOtherDirectoryKillIt()
     {
         string currentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
         string processName = Process.GetCurrentProcess().ProcessName;
@@ -28,7 +28,7 @@ internal partial class HmGoogleGemini
         }
     }
 
-    static void ifProcessHasExistKillIt()
+    static void IfProcessHasExistKillIt()
     {
         // 現在のプロセスの名前を取得
         string currentProcessName = Process.GetCurrentProcess().ProcessName;
@@ -44,7 +44,7 @@ internal partial class HmGoogleGemini
         }
     }
 
-    static void killExistsProcess()
+    static void KillExistsProcess()
     {
         string processName = Process.GetCurrentProcess().ProcessName;
         Process[] processes = Process.GetProcessesByName(processName);
@@ -61,7 +61,7 @@ internal partial class HmGoogleGemini
     static async Task Main(String[] args)
     {
         // 古いプロセスが他のディレクトリにある場合はKillする
-        ifOldProcessIsOtherDirectoryKillIt();
+        IfOldProcessIsOtherDirectoryKillIt();
 
         // クリアの命令をすると、先に実行していた方が先に閉じてしまうことがある。
         // よってマクロから明示的にClearする時は、引数にて「実行を継続するようなプロセスではないですよ」といった意味で
@@ -72,7 +72,7 @@ internal partial class HmGoogleGemini
             if (command.Contains("HmGoogleGemini.Clear()"))
             {
                 await Task.Delay(500); // 0.5秒まつ
-                killExistsProcess(); // 強制的に過去のものも削除
+                KillExistsProcess(); // 強制的に過去のものも削除
                 return;
             }
             if (command.Contains("HmGoogleGemini.Cancel()"))
@@ -86,7 +86,7 @@ internal partial class HmGoogleGemini
         }
 
         // 自分が2個目なら終了(2重起動しない)
-        ifProcessHasExistKillIt();
+        IfProcessHasExistKillIt();
 
 
         // Windowsがシャットダウンするときに呼び出される処理を登録等
