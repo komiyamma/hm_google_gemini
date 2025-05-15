@@ -180,7 +180,7 @@ G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\hostfxr.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\hostpolicy.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\mscordaccore.dll
-G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\mscordaccore_amd64_amd64_8.0.1525.16413.dll
+G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\mscordaccore_amd64_amd64_8.0.1625.21506.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\mscordbi.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\mscorrc.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\publish\win-x64\msquic.dll

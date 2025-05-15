@@ -21,7 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Cloud.AIPlatform.V1" Version="3.27.0" />
+		<PackageReference Include="Google.Cloud.AIPlatform.V1" Version="3.28.0" />
 	</ItemGroup>
 
 </Project>
