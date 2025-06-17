@@ -1,10 +1,9 @@
 # HmGoogleGemini
 
 ![HmGoogleGemini v1.2.0](https://img.shields.io/badge/HmGoogleGemini-v1.2.0-6479ff.svg)
+![gemini-2.5-flash](https://img.shields.io/badge/gemini-2.0_flash-6479ff.svg)
 ![gemini-2.0-flash](https://img.shields.io/badge/gemini-2.0_flash-6479ff.svg)
 ![gemini-2.0-flash-lite](https://img.shields.io/badge/gemini-2.0_flash_lite-6479ff.svg)
-![gemini-1.5-pro](https://img.shields.io/badge/gemini-1.5_pro-6479ff.svg)
-![gemini-1.5-flash](https://img.shields.io/badge/gemini-1.5_flash-6479ff.svg)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Hidemaru 9.35](https://img.shields.io/badge/Hidemaru-v9.39-6479ff.svg)
 
