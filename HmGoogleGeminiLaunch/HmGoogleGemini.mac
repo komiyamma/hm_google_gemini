@@ -23,7 +23,7 @@ js {
 
 const projectId = "robotic-gist-425611-v8";  // Google Cloud Console 上の「プロジェクトID」(プロジェクト名ではなくプロジェクトID。プロジェクトIDには空白は入らない)
 
-const modelName = "gemini-2.5-flash";    // 該当のプロジェクトで使用する gemini-pro系。(gemini-1.0-pro や gemini-1.5-pro や gemini-1.5-flash や gemini-2.0-flash-lite) など。
+const modelName = "gemini-2.0-flash-lite";    // 該当のプロジェクトで使用する gemini-pro系。(gemini-1.0-pro や gemini-1.5-pro や gemini-1.5-flash や gemini-2.0-flash-lite) など。
 
 const locationName = "us-central1";          // 該当のプロジェクトのlocation。"us-central1" で問題はない。 ("asia-northeast1" も候補かも。どちらでも動作する)
 
