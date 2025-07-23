@@ -431,4 +431,4 @@ G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\net8.0-
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\net8.0-windows\win-x64\refint\HmGoogleGemini.dll
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\net8.0-windows\win-x64\HmGoogleGemini.genruntimeconfig.cache
 G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\obj\Release\net8.0-windows\win-x64\ref\HmGoogleGemini.dll
-G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\win-x64\mscordaccore_amd64_amd64_8.0.1725.26602.dll
+G:\repogitory\hm_google_gemini\HmGoogleGemini\HmGoogleGemini\bin\Release\net8.0-windows\win-x64\mscordaccore_amd64_amd64_8.0.1825.31117.dll

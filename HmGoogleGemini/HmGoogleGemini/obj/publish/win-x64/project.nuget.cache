@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xvnr19tkxiw=",
+  "dgSpecHash": "v2nGl3dzZnM=",
   "success": true,
   "projectFilePath": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\master\\.nuget\\packages\\google.apis\\1.69.0\\google.apis.1.69.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.apis.auth\\1.69.0\\google.apis.auth.1.69.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.apis.core\\1.69.0\\google.apis.core.1.69.0.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\google.cloud.aiplatform.v1\\3.34.0\\google.cloud.aiplatform.v1.3.34.0.nupkg.sha512",
+    "C:\\Users\\master\\.nuget\\packages\\google.cloud.aiplatform.v1\\3.38.0\\google.cloud.aiplatform.v1.3.38.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.cloud.iam.v1\\3.4.0\\google.cloud.iam.v1.3.4.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.cloud.location\\2.3.0\\google.cloud.location.2.3.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\google.longrunning\\3.3.0\\google.longrunning.3.3.0.nupkg.sha512",
@@ -26,9 +26,9 @@
     "C:\\Users\\master\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.2\\system.diagnostics.diagnosticsource.6.0.2.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.17\\microsoft.netcore.app.runtime.win-x64.8.0.17.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.17\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.17.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.17\\microsoft.aspnetcore.app.runtime.win-x64.8.0.17.nupkg.sha512"
+    "C:\\Users\\master\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.18\\microsoft.netcore.app.runtime.win-x64.8.0.18.nupkg.sha512",
+    "C:\\Users\\master\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.18\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.18.nupkg.sha512",
+    "C:\\Users\\master\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.18\\microsoft.aspnetcore.app.runtime.win-x64.8.0.18.nupkg.sha512"
   ],
   "logs": []
 }
