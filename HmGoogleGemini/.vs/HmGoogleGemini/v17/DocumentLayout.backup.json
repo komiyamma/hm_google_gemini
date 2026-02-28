@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,6 +59,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Bookmark",
@@ -174,8 +178,8 @@
               "Title": "HmGoogleGemini.csproj",
               "DocumentMoniker": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
               "RelativeDocumentMoniker": "HmGoogleGemini\\HmGoogleGemini.csproj",
-              "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj*",
-              "RelativeToolTip": "HmGoogleGemini\\HmGoogleGemini.csproj*",
+              "ToolTip": "G:\\repogitory\\hm_google_gemini\\HmGoogleGemini\\HmGoogleGemini\\HmGoogleGemini.csproj",
+              "RelativeToolTip": "HmGoogleGemini\\HmGoogleGemini.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-06-12T01:44:59.684Z",
