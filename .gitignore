@@ -253,3 +253,5 @@ paket-files/
 
 # Visual Studio Code files
 .vscode/
+.vscode-test/
+*.code-workspace
